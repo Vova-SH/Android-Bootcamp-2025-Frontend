@@ -197,3 +197,6 @@
 - удаление данных на сервере
 - переход на экран авторизации
 9. Добавление функций администратора
+
+### Ссылка на макет Figma
+https://www.figma.com/design/HtG1x05ufXz9Nf81wmreE7/Untitled?node-id=0-1&t=vCOA0STdJoWJF31b-1
