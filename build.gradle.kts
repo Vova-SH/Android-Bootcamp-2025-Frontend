@@ -2,4 +2,11 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
+    kotlin("jvm")
+}
+dependencies {
+    implementation(kotlin("stdlib"))
+}
+repositories {
+    mavenCentral()
 }
