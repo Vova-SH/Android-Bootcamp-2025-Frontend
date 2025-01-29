@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Android-Bootcamp-2025-Frontend</string>
+    <string name="menuNavHome">Домашний экран</string>
+    <string name="menuNavUser">Профиль</string>
+    <string name="menuNavLocal">Цeнтры</string>
+
+</resources>

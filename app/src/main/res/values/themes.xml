@@ -2,7 +2,26 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.AndroidBootcamp2025Frontend" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/green_dark</item> <!-- Основной цвет -->
+        <item name="colorOnPrimary">@color/white</item> <!-- Цвет текста на основном фоне -->
+        <item name="colorPrimaryContainer">@color/green_light</item> <!-- Цвет контейнера для основного цвета -->
+        <item name="colorOnPrimaryContainer">@color/green_dark</item> <!-- Цвет текста на контейнере основного цвета -->
+
+        <item name="colorSecondary">@color/green_dark</item> <!-- Цвет выделения -->
+        <item name="colorOnSecondary">@color/white</item> <!-- Цвет текста на выделении -->
+        <item name="colorSecondaryContainer">@color/green_dark</item> <!-- Цвет контейнера для вторичного цвета -->
+        <item name="colorOnSecondaryContainer">@color/black</item> <!-- Цвет текста на контейнере вторичного цвета -->
+
+        <item name="colorOnBackground">@color/black</item> <!-- Цвет текста на фоне -->
+
+        <item name="colorSurface">@color/white</item> <!-- Цвет поверхности -->
+        <item name="colorOnSurface">@color/black</item> <!-- Цвет текста на поверхности -->
+
+        <item name="colorError">@color/red</item> <!-- Цвет для ошибок -->
+        <item name="colorOnError">@color/white</item> <!-- Цвет текста на фоне ошибки -->
+
+        <!-- Установка цвета выделения для BottomNavigationView -->
+        <item name="colorControlActivated">@color/green_dark</item> <!-- Цвет выделения для активных элементов -->
     </style>
 
     <style name="Theme.AndroidBootcamp2025Frontend" parent="Base.Theme.AndroidBootcamp2025Frontend" />
