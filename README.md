@@ -94,4 +94,4 @@
 #### 7. Интеграция с API:
 1.Подключения токена авторизации к каждому запросу.
 
-### Макет Figma: https://www.figma.com/design/0DjxEsZ8K9L4aCH6I4kaXq/Untitled?node-id=4-139&t=MujK4SoQny17g7mW-0
+#### Макет Figma: https://www.figma.com/design/0DjxEsZ8K9L4aCH6I4kaXq/Untitled?node-id=4-139&t=MujK4SoQny17g7mW-0
