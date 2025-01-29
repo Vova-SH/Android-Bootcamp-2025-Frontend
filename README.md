@@ -258,3 +258,7 @@
   c. Отправка изменённой информации на сервер
   d. Обработка ошибок (не валидные данные, проблемы с сетью)
   e. Кнопка выхода из аккаунта
+  
+**5. Визуализация UI/UX в Figma:**
+
+https://www.figma.com/design/FtabUKTOzDfir8wlcuYCXk/volunteer_app?m=auto&t=61iNZxm5whRUwtxH-6
