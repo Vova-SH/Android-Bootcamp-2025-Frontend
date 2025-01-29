@@ -212,5 +212,4 @@ d. [] Добавить функцию перехода на страницу в�
 
 
 
-#####App UI/UX maket:
- https://www.figma.com/design/oGRluA21qfzD8f7vAkSZVP/Samsung-Bootcamp-2025?node-id=0-1&t=TbH518QiGHsnPm96-1
+####App UI/UX maket: https://www.figma.com/design/oGRluA21qfzD8f7vAkSZVP/Samsung-Bootcamp-2025?node-id=0-1&t=TbH518QiGHsnPm96-1
