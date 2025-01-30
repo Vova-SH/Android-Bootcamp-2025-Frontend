@@ -4,4 +4,7 @@
     <string name="menuNavUser">Профиль</string>
     <string name="menuNavLocal">Цeнтры</string>
 
+    <string name="saveWorldDescription">Знак спасения природы</string>
+    <string name="startedAppeal">Стань волонтером\nВыбери свой центр</string>
+
 </resources>

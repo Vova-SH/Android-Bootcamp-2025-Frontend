@@ -4,4 +4,10 @@
     <string name="menuNavUser">Profile</string>
     <string name="menuNavLocal">Centers</string>
 
+    <string name="saveWorldDescription">Nature rescue sign</string>
+    <string name="startedAppeal">Become a volunteer\nChoose your center</string>
+    <string name="startedRegister">Зарегистрироваться</string>
+    <string name="startedLogin">Войти</string>
+    <string name="title_activity_start">StartActivity</string>
+
 </resources>
