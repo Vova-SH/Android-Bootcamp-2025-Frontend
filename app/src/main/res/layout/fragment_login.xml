@@ -9,7 +9,6 @@
     android:background="@drawable/ic_background"
     android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".LoginFragment">
 
     <include
         layout="@layout/fragment_save_world"
