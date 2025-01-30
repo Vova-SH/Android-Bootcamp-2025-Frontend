@@ -13,4 +13,10 @@
         <item name="android:backgroundTint">@color/blue</item>
         <item name="cornerRadius">10dp</item>
     </style>
+
+    <style name="CloseButton" parent="Widget.Material3.Button" >
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="circleRadius">32dp</item>
+        <item name="android:drawable">@drawable/close_md</item>
+    </style>
 </resources>

@@ -9,4 +9,8 @@
     <string name="find_center_hint">Поиск центра</string>
     <string name="list_tab">Список</string>
     <string name="map_tab">Карта</string>
+    <string name="address_header">Адрес</string>
+    <string name="contacts_header">Контакты</string>
+    <string name="link_header">Сайт</string>
+    <string name="active_volunteers">Активные волонтеры</string>
 </resources>
