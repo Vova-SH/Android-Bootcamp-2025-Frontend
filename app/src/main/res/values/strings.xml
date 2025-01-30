@@ -42,4 +42,6 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="login_title">Войти в аккаунт</string>
+    <string name="email_phone">Почта/телефон</string>
 </resources>
