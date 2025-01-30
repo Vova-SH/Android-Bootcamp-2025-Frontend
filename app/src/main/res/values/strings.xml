@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Android-Bootcamp-2025-Frontend</string>
+    <string name="welcome_title">Добро пожаловать\nв Volunteers</string>
+    <string name="login_input_hint">Почта, логин или номер телефона</string>
+    <string name="password_input_hint">Пароль</string>
+    <string name="register_text_button">Регистрация</string>
+    <string name="double_check_password_hint">Подтверждение пароля</string>
+    <string name="login_button_text">Вход</string>
+    <string name="find_center_hint">Поиск центра</string>
+    <string name="list_tab">Список</string>
+    <string name="map_tab">Карта</string>
 </resources>
