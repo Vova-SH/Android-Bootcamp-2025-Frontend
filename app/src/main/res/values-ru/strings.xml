@@ -5,6 +5,15 @@
     <string name="menuNavLocal">Цeнтры</string>
 
     <string name="saveWorldDescription">Знак спасения природы</string>
-    <string name="startedAppeal">Стань волонтером\nВыбери свой центр</string>
+    <string name="startedAppeal">Станьте волонтером\nВыберите свой центр</string>
+    <string name="startedRegister">Регистрация</string>
+    <string name="startedLogin">Вход</string>
+    <string name="title_activity_start">Стартовая активность</string>
+    <string name="login">Вход</string>
+    <string name="emailInput">Электронная почта</string>
+    <string name="passwordInput">Пароль</string>
+    <string name="loginButton">Войти</string>
+    <string name="notAccount">Нет аккаунта?</string>
+    <string name="registerOffer">Зарегистрироваться</string>
 
 </resources>

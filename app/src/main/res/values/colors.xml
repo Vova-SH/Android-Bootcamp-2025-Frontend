@@ -22,5 +22,6 @@
     <!-- Дополнительные цвета -->
     <color name="greenLight">#B2E5C0</color>
     <color name="grayLight">#3E3E3E</color>
+    <color name="grayWhite">#E6E6E6</color>
     <color name="grayDark">#606060</color>
 </resources>
