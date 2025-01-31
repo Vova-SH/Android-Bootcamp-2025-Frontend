@@ -28,5 +28,8 @@
     <string name="myProfile">My Profile</string>
     <string name="сentreInput">Centre</string>
     <string name="fullNameInput">Full name</string>
+    <string name="peopleDescription">Save Planet</string>
+    <string name="welcome">Welcome!</string>
+    <string name="find">Find</string>
 
 </resources>

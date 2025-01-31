@@ -28,5 +28,8 @@
     <string name="myProfile">Мой профиль</string>
     <string name="сentreInput">Центр</string>
     <string name="fullNameInput">Имя Фамилия</string>
+    <string name="peopleDescription">Спасение земли</string>
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="find">Поиск</string>
 
 </resources>
