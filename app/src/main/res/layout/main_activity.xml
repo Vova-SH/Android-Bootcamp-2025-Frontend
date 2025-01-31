@@ -15,11 +15,11 @@
         app:navGraph="@navigation/main_screen_navgraph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        app:itemActiveIndicatorStyle="@style/BottomBarSelectedItem"
-        android:background="@color/gray"
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/gray"
+        app:itemActiveIndicatorStyle="@style/BottomBarSelectedItem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_bar_menu" />
 
