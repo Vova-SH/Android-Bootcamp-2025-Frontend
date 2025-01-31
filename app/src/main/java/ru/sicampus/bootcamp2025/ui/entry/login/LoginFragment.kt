@@ -1,5 +1,6 @@
 package ru.sicampus.bootcamp2025.ui.entry.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +39,12 @@ class LoginFragment : Fragment() {
         val navController = NavHostFragment.findNavController(this)
 
         binding.toSignup.setOnClickListener {
-            navController.navigate(R.id.action_login_fragment_to_signup_fragment) }
+            navController.navigate(R.id.action_login_fragment_to_signup_fragment)
+        }
+        binding.process.setOnClickListener {
+            // TODO: Add checking and caching credentials
+            startActivity(Intent(activity, LoginFragment::class.java))
+        }
 
     }
 }
