@@ -1,14 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Android-Bootcamp-2025-Frontend</string>
-    <string name="tv_mail_title">Войти в аккаунт</string>
     <string name="authentication_main_title">Войти в аккаунт</string>
-    <string name="email_title">E-mail:</string>
-    <string name="email_hint">Введите e-mail...</string>
     <string name="input_password_title">Введите пароль:</string>
     <string name="tv_login">Войти</string>
-    <string name="hint_label">Еще не создали аккаунт? Создать</string>
+    <string name="hint_label">Еще не создали аккаунт?</string>
     <string name="create_account_hint">Создать</string>
-    <string name="password_hint">Введите пароль...</string>
     <string name="registration_main_title">Создать новый аккаунт</string>
     <string name="enter_name_title">Ваше имя:</string>
     <string name="name_hint">Введите имя...</string>
@@ -17,7 +13,7 @@
     <string name="tv_create_password_title">Придумайте пароль:</string>
     <string name="continue_title">Продолжить</string>
     <string name="tv_login_hint">Вы уже зарегистрированы? Войти</string>
-    <string name="main_title">Волонтерские центры:</string>
+    <string name="main_title">Волонтерские центры</string>
     <string name="tv_unoccupied_volunteers_title">Незанятые волонтеры:</string>
     <string name="title_profile">Профиль</string>
     <string name="title_centeres">Центры</string>
