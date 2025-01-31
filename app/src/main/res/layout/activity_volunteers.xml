@@ -8,50 +8,73 @@
     tools:context=".VolunteersActivity"
     android:background="@color/bg">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:orientation="vertical"
-    android:background="@drawable/header_round">
-    
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/input">
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/header_round"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/input">
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="36dp"
+            app:srcCompat="@drawable/filter_volunteers_free" />
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:background="@drawable/search" />
 
     </LinearLayout>
 
-</LinearLayout>
-    
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="110dp"
-    android:orientation="horizontal"
-    android:background="@drawable/nav_round"
-    android:layout_alignParentBottom="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/nav_round"
+        android:orientation="horizontal">
 
 
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="66dp"
-        android:layout_height="66dp"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/volunteers" />
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="TODO"
+            app:srcCompat="@drawable/volunteers_active" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="66dp"
-        android:layout_height="66dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/main"
-        android:background="@android:color/transparent" />
-    <ImageButton
-    android:id="@+id/imageButton3"
-    android:layout_width="66dp"
-    android:layout_height="66dp"
-    android:layout_weight="1"
-    app:srcCompat="@drawable/profile" android:background="@android:color/transparent" />
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="TODO"
+            app:srcCompat="@drawable/main" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@color/white"
+            android:contentDescription="TODO"
+            app:srcCompat="@drawable/profile" />
+    </LinearLayout>
 
 </RelativeLayout>
