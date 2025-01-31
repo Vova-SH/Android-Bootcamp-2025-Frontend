@@ -22,12 +22,17 @@
     <string name="arrow"><![CDATA[<-]]></string>
     <string name="name_field">ФИО</string>
     <string name="next_btn">Далее</string>
-    <string name="starter_1">Станьте частью
-        доброго сообщества</string>
-    <string name="starter_3">Просто зарегистрируйтесь или войдите в
-        существующий аккаунт</string>
+    <string name="starter_1">Станьте частью доброго сообщества</string>
+    <string name="starter_3">Просто зарегистрируйтесь или войдите в существующий аккаунт</string>
     <string name="register_btn">Зарегистрироваться</string>
     <string name="starter_about">about</string>
     <string name="test_name">Артемий</string>
+
+    <string name="phone_field">Телефон</string>
+    <string name="hint_phone">Введите номер телефона</string>
+    <string name="city_field">Город</string>
+    <string name="hint_city">Москва</string>
+    <string name="about_field">О себе</string>
+    <string name="hint_about">Расскажите о себе</string>
 
 </resources>

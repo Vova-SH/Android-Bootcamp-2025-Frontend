@@ -9,16 +9,18 @@
     android:background="@color/bg"
     tools:context=".RegisterActivity">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/arrow"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.185"
+        app:layout_constraintVertical_bias="0.175"
         app:srcCompat="@drawable/frame" />
 
     <View
@@ -26,141 +28,68 @@
         android:layout_width="0dp"
         android:layout_height="567dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="60dp"
         android:background="@drawable/view_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.902" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="111dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@id/textView"
+        android:layout_width="132dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="104dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.502"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.304"
         app:srcCompat="@drawable/progress1" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="0dp"
         android:layout_marginBottom="40dp"
         android:fontFamily="@font/montserrat_extrabold"
         android:text="@string/register_title"
-        android:textStyle="bold"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.105" />
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="ru.sicampus.bootcamp2025.RegistrationFirstFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="36dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.0">
+        tools:layout="@layout/fragment_registration_first" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/montserrat_extrabold"
-            android:text="@string/name_field"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/editTextText6"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:autofillHints=""
-            android:background="@drawable/input_rounded_corners"
-            android:ems="10"
-            android:fontFamily="@font/montserrat_medium"
-            android:hint="@string/hint_name"
-            android:inputType="text"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:textColorHint="@color/gray"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/montserrat_extrabold"
-            android:text="@string/email_field"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/editTextText4"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:autofillHints=""
-            android:background="@drawable/input_rounded_corners"
-            android:ems="10"
-            android:fontFamily="@font/montserrat_medium"
-            android:hint="@string/hint_email"
-            android:inputType="text"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:textColorHint="@color/gray"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/montserrat_extrabold"
-            android:text="@string/password_field"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/editTextText5"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="130dp"
-            android:autofillHints=""
-            android:background="@drawable/input_rounded_corners"
-            android:ems="10"
-            android:fontFamily="@font/montserrat_medium"
-            android:hint="@string/hint_password"
-            android:inputType="text"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:textColorHint="@color/gray"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/bg"
-            android:fontFamily="@font/montserrat_extrabold"
-            android:text="@string/next_btn"
-            android:textColor="@color/gray"
-            android:textSize="20sp"
-            app:cornerRadius="15dp" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/bg"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:text="@string/next_btn"
+        android:textColor="@color/gray"
+        android:textSize="20sp"
+        app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
