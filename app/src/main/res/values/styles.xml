@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="InputField" parent="Widget.Material3.TextInputEditText.OutlinedBox" >
+
+    <style name="InputField" parent="Widget.Material3.TextInputEditText.OutlinedBox">
         <item name="android:background">@drawable/input_field_card</item>
         <item name="fontWeight">400</item>
         <item name="android:textSize">14sp</item>
@@ -14,7 +15,7 @@
         <item name="cornerRadius">10dp</item>
     </style>
 
-    <style name="CloseButton" parent="Widget.Material3.Button" >
+    <style name="CloseButton" parent="Widget.Material3.Button">
         <item name="android:backgroundTint">@color/white</item>
         <item name="circleRadius">32dp</item>
         <item name="android:drawable">@drawable/close_md</item>
