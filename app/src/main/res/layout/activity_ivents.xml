@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_iv"
+    android:id="@+id/relLayIvent">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_bar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_view_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Первый TextView"/>
+
+            <TextView
+                android:id="@+id/text_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Второй TextView"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Нижняя панелька -->
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#d9d9d9"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/bt_map"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_map" />
+
+        <ImageButton
+            android:id="@+id/bt_ivents"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ivents" />
+
+        <ImageButton
+            android:id="@+id/bt_notif"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_notifications" />
+
+        <ImageButton
+            android:id="@+id/bt_profile"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_profile" />
+
+    </LinearLayout>
+</RelativeLayout>
