@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Android-Bootcamp-2025-Frontend</string>
+    <string name="app_name">My Application</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="edit">edit</string>
+    <string name="test">Имя Фамлия</string>
+
+    <string-array name="cities">
+        <item>Ульяновск</item>
+        <item>Москва</item>
+        <item>Владивосток</item>
+        <item>Воркута</item>
+    </string-array>
 </resources>
