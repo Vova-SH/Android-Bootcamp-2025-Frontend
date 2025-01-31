@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <include
-        layout="@layout/fragment_main_screen"
+        layout="@layout/fragment_location_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
