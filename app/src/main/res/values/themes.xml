@@ -8,5 +8,7 @@
     <style name="Theme.AndroidBootcamp2025Frontend" parent="Base.Theme.AndroidBootcamp2025Frontend">
         <item name="fontFamily">@font/manrope_medium</item>
         <item name="android:textColor">@color/black</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>
