@@ -26,4 +26,11 @@
     <string name="ok">Окей</string>
     <string name="user_view_header">Пользователи</string>
     <string name="free_volunteers_header">Свободные волонтеры</string>
+    <string name="offline_error">Кажется, вы оффлайн</string>
+    <string name="no_internet_instructions">Проверьте подключение к сети и попробуйте еще раз</string>
+    <string name="reload_text">Перезагрузить</string>
+    <string name="have_an_account">Уже есть аккаунт?</string>
+    <string name="not_with_us">Еще не с нами?</string>
+    <string name="register">Регистрация</string>
+    <string name="login">Войти</string>
 </resources>
