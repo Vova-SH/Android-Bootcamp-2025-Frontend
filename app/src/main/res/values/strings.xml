@@ -13,7 +13,8 @@
     <string name="emailInput">Email</string>
     <string name="passwordInput">Password</string>
     <string name="loginButton">Login</string>
-    <string name="notAccount">Don't have an account?</string>
+    <string name="notAccount">Are you without an account?</string>
     <string name="registerOffer">Register</string>
+    <string name="register">Register</string>
 
 </resources>
