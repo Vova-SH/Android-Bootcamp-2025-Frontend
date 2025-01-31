@@ -23,7 +23,7 @@
 
 
     <include
-        layout="@layout/fragment_save_world"
+        layout="@layout/image_save_world"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

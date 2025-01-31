@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android-Bootcamp-2025-Frontend</string>
+    <string name="app_name">Зарегистрироваться</string>
     <string name="menuNavHome">Домашний экран</string>
     <string name="menuNavUser">Профиль</string>
     <string name="menuNavLocal">Цeнтры</string>
@@ -15,5 +15,18 @@
     <string name="loginButton">Войти</string>
     <string name="notAccount">Нет аккаунта?</string>
     <string name="registerOffer">Зарегистрироваться</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="phoneDescription">Изображение телефона в руке</string>
+    <string name="loginOffer">Войти</string>
+    <string name="alreadyAccount">Уже есть аккаунт?</string>
+    <string name="editButton">Редактировать</string>
+    <string name="editButtonDescription">Редактировать</string>
+    <string name="phoneInput">Телефон</string>
+    <string name="descriptionButtonEdit">Редактировать</string>
+    <string name="centreInput">Центр</string>
+    <string name="closeButtonDescription">Закрыть</string>
+    <string name="myProfile">Мой профиль</string>
+    <string name="сentreInput">Центр</string>
+    <string name="fullNameInput">Имя Фамилия</string>
 
 </resources>
