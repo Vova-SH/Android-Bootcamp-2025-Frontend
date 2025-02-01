@@ -3,29 +3,22 @@ package ru.sicampus.bootcamp2025.ui.mainscreen.centerinfo
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import ru.sicampus.bootcamp2025.R
+import ru.sicampus.bootcamp2025.databinding.ViewCenterInfoFragmentBinding
 
-class CenterInfoFragment : Fragment() {
+class CenterInfoFragment : Fragment(R.layout.center_item) {
+    private var _binding: ViewCenterInfoFragmentBinding? = null
+    private val binding: ViewCenterInfoFragmentBinding get() = _binding!!
 
-    companion object {
-        fun newInstance() = CenterInfoFragment()
+    private val viewModel: CenterInfoViewModel by viewModels<CenterInfoViewModel>()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        _binding = ViewCenterInfoFragmentBinding.bind(view)
     }
 
-    private val viewModel: CenterInfoViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.view_center_info_fragment, container, false)
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

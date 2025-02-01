@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    kotlin("plugin.serialization") version "1.4.21"
 }
 
 android {
@@ -42,18 +43,31 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.navigation.fragment)
-    implementation(libs.androidx.navigation.ui)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+
+    implementation(libs.squareup.picasso)
+
+    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.core.ktx)
+
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+
     implementation(libs.androidx.fragment.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
+    implementation(libs.androidx.activity)
+
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.junit)
 }

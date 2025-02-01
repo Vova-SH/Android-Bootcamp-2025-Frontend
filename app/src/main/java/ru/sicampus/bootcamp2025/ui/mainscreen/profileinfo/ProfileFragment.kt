@@ -1,31 +1,25 @@
 package ru.sicampus.bootcamp2025.ui.mainscreen.profileinfo
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import ru.sicampus.bootcamp2025.R
+import ru.sicampus.bootcamp2025.databinding.ViewProfileFragmentBinding
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(R.layout.view_profile_fragment) {
 
-    companion object {
-        fun newInstance() = ProfileFragment()
+    private var _binding: ViewProfileFragmentBinding? = null
+    private val binding: ViewProfileFragmentBinding get() = _binding!!
+
+    private val viewModel: ProfileViewModel by viewModels<ProfileViewModel>()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        _binding = ViewProfileFragmentBinding.bind(view)
     }
 
-    private val viewModel: ProfileViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.view_profile_fragment, container, false)
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

@@ -3,29 +3,23 @@ package ru.sicampus.bootcamp2025.ui.mainscreen.allusers
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import ru.sicampus.bootcamp2025.R
+import ru.sicampus.bootcamp2025.databinding.UnemployeedVolunteersFragmentBinding
 
-class AllUsersFragment : Fragment() {
+class AllUsersFragment : Fragment(R.layout.unemployeed_volunteers_fragment) {
+    private var _binding: UnemployeedVolunteersFragmentBinding? = null
+    private val binding: UnemployeedVolunteersFragmentBinding get() = _binding!!
 
-    companion object {
-        fun newInstance() = AllUsersFragment()
+    private val viewModel: AllUsersViewModel by viewModels<AllUsersViewModel>()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        _binding = UnemployeedVolunteersFragmentBinding.bind(view)
+
     }
 
-    private val viewModel: AllUsersViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.unemployeed_volunteers_fragment, container, false)
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

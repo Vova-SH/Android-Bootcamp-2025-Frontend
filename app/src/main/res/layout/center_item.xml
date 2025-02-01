@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="196dp"
+    android:layout_marginBottom="8dp"
     android:background="@drawable/center_item_card"
     android:padding="16dp">
 
@@ -40,9 +41,11 @@
         tools:text="100 метров" />
 
     <TextView
+        android:id="@+id/tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/tag_center_card"
         android:paddingHorizontal="16dp"
         android:paddingVertical="4dp"
@@ -81,6 +84,7 @@
             tools:text="Проспект Цветочный 153а" />
 
         <TextView
+            android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textFontWeight="400"

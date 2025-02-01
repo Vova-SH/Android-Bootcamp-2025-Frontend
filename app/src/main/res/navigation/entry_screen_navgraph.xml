@@ -9,18 +9,12 @@
         android:name="ru.sicampus.bootcamp2025.ui.entry.login.LoginFragment"
         android:id="@+id/login_fragment"
         tools:layout="@layout/login_fragment">
-        <action
-            android:id="@+id/action_login_fragment_to_signup_fragment"
-            app:destination="@id/signup_fragment" />
     </fragment>
 
     <fragment
         android:name="ru.sicampus.bootcamp2025.ui.entry.signup.SignUpFragment"
         android:id="@+id/signup_fragment"
         tools:layout="@layout/signup_fragment">
-        <action
-            android:id="@+id/action_signup_fragment_to_login_fragment"
-            app:destination="@id/login_fragment" />
     </fragment>
 
 </navigation>
