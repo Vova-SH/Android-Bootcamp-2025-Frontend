@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
         GlobalScope.launch {
             delay(2000)
             withContext(Dispatchers.Main){
-                val intent = Intent(this@SplashActivity, StarterActivity::class.java)
+                val intent = Intent(this@SplashActivity, VolunteersActivity::class.java)
                 val options = ActivityOptionsCompat.makeCustomAnimation(
                     this@SplashActivity, R.anim.fade_in, R.anim.fade_out
                 )

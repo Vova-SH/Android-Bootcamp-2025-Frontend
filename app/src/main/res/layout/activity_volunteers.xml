@@ -1,51 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VolunteersActivity"
-    android:background="@color/bg">
+    android:background="@color/bg"
+    tools:context=".VolunteersActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/header_round"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="Занятые волонтеры"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:visibility="visible" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/input">
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView2"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
-            android:layout_height="71dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="36dp"
-            app:srcCompat="@drawable/filter_volunteers_free" />
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button4"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_free_shape"
+                android:backgroundTint="@color/input"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/free_btn" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button5"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_active_shape_on"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/active_btn" />
+        </LinearLayout>
 
         <SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginEnd="36dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/search" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="30dp"
+        android:id="@+id/linearLayout7"
+        android:layout_width="0dp"
+        android:layout_height="92dp"
         android:background="@drawable/nav_round"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <ImageButton
@@ -77,4 +116,16 @@
             app:srcCompat="@drawable/profile" />
     </LinearLayout>
 
-</RelativeLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView2"
+        android:name="ru.sicampus.bootcamp2025.FreeVolunteersListFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        tools:layout="@layout/fragment_free_volunteers_list"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

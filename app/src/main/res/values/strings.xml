@@ -33,4 +33,10 @@
     <string name="hint_city">Москва</string>
     <string name="about_field">О себе</string>
     <string name="hint_about">Расскажите о себе</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="test_list_name">Артемий Иванович</string>
+    <string name="free_status">Не занят</string>
+    <string name="free_btn">Не занятые</string>
+    <string name="active_btn">Занятые</string>
 </resources>

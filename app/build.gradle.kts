@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "ru.sicampus.bootcamp2025"
-        minSdk = 28
+        minSdk = 31
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -48,6 +48,9 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.car.ui.lib)
+    implementation(libs.picasso)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
