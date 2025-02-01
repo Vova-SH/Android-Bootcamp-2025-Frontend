@@ -86,6 +86,7 @@
             android:id="@+id/editTextText5"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginBottom="130dp"
             android:autofillHints=""
             android:background="@drawable/input_rounded_corners"
             android:ems="10"
