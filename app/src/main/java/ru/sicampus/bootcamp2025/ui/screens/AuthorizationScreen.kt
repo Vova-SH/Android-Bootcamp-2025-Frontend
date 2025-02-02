@@ -1,4 +1,4 @@
-package ru.sicampus.bootcamp2025.ui.navigation.screens
+package ru.sicampus.bootcamp2025.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -116,10 +116,12 @@ fun AuthorizationScreen(){
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.Top
             ){
-            Text(fontSize = 16.sp, text = "Нет аккаунта")
+            Text(fontSize = 16.sp, text = "Нет аккаунта?")
 
-            Text(fontSize = 16.sp,text = "Зарегестрироваться")
+            Text(fontSize = 16.sp,text = "Зарегистрироваться")
         }
+
+
 
         Box(modifier = Modifier.fillMaxSize().weight(6f)){
             Image(
