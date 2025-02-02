@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    tools:context=".VolunteersActivity">
+    tools:context=".ui.VolunteersActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout3"
@@ -68,7 +68,7 @@
 
 
         <ImageButton
-            android:id="@+id/imageButton1"
+            android:id="@+id/menuVolunteers"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_weight="1"
@@ -86,7 +86,7 @@
             app:srcCompat="@drawable/main" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/menuProfile"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_weight="1"
@@ -95,16 +95,5 @@
             android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/profile" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="533dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="2dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

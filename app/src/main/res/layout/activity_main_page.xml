@@ -1,116 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    tools:context=".VolunteersActivity">
+    tools:context=".ui.VolunteersActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="202dp"
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/header_round"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/input">
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="71dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="36dp"
-            app:srcCompat="@drawable/filter_main_map" />
-
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginEnd="36dp"
-            android:background="@drawable/search">
-
-        </SearchView>
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/volunteersText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/montserrat_extrabold"
-            android:text="Добро ближе, чем кажется"
+            android:text="@string/volunteers_text"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:visibility="gone"
+            tools:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/filter"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/freeVolunteers"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_free_shape"
+                android:clickable="false"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/map_btn" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/activeVolunteers"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_active_shape_on"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/list_btn" />
+        </LinearLayout>
+
+        <android.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/search" />
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="597dp"
-        android:layout_above="@+id/linearLayout"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_marginTop="-4dp"
-        android:layout_marginBottom="-33dp">
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/map" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="124dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="30dp"
+        android:id="@+id/linearLayout7"
+        android:layout_width="0dp"
+        android:layout_height="85dp"
         android:background="@drawable/nav_round"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <ImageButton
-            android:id="@+id/imageButton1"
+            android:id="@+id/menuVolunteers"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/volunteers" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/menuHome"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/main_active" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/menuProfile"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:backgroundTint="@color/white"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/profile" />
     </LinearLayout>
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

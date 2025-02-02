@@ -39,4 +39,10 @@
     <string name="free_status">Не занят</string>
     <string name="free_btn">Не занятые</string>
     <string name="active_btn">Занятые</string>
+    <string name="volunteers_text">Волонтеры</string>
+    <string name="map_btn">Карта</string>
+    <string name="list_btn">Список</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="error_text">Error Text</string>
+    <string name="refresh">Refresh</string>
 </resources>

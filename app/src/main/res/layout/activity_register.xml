@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    tools:context=".RegisterActivity">
+    tools:context=".ui.register.RegisterActivity">
 
     <ImageButton
         android:id="@+id/back_arrow"
@@ -67,7 +67,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="ru.sicampus.bootcamp2025.RegistrationFirstFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.register.RegistrationFirstFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

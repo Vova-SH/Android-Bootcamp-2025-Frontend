@@ -19,20 +19,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/userImg"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/round_shape"
         android:clipToOutline="true"
+        android:contentDescription="@string/app_name"
         android:outlineProvider="background"
-        tools:src="@tools:sample/avatars"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/view1"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="@+id/view1"
-        app:layout_constraintTop_toTopOf="@+id/view1" />
+        app:layout_constraintTop_toTopOf="@+id/view1"
+        tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -43,6 +45,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -52,7 +55,7 @@
         android:text="@string/free_status"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view1"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/fullName"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

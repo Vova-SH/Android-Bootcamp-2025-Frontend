@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import kotlinx.coroutines.*
 import ru.sicampus.bootcamp2025.databinding.ActivitySplashBinding
+import ru.sicampus.bootcamp2025.ui.VolunteersActivity
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
