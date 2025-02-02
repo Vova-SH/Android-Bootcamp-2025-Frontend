@@ -9,7 +9,7 @@
     android:background="@drawable/ic_background"
     android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainScreenFragment">
+    tools:context=".ui.mainscreen.MainScreenFragment">
 
     <TextView
         android:id="@+id/volunteerText"

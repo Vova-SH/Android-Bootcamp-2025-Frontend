@@ -32,4 +32,8 @@
     <string name="welcome">Welcome!</string>
     <string name="find">Find</string>
 
+    <string name="distance_format">%.2f</string>
+    <string name="distance_unknown">Unknown</string>
+    <string name="refresh">Refresh</string>
+
 </resources>
