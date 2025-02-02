@@ -22,7 +22,7 @@ class CenterNetworkDataSource {
         }
     }
 
-    suspend fun getUsers(): Result<List<CenterDto>> = withContext(Dispatchers.IO) {
+    suspend fun getCenters(): Result<List<CenterDto>> = withContext(Dispatchers.IO) {
         runCatching {
             val result = client.get("http://10.0.2.2:9000/api/centers/nearest")
             if (result.status != HttpStatusCode.OK) error("Status ${result.status}")
