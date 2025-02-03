@@ -3,6 +3,7 @@ package ru.sicampus.bootcamp2025.ui.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,15 +28,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.sicampus.bootcamp2025.R
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewMainScreenScreen() {
-    MainScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewMainScreenScreen() {
+//    MainScreen()
+//}
 
 
 @Composable
-fun MainScreen(){
+fun MainScreen(
+    toAuthorizationScreen:  () -> Unit,
+    toProfileScreen:() -> Unit
+){
     Column() {
         Row(
             modifier = Modifier.fillMaxSize().weight(2f),
@@ -150,7 +154,9 @@ fun MainScreen(){
             horizontalArrangement =Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(painter = painterResource(id = R.drawable.exit),
+            Icon(
+                modifier = Modifier.clickable { toAuthorizationScreen() },
+                painter = painterResource(id = R.drawable.exit),
                 contentDescription = "Описание изображения")
 
             Box(contentAlignment = Alignment.Center){
@@ -161,7 +167,9 @@ fun MainScreen(){
             }
 
 
-            Icon(painter = painterResource(id = R.drawable.profile),
+            Icon(
+                modifier = Modifier.clickable { toProfileScreen() },
+                painter = painterResource(id = R.drawable.profile),
                 contentDescription = "Описание изображения")
 
         }
