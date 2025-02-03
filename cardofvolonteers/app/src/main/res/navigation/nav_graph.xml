@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/list_of_users">
+
+    <fragment
+        android:id="@+id/list_of_users"
+        android:name="com.example.cardofvolonteers.list_of_users"
+        android:label="fragment_list_of_users"
+        tools:layout="@layout/fragment_list_of_users" />
+    <fragment
+        android:id="@+id/user_card"
+        android:name="com.example.cardofvolonteers.user_card"
+        android:label="fragment_user_card"
+        tools:layout="@layout/fragment_user_card" />
+</navigation>

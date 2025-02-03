@@ -1,0 +1,63 @@
+plugins {
+    alias(libs.plugins.android.application)
+    id 'org.jetbrains.kotlin.plugin.serialization' version '2.0.21'
+
+}
+
+android {
+    namespace 'com.example.cardofvolonteers'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.example.cardofvolonteers"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+    implementation "androidx.recyclerview:recyclerview:1.4.0"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'com.squareup.retrofit2:retrofit:2.11.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    def nav_version = "2.8.6"
+
+    // Jetpack Compose Integration
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    // Views/Fragments Integration
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    // Feature module support for Fragments
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
+    // JSON serialization library, works with the Kotlin serialization plugin.
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3"
+}
