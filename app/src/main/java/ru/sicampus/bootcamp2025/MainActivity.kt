@@ -3,15 +3,8 @@ package ru.sicampus.bootcamp2025
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import ru.sicampus.bootcamp2025.ui.navigation.screens.AuthorizationScreen
-import ru.sicampus.bootcamp2025.ui.navigation.screens.EditProfileScreen
-import ru.sicampus.bootcamp2025.ui.navigation.screens.MainScreen
-import ru.sicampus.bootcamp2025.ui.navigation.screens.ProfileScreen
-import ru.sicampus.bootcamp2025.ui.navigation.screens.RegistrationScreen
-import ru.sicampus.bootcamp2025.ui.navigation.screens.Screen
+import ru.sicampus.bootcamp2025.ui.screens.AuthorizationScreen
+import ru.sicampus.bootcamp2025.ui.screens.MainScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +29,7 @@ class MainActivity : ComponentActivity() {
 //                }
 //            }
 
-            MainScreen()
+            AuthorizationScreen()
         }
     }
 }
