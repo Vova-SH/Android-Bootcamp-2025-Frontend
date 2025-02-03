@@ -4,7 +4,8 @@ data class CenterEntity (
     val name: String,
     val address: String,
     val phone: String,
-    val distance: Double,
+    val latitude: Double,
+    val longitude: Double,
     val tag: String,
     val imageUrl: String
 )

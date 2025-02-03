@@ -11,8 +11,10 @@ data class CenterDto(
     val address: String?,
     @SerialName("phone")
     val phone: String?,
-    @SerialName("distance")
-    val distance: Double?,
+    @SerialName("latitude")
+    val latitude: Double?,
+    @SerialName("longitude")
+    val longitude: Double?,
     @SerialName("tag")
     val tag: String?,
     @SerialName("imageUrl")

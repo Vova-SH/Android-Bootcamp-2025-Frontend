@@ -1,9 +1,14 @@
 package ru.sicampus.bootcamp2025.ui.mainscreen.allcenters
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.ViewCentersFragmentBinding
 import ru.sicampus.bootcamp2025.ui.utils.collectWithLifecycle
@@ -17,21 +22,24 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
 
     private val viewModel by viewModels<AllCentersViewModel> { AllCentersViewModel.Factory }
 
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = ViewCentersFragmentBinding.bind(view)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
-        val adapter = CenterListAdapter()
+        val adapter = CenterListAdapter(getCurrentLocation())
         binding.content.adapter = adapter
 
         binding.mapSwitcher.setOnClickListener { activateMapSwitcher() }
 
         binding.listSwitcher.setOnClickListener { activateListSwitcher() }
 
-        binding.loading.setOnClickListener { viewModel.clickRefresh() }
+        binding.refresh.setOnRefreshListener { viewModel.clickRefresh() }
 
-        viewModel.state.collectWithLifecycle(this) {state ->
+        viewModel.state.collectWithLifecycle(this) { state ->
+            binding.refresh.isRefreshing = state is AllCentersViewModel.State.Loading
             binding.error.visibility = visibleOrGone(state is AllCentersViewModel.State.Error)
-            binding.loading.visibility = visibleOrGone(state is AllCentersViewModel.State.Loading)
             binding.content.visibility = visibleOrGone(state is AllCentersViewModel.State.Show)
 
             when (state) {
@@ -64,6 +72,30 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
     private fun activateListSwitcher() {
         setUpMapSwitcher(R.color.gray, R.color.black, View.GONE)
         setUpListSwitcher(R.color.blue, R.color.gray, View.VISIBLE)
+    }
+
+    private fun getCurrentLocation(): Pair<Double, Double> {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Add permissions request
+        }
+
+        val defaultLatAndLong: Pair<Double, Double> = Pair(100.0, 100.0)
+        var latAndLong: Pair<Double, Double> = defaultLatAndLong
+
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location ->
+                latAndLong = Pair(location.latitude, location.longitude)
+            }
+
+        return latAndLong
     }
 
     override fun onDestroyView() {

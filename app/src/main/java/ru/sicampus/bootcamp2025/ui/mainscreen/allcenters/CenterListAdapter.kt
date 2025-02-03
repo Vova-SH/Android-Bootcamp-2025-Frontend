@@ -8,18 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.sicampus.bootcamp2025.databinding.CenterItemBinding
 import ru.sicampus.bootcamp2025.domain.entities.CenterEntity
+import kotlin.math.hypot
 
-class CenterListAdapter : ListAdapter<CenterEntity, CenterListAdapter.ViewHolder>(CenterDiff) {
+class CenterListAdapter(private val location: Pair<Double, Double>) :
+    ListAdapter<CenterEntity, CenterListAdapter.ViewHolder>(CenterDiff) {
 
     class ViewHolder(
         private val binding: CenterItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CenterEntity) {
+        fun bind(item: CenterEntity, location: Pair<Double, Double>) {
             binding.name.text = item.name
             binding.address.text = item.address
             binding.tag.text = item.tag
             binding.phone.text = item.phone
-            binding.distanceInfo.text = "${item.distance}"
+            binding.distanceInfo.text =
+                "${hypot(item.latitude - location.first, item.longitude - location.second)}"
             Picasso.get().load(item.imageUrl).into(binding.centerImage)
         }
     }
@@ -41,6 +44,6 @@ class CenterListAdapter : ListAdapter<CenterEntity, CenterListAdapter.ViewHolder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), location)
     }
 }

@@ -32,7 +32,8 @@ class CenterRepositoryImpl(
                     address = dto.address ?: return@mapNotNull null,
                     imageUrl = dto.imageUrl ?: return@mapNotNull null,
                     tag = dto.tag ?: return@mapNotNull null,
-                    distance = dto.distance ?: return@mapNotNull null
+                    latitude = dto.latitude ?: return@mapNotNull null,
+                    longitude = dto.longitude ?: return@mapNotNull null
                 )
             }
         }
