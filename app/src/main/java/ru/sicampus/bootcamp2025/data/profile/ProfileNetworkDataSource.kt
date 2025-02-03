@@ -1,4 +1,4 @@
-package ru.sicampus.bootcamp2025.data
+package ru.sicampus.bootcamp2025.data.profile
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -11,10 +11,11 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import ru.sicampus.bootcamp2025.data.UserDTO
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
-class FreeVolunteerNetworkDataSource {
+class ProfileNetworkDataSource {
     private val client = HttpClient(CIO){
         install(ContentNegotiation){
             json(Json {
@@ -23,22 +24,19 @@ class FreeVolunteerNetworkDataSource {
             })
         }
     }
-
     @OptIn(ExperimentalEncodingApi::class)
-    suspend fun getFreeVolunteers():Result<List<UserDTO>> = withContext(Dispatchers.IO){
+    suspend fun getProfile():Result<UserDTO> = withContext(Dispatchers.IO){
         runCatching {
-            val result = client.get("http://10.0.2.2:8080/api/volunteers/free"){
+            val result = client.get("http://10.0.2.2:8080/api/volunteers/profile"){
                 headers{
                     append("Authorization", "Basic ${ Base64.encode("i@indexzero.su:HelloWorld1234".encodeToByteArray())}") // Тут будет строчка с данными пользователя
                 }
             }
-            println("Raw JSON: ${result.body<String>()}") // Логирование
+
             if (result.status != HttpStatusCode.OK) {
                 error("Status ${result.status}")
             }
             result.body()
-
         }
-
     }
 }

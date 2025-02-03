@@ -1,11 +1,11 @@
-package ru.sicampus.bootcamp2025.data
+package ru.sicampus.bootcamp2025.data.volunteers
 
-import ru.sicampus.bootcamp2025.domain.FreeVolunteerRepo
+import ru.sicampus.bootcamp2025.domain.volunteers.FreeVolunteerRepo
 import ru.sicampus.bootcamp2025.domain.UserEntity
 
 class FreeVolunteerRepoImpl(
     private val freeVolunteerNetworkDataSource: FreeVolunteerNetworkDataSource
-) : FreeVolunteerRepo{
+) : FreeVolunteerRepo {
     override suspend fun getFreeVolunteers(): Result<List<UserEntity>> {
         return  freeVolunteerNetworkDataSource.getFreeVolunteers().map { listDto ->
             println("Dto list: $listDto")

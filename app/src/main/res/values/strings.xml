@@ -45,4 +45,10 @@
     <string name="coming_soon">Coming Soon</string>
     <string name="error_text">Error Text</string>
     <string name="refresh">Refresh</string>
+    <string name="telegram_username">Введите свой Telegram username</string>
+    <string name="telegram">Телеграм</string>
+    <string name="role">Роль в системе</string>
+    <string name="birthDate">Дата рождения</string>
+    <string name="organizationName">Название организации</string>
+    <string name="about">О себе</string>
 </resources>

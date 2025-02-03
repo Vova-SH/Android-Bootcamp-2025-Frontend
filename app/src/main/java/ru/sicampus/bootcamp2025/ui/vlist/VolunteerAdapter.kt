@@ -32,6 +32,7 @@ class VolunteerAdapter : ListAdapter<UserEntity, VolunteerAdapter.ViewHolder>(Us
         @SuppressLint("SetTextI18n")
         fun bind(item: UserEntity){
             binding.fullName.text = "${item.firstName} ${item.lastName}"
+            binding.email.text = "${item.email}"
             Picasso.get()
                 .load(item.photoUrl)
                 .into(binding.userImg)

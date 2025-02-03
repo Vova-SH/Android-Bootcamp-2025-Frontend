@@ -47,7 +47,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/montserrat_extrabold"
-            android:text="@string/city_field"
+            android:text="Telegram"
             android:textSize="14sp" />
 
         <EditText
@@ -58,7 +58,7 @@
             android:background="@drawable/input_rounded_corners"
             android:ems="10"
             android:fontFamily="@font/montserrat_medium"
-            android:hint="@string/hint_city"
+            android:hint="@string/telegram_username"
             android:inputType="text"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"

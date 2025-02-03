@@ -1,5 +1,6 @@
 package ru.sicampus.bootcamp2025.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -19,7 +20,14 @@ class VolunteersActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.freeVolunteers.setOnClickListener{freeBtnClick()}
         binding.activeVolunteers.setOnClickListener{activeBtnClick()}
+        binding.menuProfile.setOnClickListener{toProfile()}
     }
+
+    private fun toProfile() {
+        val intent = Intent(this@VolunteersActivity, ProfileActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun freeBtnClick(){
             invertButtons(true)
 
