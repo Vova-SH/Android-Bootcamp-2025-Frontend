@@ -1,7 +1,7 @@
 package ru.sicampus.bootcamp2025.data
 
 import ru.sicampus.bootcamp2025.data.dtos.CenterDto
-import ru.sicampus.bootcamp2025.data.sources.locale.CenterLocaleDataSource
+import ru.sicampus.bootcamp2025.data.sources.locale.CenterLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.CenterNetworkDataSource
 import ru.sicampus.bootcamp2025.domain.entities.CenterEntity
 import ru.sicampus.bootcamp2025.domain.repositories.CenterRepository
@@ -9,16 +9,16 @@ import java.time.LocalTime
 
 class CenterRepositoryImpl(
     private val networkDataSource: CenterNetworkDataSource,
-    private val localeDataSource: CenterLocaleDataSource
+    private val localDataSource: CenterLocalDataSource
 ) : CenterRepository {
     override suspend fun getCenters(): Result<List<CenterEntity>> {
 
-        if (localeDataSource.getCachedData() != null
-            && LocalTime.now().minute - localeDataSource.getLastTimeUpdated().minute > 5
+        if (localDataSource.getCachedData() != null
+            && LocalTime.now().minute - localDataSource.getLastTimeUpdated().minute > 5
         )
-            return map(Result.success(localeDataSource.getCachedData()!!))
+            return map(Result.success(localDataSource.getCachedData()!!))
         else {
-            localeDataSource.cacheData(networkDataSource.getCenters().getOrNull())
+            localDataSource.cacheData(networkDataSource.getCenters().getOrNull())
             return map(networkDataSource.getCenters())
         }
     }

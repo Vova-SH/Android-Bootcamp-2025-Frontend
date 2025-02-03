@@ -5,11 +5,9 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-class CredentialsDto(
+data class CredentialsDto(
     @SerialName("login")
     val login: String,
     @SerialName("password")
-    val password: String,
-    @SerialName("roleId")
-    val roleId: String
+    val password: String
 )

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.data.CenterRepositoryImpl
-import ru.sicampus.bootcamp2025.data.sources.locale.CenterLocaleDataSource
+import ru.sicampus.bootcamp2025.data.sources.locale.CenterLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.CenterNetworkDataSource
 import ru.sicampus.bootcamp2025.domain.entities.CenterEntity
 import ru.sicampus.bootcamp2025.domain.usecases.GetNearestAvailableCentersUseCase
@@ -51,7 +51,7 @@ class AllCentersViewModel(private val useCase: GetNearestAvailableCentersUseCase
                     useCase = GetNearestAvailableCentersUseCase(
                         repository = CenterRepositoryImpl(
                             networkDataSource = CenterNetworkDataSource(),
-                            localeDataSource = CenterLocaleDataSource()
+                            localDataSource = CenterLocalDataSource()
                         )
                     )
                 ) as T
