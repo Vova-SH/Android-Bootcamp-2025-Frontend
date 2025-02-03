@@ -42,7 +42,12 @@ android {
 
 dependencies {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+    implementation (libs.ktor.serialization.kotlinx.json)
+    implementation (libs.kotlinx.serialization.json)
+>>>>>>> Stashed changes
 =======
     implementation (libs.ktor.serialization.kotlinx.json)
     implementation (libs.kotlinx.serialization.json)
@@ -55,11 +60,14 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
 =======
+=======
+>>>>>>> Stashed changes
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
@@ -67,4 +75,7 @@ dependencies {
     implementation(libs.picasso)
     implementation("kotlinx.serialization.json:2.0")
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
