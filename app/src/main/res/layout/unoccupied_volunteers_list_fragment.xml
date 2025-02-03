@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/background_main">
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_go_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
+        android:background="?android:attr/selectableItemBackground"
         android:src="@drawable/ic_go_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/arrow_back_content_description"/>
 
     <TextView
         android:id="@+id/tv_main_title"
@@ -21,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="@string/tv_unoccupied_volunteers_title"
-        android:textColor="@color/main_color"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/btn_go_back"
@@ -37,6 +39,11 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/error"
@@ -62,7 +69,7 @@
             android:orientation="vertical"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_unoccupied_volunteer"
+            tools:listitem="@layout/item_volunteer"
             tools:visibility="visible" />
     </FrameLayout>
 

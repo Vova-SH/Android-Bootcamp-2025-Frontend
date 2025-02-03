@@ -5,4 +5,6 @@
     <color name="background_main">#EDEEFD</color>
     <color name="main_color">#363C8D</color>
     <color name="gray">#E1DFDF</color>
+    <color name="dark_gray">#7F7878</color>
+    <color name="red">#ED2F2F</color>
 </resources>

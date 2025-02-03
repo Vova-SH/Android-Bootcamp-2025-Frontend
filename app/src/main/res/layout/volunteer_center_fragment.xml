@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main">
+
+    <TextView
+        android:id="@+id/center_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="@string/volunteer_centre_name"
+        android:textColor="@color/main_color"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/arrow_back_content_description"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/app_logo"
+        app:layout_constraintStart_toEndOf="@id/center_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/rounded_corners_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/center_name">
+
+        <TextView
+            android:id="@+id/title_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/address"
+            android:textColor="@color/dark_gray"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toTopOf="@id/container" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            android:text="@tools:sample/cities"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintTop_toTopOf="@id/container" />
+
+        <TextView
+            android:id="@+id/title_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:text="@string/title_phone"
+            android:textColor="@color/dark_gray"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/title_address" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:text="@tools:sample/us_phones"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/address" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/show_on_map"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="25dp"
+            android:backgroundTint="@color/main_color"
+            android:text="@string/show_on_map"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@id/container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/phone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/active_volunteers_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="@string/active_volunteers"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container" />
+
+    <FrameLayout
+        android:id="@+id/recycler_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/join"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/active_volunteers_title">
+
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:visibility="gone"
+            tools:text="@tools:sample/lorem/random" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/volunteer_centres_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_volunteer"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/join"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/main_color"
+        android:text="@string/join"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recycler_container" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>
