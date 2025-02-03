@@ -5,5 +5,4 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.AndroidBootcamp2025Frontend" parent="Base.Theme.AndroidBootcamp2025Frontend" />
 </resources>
