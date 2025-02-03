@@ -2,6 +2,7 @@ package ru.sicampus.bootcamp2025.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,16 +28,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.sicampus.bootcamp2025.R
+import ru.sicampus.bootcamp2025.ui.navigation.Screen
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewRegistrationScreenScreen() {
+//    RegistrationScreen()
+//}
+
+
 @Composable
-fun PreviewRegistrationScreenScreen() {
-    RegistrationScreen()
-}
-
-
-@Composable
-fun RegistrationScreen() {
+fun RegistrationScreen(
+    onRegistre: () -> Unit,
+    onBack: () -> Unit
+) {
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceAround) {
         Row(
             modifier = Modifier.fillMaxSize().weight(1.3f),
@@ -53,7 +58,9 @@ fun RegistrationScreen() {
 
         Row(
             modifier = Modifier.fillMaxSize().padding(start = 20.dp).weight(0.8f) ){
-            Icon(painter = painterResource(id = R.drawable.arrow),
+            Icon(
+                modifier = Modifier.clickable { onBack() },
+                painter = painterResource(id = R.drawable.arrow),
                 contentDescription = "Описание изображения")
         }
 
@@ -129,7 +136,7 @@ fun RegistrationScreen() {
                     containerColor = Color.Black,
                     contentColor = Color.White
                 ),
-                onClick = {},
+                onClick = {onRegistre()},
 
                 )
             {

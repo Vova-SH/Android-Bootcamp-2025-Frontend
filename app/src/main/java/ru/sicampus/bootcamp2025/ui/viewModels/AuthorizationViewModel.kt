@@ -1,6 +1,7 @@
 package ru.sicampus.bootcamp2025.ui.viewModels
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.lang.Thread.State
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,14 +19,14 @@ class AuthorizationViewModel: ViewModel() {
         data class Error (val text: String): State
     }
 
-    fun authorize(email: String, password: String) {
+    fun signIn(email: String, password: String) {
         if (email.isBlank() || password.isBlank()) {
             _state.update { State.Error("Поля не должны быть пустыми") }
             return
         }
 
         _state.update { State.Loading }
-        kotlinx.coroutines.GlobalScope.launch {
+        viewModelScope.launch {
             kotlinx.coroutines.delay(2000)
             if (email == "test@example.com" && password == "password") {
                 _state.update { State.Success }

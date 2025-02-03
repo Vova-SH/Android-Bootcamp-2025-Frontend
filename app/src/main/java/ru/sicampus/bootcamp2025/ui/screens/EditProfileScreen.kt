@@ -36,16 +36,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.sicampus.bootcamp2025.R
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewEditScreen(){
-    EditProfileScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewEditScreen(){
+//    EditProfileScreen()
+//}
 
 @Composable
 fun EditProfileScreen(
-//    onCancel: () -> Unit,
-//    onSave: () -> Unit
+    onCancel: () -> Unit,
+    onSave: () -> Unit
 ) {
     var name = remember { mutableStateOf("") }
     var lastName = remember { mutableStateOf("") }
@@ -211,8 +211,7 @@ fun EditProfileScreen(
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 Button(
-                    onClick = {},
-                    //onClick = onCancel,
+                    onClick = onCancel,
                     modifier = Modifier.width(140.dp)
                         .height(40.dp),
                     colors = ButtonDefaults.outlinedButtonColors(
@@ -228,8 +227,7 @@ fun EditProfileScreen(
                 }
 
                 Button(
-                    onClick = {},
-                    //onClick = onSave,
+                    onClick = onSave,
                     modifier = Modifier.width(140.dp)
                         .height(40.dp),
                     colors = ButtonDefaults.outlinedButtonColors(

@@ -25,15 +25,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.sicampus.bootcamp2025.R
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewProfileScreen(){
-    ProfileScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewProfileScreen(){
+//    ProfileScreen()
+//}
 
 @Composable
 fun ProfileScreen(
-    //onEditClick: () -> Unit,onCancel: () -> Unit
+    onEditClick: () -> Unit,
+    toMainScreen: () -> Unit
 ) {
     var name = "Анастасия Волочкова"
     var stazh = 5
@@ -54,8 +55,7 @@ fun ProfileScreen(
                 textAlign = TextAlign.Center
             )
             IconButton(
-               // onClick = onEditClick,
-                onClick = {},
+               onClick = onEditClick,
                 modifier = Modifier.size(50.dp)
                     .offset(345.dp,42.dp)
             ) {
@@ -67,8 +67,7 @@ fun ProfileScreen(
             }
 
             IconButton(
-                onClick = {},
-               // onClick = onCancel,
+                onClick = {toMainScreen()},
                 modifier = Modifier.offset(x = 7.dp,y= 38.dp)
                     .size(50.dp)
             ) {
