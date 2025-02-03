@@ -1,9 +1,67 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Базовая тема -->
     <style name="Base.Theme.AndroidBootcamp2025Frontend" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Основные цвета -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Цвета текста -->
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+
+        <!-- Цвета фона -->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/textColor</item>
+
+        <!-- Цвета для кнопок -->
+        <item name="colorPrimaryVariant">@color/buttonColor</item>
+        <item name="colorOnPrimary">@color/buttonTextColor</item>
+
+        <!-- Цвета для ошибок -->
+        <item name="colorError">@color/errorColor</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- Цвета для статус-бара и навигации -->
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Стили для компонентов -->
+        <item name="materialButtonStyle">@style/Widget.AndroidBootcamp2025Frontend.Button</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.AndroidBootcamp2025Frontend.TitleMedium</item>
     </style>
 
-    <style name="Theme.AndroidBootcamp2025Frontend" parent="Base.Theme.AndroidBootcamp2025Frontend" />
+    <!-- Основная тема -->
+    <style name="Theme.AndroidBootcamp2025Frontend" parent="Base.Theme.AndroidBootcamp2025Frontend">
+        <item name="actionBarTheme">@style/ThemeOverlay.AndroidBootcamp2025Frontend.ActionBar</item>
+    </style>
+
+    <!-- Стиль для ActionBar -->
+    <style name="ThemeOverlay.AndroidBootcamp2025Frontend.ActionBar" parent="">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="titleTextStyle">@style/TextAppearance.AndroidBootcamp2025Frontend.TitleMedium</item>
+        <item name="subtitleTextStyle">@style/TextAppearance.AndroidBootcamp2025Frontend.BodyMedium</item>
+    </style>
+
+    <!-- Стиль для кнопок -->
+    <style name="Widget.AndroidBootcamp2025Frontend.Button" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">@color/buttonColor</item>
+        <item name="android:textColor">@color/buttonTextColor</item>
+    </style>
+
+    <!-- Стили для текста -->
+    <style name="TextAppearance.AndroidBootcamp2025Frontend.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.AndroidBootcamp2025Frontend.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/textColorSecondary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
 </resources>

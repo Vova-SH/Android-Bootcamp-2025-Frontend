@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <!-- Основные цвета -->
+    <color name="colorPrimary">#00AA2E</color>
+    <color name="colorPrimaryDark">#00641B</color>
+    <color name="colorAccent">#FF5722</color>
+
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+
+    <!-- Цвета текста -->
+    <color name="textColor">#FF000000</color>
+    <color name="textColorSecondary">#606060</color>
+    <color name="textColorHint">#3E3E3E</color>
+
+    <color name="buttonColor">#00AA2E</color>
+    <color name="buttonTextColor">#FFFFFFFF</color>
+
+    <!-- Цвета для состояния ошибок -->
+    <color name="errorColor">#FF5722</color>
+
+    <!-- Дополнительные цвета -->
+    <color name="greenLight">#B2E5C0</color>
+    <color name="grayLight">#3E3E3E</color>
+    <color name="grayWhite">#E6E6E6</color>
+    <color name="grayDark">#606060</color>
 </resources>

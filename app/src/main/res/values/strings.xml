@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">Android-Bootcamp-2025-Frontend</string>
+    <string name="menuNavHome">Home</string>
+    <string name="menuNavUser">Profile</string>
+    <string name="menuNavLocal">Centers</string>
+
+    <string name="saveWorldDescription">Nature rescue sign</string>
+    <string name="startedAppeal">Become a volunteer\nChoose your center</string>
+    <string name="startedRegister">Register</string>
+    <string name="startedLogin">Login</string>
+    <string name="title_activity_start">StartActivity</string>
+    <string name="login">Login</string>
+    <string name="emailInput">Email</string>
+    <string name="passwordInput">Password</string>
+    <string name="loginButton">Login</string>
+    <string name="notAccount">Are you without an account?</string>
+    <string name="registerOffer">Register</string>
+    <string name="register">Register</string>
+    <string name="phoneDescription">Phone photo</string>
+    <string name="loginOffer">Login</string>
+    <string name="alreadyAccount">Already have an account?</string>
+    <string name="editButton">Edit Button</string>
+    <string name="editButtonDescription">Edit</string>
+    <string name="phoneInput">Phone</string>
+    <string name="descriptionButtonEdit">Edit</string>
+    <string name="centreInput">Centre</string>
+    <string name="closeButtonDescription">Close</string>
+    <string name="myProfile">My Profile</string>
+    <string name="сentreInput">Centre</string>
+    <string name="fullNameInput">Full name</string>
+    <string name="peopleDescription">Save Planet</string>
+    <string name="welcome">Welcome!</string>
+    <string name="find">Find</string>
+
+    <string name="distance_format">%.2f</string>
+    <string name="distance_unknown">Unknown</string>
+    <string name="refresh">Refresh</string>
+
 </resources>
