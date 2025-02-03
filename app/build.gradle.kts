@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.android
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -10,7 +12,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.5.2"
     }
 
     defaultConfig {
@@ -61,6 +63,9 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata")
     implementation("androidx.compose.runtime:runtime-rxjava2")
     implementation ("androidx.navigation:navigation-compose:2.7.7")
+
+    //для view model
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
     //для работы с корутинами
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")

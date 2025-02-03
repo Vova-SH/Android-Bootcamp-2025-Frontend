@@ -3,6 +3,7 @@ package ru.sicampus.bootcamp2025
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import ru.sicampus.bootcamp2025.ui.screens.AuthorizationScreen
 import ru.sicampus.bootcamp2025.ui.screens.MainScreen
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +29,7 @@ class MainActivity : ComponentActivity() {
 //                }
 //            }
 
-            MainScreen()
+            AuthorizationScreen()
         }
     }
 }
