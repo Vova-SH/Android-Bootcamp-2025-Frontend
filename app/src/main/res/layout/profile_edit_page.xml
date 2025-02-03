@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        tools:ignore="DuplicateIds">
+
+        <TextView
+            android:id="@+id/phoneNunberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/zen_maru_gothic"
+            android:text="@string/mail_text"
+            android:textSize="20sp"
+            android:typeface="normal"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="444dp" />
+
+        <TextView
+            android:id="@+id/genderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/zen_maru_gothic"
+            android:text="Пол"
+            android:textSize="20sp"
+            android:typeface="normal"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="503dp" />
+
+        <TextView
+            android:id="@+id/familyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/zen_maru_gothic"
+            android:text="@string/familia_text"
+            android:textSize="20sp"
+            android:typeface="normal"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="312dp" />
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/zen_maru_gothic"
+            android:text="@string/name_text"
+            android:textSize="20sp"
+            android:typeface="normal"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="248dp" />
+
+        <EditText
+            android:id="@+id/editTextEmailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="18dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/editTextGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="120dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/enterButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteY="362dp" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="241dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="text"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/editTextFamily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:inputType="text"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/enterButton"
+            android:layout_width="180.dp"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/blue"
+            android:fontFamily="@font/zen_maru_gothic"
+            android:lineSpacingExtra="0sp"
+            android:text="@string/save_text"
+            android:textAlignment="center"
+            android:textSize="26sp"
+            android:typeface="normal"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="215dp"
+            tools:layout_editor_absoluteY="660dp" />
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="180.dp"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/mywhite"
+            android:fontFamily="@font/zen_maru_gothic"
+            android:lineSpacingExtra="0sp"
+            android:text="@string/back_text"
+            android:textAlignment="center"
+            android:textColor="@color/blue"
+            android:textSize="26sp"
+            android:typeface="normal"
+            app:iconTintMode="add"
+            app:strokeColor="#253465"
+            app:strokeWidth="2dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="660dp" />
+
+        <ImageButton
+            android:id="@+id/backArrowButton"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="true"
+            android:background="#FFFFFF"
+            android:cropToPadding="false"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+            tools:srcCompat="@drawable/back" />
+
+        <TextView
+            android:id="@+id/phoneText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginBottom="44dp"
+            android:fontFamily="@font/zen_maru_gothic"
+            android:text="@string/phone_text"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/phoneNunberText"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/choose_photo"
+        android:layout_width="230.dp"
+        android:layout_height="55dp"
+        android:backgroundTint="@color/mywhite"
+        android:fontFamily="@font/zen_maru_gothic_light"
+        android:lineSpacingExtra="0sp"
+        android:text="@string/choose_photo"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="26sp"
+        android:typeface="normal"
+        app:iconTintMode="add"
+        app:strokeColor="#253465"
+        app:strokeWidth="2dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="116dp" />
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@drawable/profile_photo"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="98dp" />
+
+    <Button
+        android:id="@+id/choosePhotoButton"
+        android:layout_width="230.dp"
+        android:layout_height="55dp"
+        android:backgroundTint="@color/mywhite"
+        android:fontFamily="@font/zen_maru_gothic"
+        android:lineSpacingExtra="0sp"
+        android:text="@string/choose_photo"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="26sp"
+        android:typeface="normal"
+        app:iconTintMode="add"
+        app:strokeColor="#253465"
+        app:strokeWidth="2dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="116dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

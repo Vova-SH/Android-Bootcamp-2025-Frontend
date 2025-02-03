@@ -36,12 +36,26 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    // Зависимости для Retrofit
+    implementation(libs.squareup.retrofit) // Retrofit
+    implementation(libs.squareup.retrofit.converter.gson) // Конвертер Gson
+
+    // Зависимости для корутин
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Зависимости для ViewModel и LiveData
+    implementation(libs.androidx.lifecycle.viewmodel.ktx) // ViewModel
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.recyclerview) // LiveData
+
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
