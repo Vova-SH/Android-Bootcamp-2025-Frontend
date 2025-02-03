@@ -12,52 +12,47 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/my_font_bold"
-        android:text="@string/volunteer_list_header"
+        android:text="@string/active_volunteer_list_header"
         android:textSize="27sp"
-        android:layout_marginBottom="8sp"/>
+        android:textColor="@color/black"
+        android:layout_marginBottom="8sp"
+        android:elevation="1dp"/>
 
-    <FrameLayout
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+    <ImageButton
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sign_up">
-        <TextView
-            android:layout_width="wrap_content"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
-            android:fontFamily="@font/my_font_medium"
-            android:text="@string/to_first_list"
-            android:textColor="@color/green"
-            android:textSize="18sp"
-            android:layout_marginBottom="8sp"/>
-        <View
-            android:layout_gravity="bottom|center"
-            android:layout_margin="11sp"
-            android:layout_width="145sp"
-            android:background="@color/green"
-            android:layout_height="1dp"/>
-
-    </FrameLayout>
+        android:background="@android:color/transparent"
+        android:src="@drawable/close"
+        android:layout_margin="30dp"
+        android:elevation="1dp"/>
 
     <ImageView
+        android:id="@+id/ellipse_18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:src="@drawable/ellipse_10"/>
+        android:src="@drawable/ellipse_18"/>
+
+    <ImageView
+        android:id="@+id/ellipse_19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:layout_gravity="end"
+        android:src="@drawable/ellipse_19"/>
+
+    <ImageView
+        android:id="@+id/ellipse_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="500dp"
+        android:src="@drawable/ellipse_20"/>
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="430dp"
-
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
-
         android:layout_marginTop="50dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
@@ -67,12 +62,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/org"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
             <FrameLayout android:id="@+id/org"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:layout_marginBottom="10dp">
@@ -80,11 +69,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20sp"
-                    android:elevation="10sp"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
                     android:text="@string/volunteer_name"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -94,33 +78,15 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:elevation="10sp"
-                    android:text="@string/short_bio"
-                    android:textSize="14sp" />
                     android:text="@string/short_bio"
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="50sp"
                     android:textSize="14sp"/>
-              
+
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:background="@android:color/transparent"
-                    android:elevation="9dp"
-                    android:src="@drawable/back_ic" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/PersonInfo"
-                    android:layout_width="285dp"
-                    android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
                     android:background="@android:color/transparent"
                     android:src="@drawable/back_ic"
                     android:layout_marginTop="40dp"
@@ -151,11 +117,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20sp"
-                    android:elevation="10sp"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
                     android:text="@string/volunteer_name"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -165,11 +126,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:elevation="10sp"
-                    android:text="@string/short_bio"
-                    android:textSize="14sp" />
                     android:text="@string/short_bio"
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
@@ -179,12 +135,6 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:background="@android:color/transparent"
-                    android:elevation="9dp"
-                    android:src="@drawable/back_ic" />
                     android:background="@android:color/transparent"
                     android:src="@drawable/back_ic"
                     android:layout_marginTop="40dp"
@@ -195,10 +145,9 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
                     app:cardElevation="8dp"
                     app:cardCornerRadius="8dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -210,18 +159,11 @@
 
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
                 android:layout_height="wrap_content" android:layout_marginBottom="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20sp"
-                    android:elevation="10sp"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
                     android:text="@string/volunteer_name"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -231,11 +173,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:elevation="10sp"
-                    android:text="@string/short_bio"
-                    android:textSize="14sp" />
                     android:text="@string/short_bio"
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
@@ -245,12 +182,6 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:background="@android:color/transparent"
-                    android:elevation="9dp"
-                    android:src="@drawable/back_ic" />
                     android:background="@android:color/transparent"
                     android:src="@drawable/back_ic"
                     android:layout_marginTop="40dp"
@@ -262,11 +193,9 @@
                     android:id="@+id/card"
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
                     app:cardElevation="8dp"
                     app:cardCornerRadius="8dp">
-                  
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -284,11 +213,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20sp"
-                    android:elevation="10sp"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
                     android:text="@string/volunteer_name"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -298,11 +222,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:elevation="10sp"
-                    android:text="@string/short_bio"
-                    android:textSize="14sp" />
                     android:text="@string/short_bio"
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
@@ -312,12 +231,6 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:background="@android:color/transparent"
-                    android:elevation="9dp"
-                    android:src="@drawable/back_ic" />
                     android:background="@android:color/transparent"
                     android:src="@drawable/back_ic"
                     android:layout_marginTop="40dp"
@@ -328,8 +241,6 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
                     app:cardElevation="8dp"
                     app:cardCornerRadius="8dp">
 
@@ -344,18 +255,11 @@
 
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
                 android:layout_height="wrap_content" android:layout_marginBottom="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20sp"
-                    android:elevation="10sp"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
                     android:text="@string/volunteer_name"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -365,11 +269,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:elevation="10sp"
-                    android:text="@string/short_bio"
-                    android:textSize="14sp" />
                     android:text="@string/short_bio"
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
@@ -380,12 +279,6 @@
                     android:id="@+id/forward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:background="@android:color/transparent"
-                    android:elevation="9dp"
-                    android:src="@drawable/back_ic" />
                     android:background="@android:color/transparent"
                     android:src="@drawable/back_ic"
                     android:layout_marginTop="40dp"
@@ -396,8 +289,6 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
                     app:cardElevation="8dp"
                     app:cardCornerRadius="8dp">
 
@@ -412,18 +303,11 @@
 
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
                 android:layout_height="wrap_content" android:layout_marginBottom="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20sp"
-                    android:elevation="10sp"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
                     android:text="@string/volunteer_name"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -433,13 +317,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:elevation="10sp"
-                    android:text="@string/short_bio"
-                    android:textSize="14sp" />
-
                     android:text="@string/short_bio"
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
@@ -449,14 +326,6 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:layout_gravity="end"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:background="@android:color/transparent"
-                    android:elevation="9dp"
-                    android:src="@drawable/back_ic" />
-
                     android:background="@android:color/transparent"
                     android:src="@drawable/back_ic"
                     android:layout_marginTop="40dp"
@@ -464,17 +333,11 @@
                     android:layout_gravity="end"
                     android:elevation="9dp"/>
 
-
                 <androidx.cardview.widget.CardView
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
-
                     app:cardElevation="8dp"
                     app:cardCornerRadius="8dp">
-
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -488,14 +351,6 @@
         </LinearLayout>
 
     </ScrollView>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
 
     <FrameLayout
         android:id="@+id/menu"
@@ -554,15 +409,5 @@
         </androidx.cardview.widget.CardView>
 
     </FrameLayout>
-
-
-    <ImageView
-        android:layout_gravity="right"
-        android:id="@+id/refresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/refresh_ic" />
-
-</FrameLayout>
 
 </FrameLayout>

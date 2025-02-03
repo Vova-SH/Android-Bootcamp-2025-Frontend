@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/volunteer_profile_screen">
+
+    <ImageView
+        android:id="@+id/ellipse_13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:src="@drawable/ellipse_13"/>
+
+    <ImageView
+        android:id="@+id/ellipse_11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ellipse_11"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="160dp"/>
+
+    <ImageView
+        android:id="@+id/ellipse_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ellipse_12"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="130dp"
+        android:layout_marginRight="90dp"/>
+
+    <ImageView
+        android:id="@+id/ellipse_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ellipse_14"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="290dp"
+        android:layout_marginRight="60dp"/>
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/flip_left"
+        android:layout_margin="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/profile_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140sp"
+        android:layout_marginStart="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profile_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/my_font_medium"
+            android:text="@string/username"
+            android:textSize="30sp" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/make_admin"
+                android:fontFamily="@font/my_font_regular"
+                android:textColor="@color/light_gray"/>
+            <View
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="19sp"
+                android:layout_width="193sp"
+                android:background="@color/light_gray"
+                android:layout_height="1dp"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/phone_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/phone"
+                android:textSize="16sp"
+                android:fontFamily="@font/my_font"/>
+
+            <TextView
+                android:id="@+id/userphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/volunteer_phone"
+                android:layout_gravity="end"
+                android:textSize="16sp"
+                android:fontFamily="@font/my_font_regular"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:id="@+id/email_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textSize="16sp"
+                android:fontFamily="@font/my_font"/>
+
+            <TextView
+                android:id="@+id/useremail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/volunteer_email"
+                android:layout_gravity="end"
+                android:textSize="16sp"
+                android:fontFamily="@font/my_font_regular"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/bio_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bio"
+                android:textSize="16sp"
+                android:fontFamily="@font/my_font" />
+
+            <TextView
+                android:id="@+id/userbio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userbio"
+                android:textSize="16sp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/my_font_regular"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <ImageButton
+            android:id="@+id/list_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/list_white"
+            android:layout_margin="40dp"
+            android:elevation="10dp"/>
+        <ImageButton
+            android:id="@+id/map_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/map_ic"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:elevation="10dp"/>
+        <ImageButton
+            android:id="@+id/profile_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/profile_ic"
+            android:layout_margin="40dp"
+            android:layout_gravity="end"
+            android:elevation="10dp"/>
+        <ImageButton
+            android:id="@+id/menu_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ellipse_menu"
+            android:layout_margin="32dp"
+            android:elevation="9dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/menu_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu" />
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+</FrameLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/map_screen">
+
+    <!--SVG файл с маркером для карты находится в папке drawable-->
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <ImageButton
+            android:id="@+id/list_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/list_ic"
+            android:layout_margin="40dp"
+            android:elevation="10dp"/>
+        <ImageButton
+            android:id="@+id/map_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/map_white"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:elevation="10dp"/>
+        <ImageButton
+            android:id="@+id/profile_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/profile_ic"
+            android:layout_margin="40dp"
+            android:layout_gravity="end"
+            android:elevation="10dp"/>
+        <ImageButton
+            android:id="@+id/menu_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ellipse_menu"
+            android:layout_margin="32dp"
+            android:layout_gravity="center_horizontal"
+            android:elevation="9dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/menu_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu" />
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+</FrameLayout>

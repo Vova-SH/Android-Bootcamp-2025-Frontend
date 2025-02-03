@@ -1,3 +1,51 @@
 <resources>
+    <!-- Сторковые ресурсы для хранения данных пользователя -->
+    <string name="username">Иванов Иван</string>
+    <string name="userphone">8 800 555 35 35</string>
+    <string name="useremail">ivanovivan@gmail.com</string>
+    <string name="userbio">Очень объемное описание, которое\nввел пользователь при регистрации\nв приложении</string>
+
+    <!-- Сторковые ресурсы для хранения данных просматриваемого волонтера -->
+    <string name="volunteer_phone">8 800 555 35 35</string>
+    <string name="volunteer_email">ivanovivan@gmail.com</string>
+    <string name="volunteer_name">Иванов Иван</string>
+    <string name="volunteer_bio">Очень объемное описание, которое\nввел пользователь при регистрации\nв приложении</string>
+    <string name="short_bio">Очень объемное описание, ко...</string>
+
+    <!-- Сторковые ресурсы для хранения данных просматриваемой организации -->
+    <string name="org_name">Волонтерский центр</string>
+    <string name="org_description">Центр инициативных и трудолюбивых волонтеров</string>
+    <string name="org_active_vol">Активных волонтеров: </string>
+    <string name="org_number_of_vol">7</string>
+
     <string name="app_name">Android-Bootcamp-2025-Frontend</string>
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="log_in">Войти</string>
+    <string name="no_account">Ещё нет аккаунта?</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="registration">Регистрация</string>
+    <string name="enter_email">Введите свой email</string>
+    <string name="email">Email:</string>
+    <string name="password">Пароль:</string>
+    <string name="symbol_number_text">От 8 до 20 символов</string>
+    <string name="fi">ФИ:</string>
+    <string name="ivanov_ivan">Иванов Иван</string>
+    <string name="phone">Телефон:</string>
+    <string name="phone_example">8800ххххххх</string>
+    <string name="bio_hint">Расскажите о себе</string>
+    <string name="bio">О себе:</string>
+    <string name="profile">Профиль:</string>
+    <string name="save">Сохранить изменения</string>
+    <string name="cancel">Назад</string>
+    <string name="center_list_header">Список центров</string>
+    <string name="to_second_list">К списку волонтеров</string>
+    <string name="make_admin">Назначить администратором</string>
+    <string name="check_out">Посмотреть</string>
+    <string name="join">Присоединиться</string>
+    <string name="volunteer_list_header">Свободные волонтеры</string>
+    <string name="to_first_list">К списку центров</string>
+    <string name="active_volunteer_list_header">Активные волонтеры</string>
+
 </resources>

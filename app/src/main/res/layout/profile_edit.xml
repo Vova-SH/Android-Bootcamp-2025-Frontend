@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profile_screen">
+
+    <ImageView
+        android:id="@+id/ellipse_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ellipse_7"/>
+
+    <ImageView
+        android:id="@+id/ellipse_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ellipse_8"
+        android:layout_gravity="end"/>
+
+    <LinearLayout
+        android:id="@+id/profile_layout"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140sp"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profile_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/my_font_medium"
+            android:text="@string/profile"
+            android:textSize="30sp"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:id="@+id/email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textSize="16sp"
+            android:fontFamily="@font/my_font_medium"/>
+
+        <EditText
+            android:id="@+id/enter_email_reg"
+            android:layout_width="match_parent"
+            android:layout_height="32sp"
+            android:background="@drawable/et_style"
+            android:hint="@string/enter_email"
+            android:textSize="16sp"
+            android:fontFamily="@font/my_font_regular"
+            android:textColorHint="@color/gray"
+            android:padding="5sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="15sp" />
+
+        <TextView
+            android:id="@+id/fi_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fi"
+            android:textSize="16sp"
+            android:fontFamily="@font/my_font_medium"/>
+
+        <EditText
+            android:id="@+id/enter_name"
+            android:layout_width="match_parent"
+            android:layout_height="32sp"
+            android:background="@drawable/et_style"
+            android:hint="@string/ivanov_ivan"
+            android:textSize="16sp"
+            android:fontFamily="@font/my_font_regular"
+            android:textColorHint="@color/gray"
+            android:padding="5sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="15sp"/>
+
+        <TextView
+            android:id="@+id/phone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"
+            android:textSize="16sp"
+            android:fontFamily="@font/my_font_medium"/>
+
+        <EditText
+            android:id="@+id/enter_phone"
+            android:layout_width="match_parent"
+            android:layout_height="32sp"
+            android:background="@drawable/et_style"
+            android:hint="@string/phone_example"
+            android:textSize="16sp"
+            android:fontFamily="@font/my_font_regular"
+            android:textColorHint="@color/gray"
+            android:padding="5sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="15sp"/>
+
+        <TextView
+            android:id="@+id/bio_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bio"
+            android:textSize="16sp"
+            android:fontFamily="@font/my_font_medium"/>
+
+        <EditText
+            android:id="@+id/enter_bio"
+            android:layout_width="match_parent"
+            android:layout_height="32sp"
+            android:background="@drawable/et_style"
+            android:hint="@string/bio_hint"
+            android:textSize="16sp"
+            android:fontFamily="@font/my_font_regular"
+            android:textColorHint="@color/gray"
+            android:padding="5sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="30sp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="32sp"
+            app:backgroundTint="@color/coral"
+            app:cornerRadius="8dp"
+            android:background="@drawable/btn_style"
+            android:layout_gravity="center"
+            android:text="@string/save"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/my_font_regular"
+            android:padding="0sp"/>
+
+        <FrameLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:id="@+id/sign_up">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/cancel"
+                android:fontFamily="@font/my_font_medium"
+                android:textSize="16sp"
+                android:paddingBottom="12sp"
+                android:textColor="@color/coral"/>
+
+            <View
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="19sp"
+                android:layout_width="48sp"
+                android:background="@color/coral"
+                android:layout_height="1dp"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>
