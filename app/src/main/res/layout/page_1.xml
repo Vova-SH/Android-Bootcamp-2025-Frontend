@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/hand1"
+        android:src="@drawable/hand1"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="-20dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/hand2"
+        android:src="@drawable/hand2"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginEnd="-20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/volunteer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_welcome"
+        android:text="Добро пожаловать в"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:layout_constraintTop_toBottomOf="@id/image"
+        app:layout_constraintStart_toStartOf="@id/image"
+        app:layout_constraintEnd_toEndOf="@id/image"/>
+
+    <TextView
+        android:id="@+id/text_activist"
+        android:text="Активист"
+        android:fontFamily="@font/marmelad_regular"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="32sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        app:layout_constraintTop_toBottomOf="@id/text_welcome"
+        app:layout_constraintStart_toStartOf="@id/text_welcome"
+        app:layout_constraintEnd_toEndOf="@id/text_welcome"/>
+
+    <TextView
+        android:id="@+id/text_description"
+        android:text="Volunteer - удобный сервис для поиска подходящего вам волонтёрского центра. Идеальное начало волонтёрской деятельности."
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:layout_constraintTop_toBottomOf="@id/text_activist"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
