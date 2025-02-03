@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Android-Bootcamp-2025-Frontend</string>
+    <string name="name">Имя</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="registration">Регистрация</string>
+    <string name="authorization">Авторизация</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="text_about_sign_in">Уже есть аккаунт?</string>
+    <string name="text_about_sign_up">Ещё нет аккаунта?</string>
+    <string name="password_hint">Пароль должен содержать более 8 символов</string>
+    <string name="editing">Редактировать</string>
+    <string name="my_center">Мой центр</string>
+    <string name="date">Дата рождения</string>
+    <string name="about_me">Немного о себе</string>
+    <string name="near_centers">Ближайшие волонтёрские центры</string>
+    <string name="free_volounteers">Свободные волонтёры</string>
+    <string name="profile">Профиль</string>
+    <string name="centers">Центры</string>
+    <string name="volunteers">Волонтёры</string>
+
+
 </resources>
