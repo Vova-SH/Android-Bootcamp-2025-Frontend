@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.sicampus.bootcamp2025.databinding.ItemVolunteerCenterBinding;
-import ru.sicampus.bootcamp2025.domain.entities.ItemVolunteerCenterEntity;
+import ru.sicampus.bootcamp2025.domain.entities.ItemCenterEntity;
 
 public class VolunteersCentersListAdapter extends RecyclerView.Adapter<VolunteersCentersListAdapter.ViewHolder> {
 
-    private final List<ItemVolunteerCenterEntity> data = new ArrayList<>();
+    private final List<ItemCenterEntity> data = new ArrayList<>();
 
     @NonNull
     @Override
@@ -38,7 +38,7 @@ public class VolunteersCentersListAdapter extends RecyclerView.Adapter<Volunteer
         return data.size();
     }
 
-    public void updateData(List<ItemVolunteerCenterEntity> newData) {
+    public void updateData(List<ItemCenterEntity> newData) {
         data.clear();
         data.addAll(newData);
         notifyDataSetChanged();
@@ -53,9 +53,9 @@ public class VolunteersCentersListAdapter extends RecyclerView.Adapter<Volunteer
             this.binding = binding;
         }
 
-        public void bind(ItemVolunteerCenterEntity item) {
+        public void bind(ItemCenterEntity item) {
             binding.centerName.setText(item.getCentre_name());
-            binding.phone.setText(item.getPhone());
+            binding.address.setText(item.getAddress());
         }
     }
 }

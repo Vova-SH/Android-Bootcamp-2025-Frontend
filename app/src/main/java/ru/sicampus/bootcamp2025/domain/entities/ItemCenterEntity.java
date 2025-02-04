@@ -2,7 +2,7 @@ package ru.sicampus.bootcamp2025.domain.entities;
 
 import androidx.annotation.NonNull;
 
-public class ItemVolunteerCenterEntity {
+public class ItemCenterEntity {
     @NonNull
     private final String id;
 
@@ -10,12 +10,12 @@ public class ItemVolunteerCenterEntity {
     private final String centre_name;
 
     @NonNull
-    private final String phone;
+    private final String address;
 
-    public ItemVolunteerCenterEntity(@NonNull String id, @NonNull String centreName, @NonNull String phone) {
+    public ItemCenterEntity(@NonNull String id, @NonNull String centreName, @NonNull String address) {
         this.id = id;
         centre_name = centreName;
-        this.phone = phone;
+        this.address = address;
     }
 
     @NonNull
@@ -29,7 +29,7 @@ public class ItemVolunteerCenterEntity {
     }
 
     @NonNull
-    public String getPhone() {
-        return phone;
+    public String getAddress() {
+        return address;
     }
 }

@@ -53,5 +53,8 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.json)
     implementation(libs.picasso)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gson)
+    implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.swiperefreshlayout)
 }

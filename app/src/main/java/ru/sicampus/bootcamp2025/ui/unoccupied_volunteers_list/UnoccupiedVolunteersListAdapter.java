@@ -56,8 +56,8 @@ public class UnoccupiedVolunteersListAdapter extends RecyclerView.Adapter<Unoccu
         }
 
         public void bind(ItemVolunteerEntity item) {
-            binding.fullName.setText(item.getName());
-            binding.phone.setText(item.getPhone());
+            binding.name.setText(item.getName());
+            binding.email.setText(item.getEmail());
             if (item.getPhotoUrl() != null) {
                 Picasso.get().load(item.getPhotoUrl()).into(binding.photo);
             }

@@ -62,12 +62,12 @@
             app:layout_constraintTop_toBottomOf="@id/tv_name_title" />
 
         <TextView
-            android:id="@+id/tv_input_surname_title"
+            android:id="@+id/nickname_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
-            android:text="@string/enter_surname_title"
+            android:text="@string/create_nickname"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -75,15 +75,15 @@
             app:layout_constraintTop_toBottomOf="@id/et_name" />
 
         <EditText
-            android:id="@+id/et_surname"
+            android:id="@+id/et_nickname"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_margin="15dp"
             android:background="@drawable/edit_text_rounded_corners_background"
-            android:hint="@string/surname_hint"
+            android:hint="@string/hint_create_nickname"
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toBottomOf="@id/tv_input_surname_title" />
+            app:layout_constraintTop_toBottomOf="@id/nickname_title" />
 
         <TextView
             android:id="@+id/tv_input_email_title"
@@ -96,7 +96,7 @@
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toBottomOf="@id/et_surname" />
+            app:layout_constraintTop_toBottomOf="@id/et_nickname" />
 
         <EditText
             android:id="@+id/et_email"
@@ -145,7 +145,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/container"
             app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toTopOf="@id/et_surname" />
+            app:layout_constraintTop_toTopOf="@id/et_nickname" />
 
         <TextView
             android:id="@+id/tv_hint"

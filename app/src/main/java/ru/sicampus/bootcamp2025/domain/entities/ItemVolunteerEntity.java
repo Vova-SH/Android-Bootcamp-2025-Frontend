@@ -11,15 +11,15 @@ public class ItemVolunteerEntity {
     private final String name;
 
     @NonNull
-    private final String phone;
+    private final String email;
 
     @Nullable
     private final String photoUrl;
 
-    public ItemVolunteerEntity(@NonNull String id, @NonNull String name, @NonNull String phone, @Nullable String photoUrl) {
+    public ItemVolunteerEntity(@NonNull String id, @NonNull String name, @NonNull String phone, @NonNull String email, @Nullable String photoUrl) {
         this.id = id;
         this.name = name;
-        this.phone = phone;
+        this.email = email;
         this.photoUrl = photoUrl;
     }
 
@@ -33,13 +33,13 @@ public class ItemVolunteerEntity {
         return name;
     }
 
-    @NonNull
-    public String getPhone() {
-        return phone;
-    }
-
     @Nullable
     public String getPhotoUrl() {
         return photoUrl;
+    }
+
+    @NonNull
+    public String getEmail() {
+        return email;
     }
 }

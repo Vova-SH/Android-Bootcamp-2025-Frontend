@@ -45,4 +45,8 @@
     <string name="contacts">Контактные данные:</string>
     <string name="phone_number">Номер телефона:</string>
     <string name="detach_volunteer">Открепить волонтера</string>
+    <string name="create_nickname">Придумайте ник:</string>
+    <string name="hint_create_nickname">Придумайте ник...</string>
+    <string name="nickname">nickname</string>
+    <string name="nickname_hint">Ник</string>
 </resources>
