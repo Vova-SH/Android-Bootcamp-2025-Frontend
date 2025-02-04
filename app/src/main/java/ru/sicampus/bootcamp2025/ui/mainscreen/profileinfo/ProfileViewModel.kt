@@ -45,8 +45,8 @@ class ProfileViewModel(private val useCase: GetProfileByIdUseCase) : ViewModel()
                 return ProfileViewModel(
                     useCase = GetProfileByIdUseCase(
                         repository = ProfileRepositoryImpl(
-                            networkDataSource = ProfileNetworkDataSource(),
-                            localDataSource = ProfileLocalDataSource()
+                            networkDataSource = ProfileNetworkDataSource,
+                            localDataSource = ProfileLocalDataSource
                         )
                     )
                 ) as T

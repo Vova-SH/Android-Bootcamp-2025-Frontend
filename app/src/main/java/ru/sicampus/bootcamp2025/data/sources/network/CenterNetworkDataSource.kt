@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.sicampus.bootcamp2025.data.dtos.CenterDto
 
-class CenterNetworkDataSource {
+object CenterNetworkDataSource {
     private val client = Network.client
 
     suspend fun getCenters(): Result<List<CenterDto>> = withContext(Dispatchers.IO) {
