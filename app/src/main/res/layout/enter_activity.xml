@@ -6,4 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:defaultNavHost="true"
-    app:navGraph="@navigation/entry_screen_navgraph" />
+    app:navGraph="@navigation/entry_screen_navgraph" >
+
+    <android.window.SplashScreenView
+        android:id="@+id/splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</androidx.fragment.app.FragmentContainerView>
