@@ -86,7 +86,7 @@ public class RegistrationViewModel extends ViewModel {
 
         createUserUseCase.execute(currentLogin, currentPassword, currentName, currentNickname, status -> {
             if (status.getStatusCode() == 201 && status.getErrors() == null) {
-                CreateUserUseCase.execute();
+
             } else {
                 mutableErrorLiveData.postValue("Registration failed. Please try again.");
             }
