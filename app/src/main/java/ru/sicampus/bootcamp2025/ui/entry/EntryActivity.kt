@@ -20,7 +20,6 @@ class EntryActivity : AppCompatActivity(R.layout.enter_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = EnterActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager.findFragmentById(binding.content.id) as NavHostFragment
         val navController = navHostFragment.navController
@@ -40,8 +39,6 @@ class EntryActivity : AppCompatActivity(R.layout.enter_activity) {
             }
         }
     }
-
-
 
     override fun onDestroy() {
         _binding = null
