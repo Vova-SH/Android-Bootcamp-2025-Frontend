@@ -24,8 +24,8 @@ class AuthorizationViewModel: ViewModel() {
             _state.update { State.Error("Поля не должны быть пустыми") }
             return
         }
-
         _state.update { State.Loading }
+
         viewModelScope.launch {
             kotlinx.coroutines.delay(2000)
             if (email == "test@example.com" && password == "password") {

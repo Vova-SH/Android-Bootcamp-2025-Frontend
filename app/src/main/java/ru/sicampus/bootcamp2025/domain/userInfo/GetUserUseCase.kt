@@ -1,7 +1,6 @@
-package ru.sicampus.bootcamp2025.domain
+package ru.sicampus.bootcamp2025.domain.userInfo
 
 import ru.sicampus.bootcamp2025.data.UserDTO
-import ru.sicampus.bootcamp2025.data.UserRepoImpl
 
 class GetUserUseCase(private val userRepo: UserRepo) {
 
