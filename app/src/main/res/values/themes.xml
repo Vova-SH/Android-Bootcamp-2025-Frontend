@@ -3,6 +3,10 @@
     <style name="Base.Theme.AndroidBootcamp2025Frontend" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/main_color</item>
+        <item name="colorPrimaryVariant">@color/dark_gray</item>
     </style>
 
     <style name="Theme.AndroidBootcamp2025Frontend" parent="Base.Theme.AndroidBootcamp2025Frontend" />
