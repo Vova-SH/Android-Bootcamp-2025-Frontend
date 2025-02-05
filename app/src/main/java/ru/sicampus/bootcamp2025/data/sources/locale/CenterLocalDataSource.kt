@@ -3,7 +3,7 @@ package ru.sicampus.bootcamp2025.data.sources.locale
 import ru.sicampus.bootcamp2025.data.dtos.CenterDto
 import java.time.LocalTime
 
-class CenterLocalDataSource {
+object CenterLocalDataSource {
 
     private var cachedCenters: List<CenterDto>? = null
     private var lastTimeUpdated: LocalTime = LocalTime.now()

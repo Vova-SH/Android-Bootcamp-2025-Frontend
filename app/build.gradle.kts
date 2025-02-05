@@ -61,7 +61,6 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
 
     implementation(libs.androidx.legacy.support.v4)
-    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)
 
     implementation(libs.androidx.constraintlayout)

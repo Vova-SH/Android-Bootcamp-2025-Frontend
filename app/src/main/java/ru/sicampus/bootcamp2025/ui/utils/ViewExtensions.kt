@@ -11,3 +11,7 @@ fun visibleOrGone(condition: Boolean): Int {
 fun getColor(colorId: Int, context: Context) : Int {
     return ContextCompat.getColor(context, colorId)
 }
+
+fun getText(textId: Int, context: Context) : String {
+    return ContextCompat.getString(context, textId)
+}

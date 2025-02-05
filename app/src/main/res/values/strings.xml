@@ -33,4 +33,5 @@
     <string name="not_with_us">Еще не с нами?</string>
     <string name="register">Регистрация</string>
     <string name="login">Войти</string>
+    <string name="password_does_not_matches">Пароли не совпадают</string>
 </resources>

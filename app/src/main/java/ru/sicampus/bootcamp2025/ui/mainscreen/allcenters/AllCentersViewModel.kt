@@ -50,8 +50,8 @@ class AllCentersViewModel(private val useCase: GetNearestAvailableCentersUseCase
                 return AllCentersViewModel(
                     useCase = GetNearestAvailableCentersUseCase(
                         repository = CenterRepositoryImpl(
-                            networkDataSource = CenterNetworkDataSource(),
-                            localDataSource = CenterLocalDataSource()
+                            networkDataSource = CenterNetworkDataSource,
+                            localDataSource = CenterLocalDataSource
                         )
                     )
                 ) as T

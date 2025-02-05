@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.sicampus.bootcamp2025.data.dtos.ProfileDto
 
-class ProfileNetworkDataSource {
+object ProfileNetworkDataSource {
     private val client = Network.client
 
     suspend fun getProfileById(profileId: Int): Result<ProfileDto> = withContext(Dispatchers.IO) {
