@@ -19,13 +19,13 @@ public class FullCenterEntity {
     private final String phone;
 
     @Nullable
-    private final List<ItemVolunteerEntity> activeVolunteers;
+    private final List<ItemUserEntity> activeVolunteers;
 
     public FullCenterEntity(@NonNull String id,
                             @NonNull String centreName,
                             @NonNull String address,
                             @NonNull String phone,
-                            @Nullable List<ItemVolunteerEntity> activeVolunteers) {
+                            @Nullable List<ItemUserEntity> activeVolunteers) {
         this.id = id;
         this.centreName = centreName;
         this.address = address;
@@ -54,7 +54,7 @@ public class FullCenterEntity {
     }
 
     @Nullable
-    public List<ItemVolunteerEntity> getActiveVolunteers() {
+    public List<ItemUserEntity> getActiveVolunteers() {
         return activeVolunteers;
     }
 }

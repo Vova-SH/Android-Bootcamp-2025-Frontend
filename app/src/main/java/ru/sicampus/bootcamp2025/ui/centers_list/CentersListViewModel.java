@@ -1,4 +1,4 @@
-package ru.sicampus.bootcamp2025.ui.volunteers_centers_list;
+package ru.sicampus.bootcamp2025.ui.centers_list;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
@@ -6,19 +6,19 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 
-public class VolunteersCentersListViewModel extends ViewModel {
+public class CentersListViewModel extends ViewModel {
 
-    private final MutableLiveData<VolunteersCentersListViewModel.State> mutableStateLiveData = new MutableLiveData<>();
+    private final MutableLiveData<CentersListViewModel.State> mutableStateLiveData = new MutableLiveData<>();
 
-    public final LiveData<VolunteersCentersListViewModel.State> stateLiveData = mutableStateLiveData;
+    public final LiveData<CentersListViewModel.State> stateLiveData = mutableStateLiveData;
 
 
-    public VolunteersCentersListViewModel() {
+    public CentersListViewModel() {
         update();
     }
 
     public void update() {
-        mutableStateLiveData.setValue(new VolunteersCentersListViewModel.State(null,  true));
+        mutableStateLiveData.setValue(new CentersListViewModel.State(null,  true));
     }
 
     public class State {

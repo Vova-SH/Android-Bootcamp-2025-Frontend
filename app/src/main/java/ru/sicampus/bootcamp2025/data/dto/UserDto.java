@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 import com.google.gson.annotations.SerializedName;
 
 
-public class VolunteerDto {
+public class UserDto {
     @Nullable
     @SerializedName("id")
     public String id;

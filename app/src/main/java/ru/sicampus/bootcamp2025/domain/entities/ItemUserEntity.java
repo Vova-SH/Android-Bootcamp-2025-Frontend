@@ -3,7 +3,7 @@ package ru.sicampus.bootcamp2025.domain.entities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class ItemVolunteerEntity {
+public class ItemUserEntity {
     @NonNull
     private final String id;
 
@@ -16,7 +16,8 @@ public class ItemVolunteerEntity {
     @Nullable
     private final String photoUrl;
 
-    public ItemVolunteerEntity(@NonNull String id, @NonNull String name, @NonNull String phone, @NonNull String email, @Nullable String photoUrl) {
+
+    public ItemUserEntity(@NonNull String id, @NonNull String name, @NonNull String email, @Nullable String photoUrl) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -33,13 +34,13 @@ public class ItemVolunteerEntity {
         return name;
     }
 
-    @Nullable
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
     @NonNull
     public String getEmail() {
         return email;
+    }
+
+    @Nullable
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 }

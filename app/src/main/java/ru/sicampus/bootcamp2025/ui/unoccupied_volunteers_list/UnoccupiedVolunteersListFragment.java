@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import ru.sicampus.bootcamp2025.R;
 import ru.sicampus.bootcamp2025.databinding.UnoccupiedVolunteersListFragmentBinding;
-import ru.sicampus.bootcamp2025.ui.volunteers_centers_list.VolunteersCentersListAdapter;
 
 public class UnoccupiedVolunteersListFragment extends Fragment {
     private UnoccupiedVolunteersListFragmentBinding binding;

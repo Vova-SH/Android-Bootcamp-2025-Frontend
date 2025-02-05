@@ -1,18 +1,18 @@
-package ru.sicampus.bootcamp2025.domain.volunteer;
+package ru.sicampus.bootcamp2025.domain.user;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.function.Consumer;
 
-import ru.sicampus.bootcamp2025.domain.entities.FullVolunteerEntity;
+import ru.sicampus.bootcamp2025.domain.entities.FullUserEntity;
 import ru.sicampus.bootcamp2025.domain.entities.Status;
 
-public class UpdateVolunteerProfileUseCase {
+public class UpdateUserProfileUseCase {
 
-    public final VolunteerRepository repo;
+    public final UserRepository repo;
 
-    public UpdateVolunteerProfileUseCase(VolunteerRepository repo) {
+    public UpdateUserProfileUseCase(UserRepository repo) {
         this.repo = repo;
     }
 
@@ -23,7 +23,7 @@ public class UpdateVolunteerProfileUseCase {
             @NonNull String email,
             @Nullable String phone,
             @Nullable String photoUrl,
-            @NonNull Consumer<Status<FullVolunteerEntity>> callback) {
-        repo.update(id, name, nickname, email, phone, photoUrl, callback);
+            @NonNull Consumer<Status<FullUserEntity>> callback) {
+        repo.updateUser(id, name, nickname, email, phone, photoUrl, callback);
     }
 }

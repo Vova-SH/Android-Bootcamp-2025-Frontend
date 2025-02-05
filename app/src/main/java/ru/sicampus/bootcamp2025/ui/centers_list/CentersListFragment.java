@@ -1,4 +1,4 @@
-package ru.sicampus.bootcamp2025.ui.volunteers_centers_list;
+package ru.sicampus.bootcamp2025.ui.centers_list;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +11,13 @@ import androidx.lifecycle.ViewModelProvider;
 import ru.sicampus.bootcamp2025.R;
 import ru.sicampus.bootcamp2025.databinding.VolunteerCentresListFragmentBinding;
 
-public class VolunteerCentersListFragment extends Fragment {
+public class CentersListFragment extends Fragment {
 
     private VolunteerCentresListFragmentBinding binding;
 
-    private VolunteersCentersListViewModel viewModel;
+    private CentersListViewModel viewModel;
 
-    VolunteerCentersListFragment() {
+    public CentersListFragment() {
         super(R.layout.volunteer_centres_list_fragment);
     }
 
@@ -25,9 +25,9 @@ public class VolunteerCentersListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding = VolunteerCentresListFragmentBinding.bind(view);
-        viewModel = new ViewModelProvider(this).get(VolunteersCentersListViewModel.class);
+        viewModel = new ViewModelProvider(this).get(CentersListViewModel.class);
         binding.refresh.setOnRefreshListener(() -> viewModel.update());
-        VolunteersCentersListAdapter adapter = new VolunteersCentersListAdapter();
+        CentersListAdapter adapter = new CentersListAdapter();
     }
 
     @Override

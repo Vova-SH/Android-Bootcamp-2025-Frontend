@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import ru.sicampus.bootcamp2025.domain.entities.ItemVolunteerEntity;
+import ru.sicampus.bootcamp2025.domain.entities.ItemUserEntity;
 
 public class CenterDto {
 
@@ -28,5 +28,5 @@ public class CenterDto {
 
     @Nullable
     @SerializedName("active_volunteers")
-    public List<ItemVolunteerEntity> activeVolunteers;
+    public List<ItemUserEntity> activeVolunteers;
 }

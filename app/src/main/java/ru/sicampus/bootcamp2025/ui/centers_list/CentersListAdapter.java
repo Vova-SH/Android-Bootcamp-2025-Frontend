@@ -1,4 +1,4 @@
-package ru.sicampus.bootcamp2025.ui.volunteers_centers_list;
+package ru.sicampus.bootcamp2025.ui.centers_list;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -12,13 +12,13 @@ import java.util.List;
 import ru.sicampus.bootcamp2025.databinding.ItemVolunteerCenterBinding;
 import ru.sicampus.bootcamp2025.domain.entities.ItemCenterEntity;
 
-public class VolunteersCentersListAdapter extends RecyclerView.Adapter<VolunteersCentersListAdapter.ViewHolder> {
+public class CentersListAdapter extends RecyclerView.Adapter<CentersListAdapter.ViewHolder> {
 
     private final List<ItemCenterEntity> data = new ArrayList<>();
 
     @NonNull
     @Override
-    public VolunteersCentersListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CentersListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(
                 ItemVolunteerCenterBinding.inflate(
                         LayoutInflater.from(parent.getContext()),
@@ -29,7 +29,7 @@ public class VolunteersCentersListAdapter extends RecyclerView.Adapter<Volunteer
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VolunteersCentersListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CentersListAdapter.ViewHolder holder, int position) {
         holder.bind(data.get(position));
     }
 

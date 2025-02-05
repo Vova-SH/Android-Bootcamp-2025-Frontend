@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.sicampus.bootcamp2025.databinding.ItemVolunteerBinding;
-import ru.sicampus.bootcamp2025.domain.entities.ItemVolunteerEntity;
+import ru.sicampus.bootcamp2025.domain.entities.ItemUserEntity;
 
 public class UnoccupiedVolunteersListAdapter extends RecyclerView.Adapter<UnoccupiedVolunteersListAdapter.ViewHolder> {
 
-    private final List<ItemVolunteerEntity> data = new ArrayList<>();
+    private final List<ItemUserEntity> data = new ArrayList<>();
 
     @NonNull
     @Override
@@ -40,7 +40,7 @@ public class UnoccupiedVolunteersListAdapter extends RecyclerView.Adapter<Unoccu
         return data.size();
     }
 
-    public void updateData(List<ItemVolunteerEntity> newData) {
+    public void updateData(List<ItemUserEntity> newData) {
         data.clear();
         data.addAll(newData);
         notifyDataSetChanged();
@@ -55,7 +55,7 @@ public class UnoccupiedVolunteersListAdapter extends RecyclerView.Adapter<Unoccu
             this.binding = binding;
         }
 
-        public void bind(ItemVolunteerEntity item) {
+        public void bind(ItemUserEntity item) {
             binding.name.setText(item.getName());
             binding.email.setText(item.getEmail());
             if (item.getPhotoUrl() != null) {

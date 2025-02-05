@@ -26,6 +26,8 @@ public class UnoccupiedVolunteersListViewModel extends ViewModel {
 
         private final boolean isLoading;
 
+
+
         public State(@Nullable String errorMessage, boolean isLoading) {
             this.errorMessage = errorMessage;
             this.isLoading = isLoading;

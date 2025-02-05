@@ -3,7 +3,7 @@ package ru.sicampus.bootcamp2025.domain.entities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class FullVolunteerEntity {
+public class FullUserEntity {
     @NonNull
     private final String id;
 
@@ -22,12 +22,12 @@ public class FullVolunteerEntity {
     @Nullable
     private final String photoUrl;
 
-    public FullVolunteerEntity(@NonNull String id,
-                               @NonNull String name,
-                               @NonNull String nickname,
-                               @NonNull String email,
-                               @Nullable String phone,
-                               @Nullable String photoUrl) {
+    public FullUserEntity(@NonNull String id,
+                          @NonNull String name,
+                          @NonNull String nickname,
+                          @NonNull String email,
+                          @Nullable String phone,
+                          @Nullable String photoUrl) {
         this.id = id;
         this.name = name;
         this.nickname = nickname;

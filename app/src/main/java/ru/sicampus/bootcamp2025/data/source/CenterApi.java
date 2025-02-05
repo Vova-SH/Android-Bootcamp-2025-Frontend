@@ -9,15 +9,15 @@ import ru.sicampus.bootcamp2025.data.dto.CenterDto;
 
 public interface CenterApi {
 
-    @GET("server/v1/center")
+    @GET("/api/center")
     Call<List<CenterDto>> getAll();
 
-    @GET("server/v1/center/{id}")
+    @GET("/api/center/{id}")
     Call<CenterDto> getById(@Path("id") String id);
 
-     /* @PUT("server/v1/center/volunteer/{centerId}/{volunteerId}")
-    Call<VolunteerDto> addVolunteer(@Path("centerId") String centerId, @Path("volunteerId") String volunteerId);
+     /* @PUT("/api/center/user/{centerId}/{userId}")
+    Call<UserDto> addVolunteer(@Path("centerId") String centerId, @Path("userId") String userId);
 
-    @PUT("server/v1/center/volunteer/delete/{centerId}/{volunteerId}")
-    Call<CenterDto> deleteCenter(@Path("centerId") String centerId, @Path("volunteerId") String volunteerId); */
+    @PUT("/api/center/user/delete/{centerId}/{userId}")
+    Call<CenterDto> deleteCenter(@Path("centerId") String centerId, @Path("userId") String userId); */
 }
