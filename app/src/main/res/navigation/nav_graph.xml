@@ -3,26 +3,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/starterFragment">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="ru.sicampus.bootcamp2025.ui.vlist.ActiveVolunteersListFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_active_volunteers_list">
-
+        android:id="@+id/registerSecondFragment"
+        android:name="ru.sicampus.bootcamp2025.RegisterSecondFragment"
+        android:label="fragment_register_second"
+        tools:layout="@layout/fragment_register_second">
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_registerSecondFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="ru.sicampus.bootcamp2025.ui.vlist.FreeVolunteersListFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_free_volunteers_list">
-
+        android:id="@+id/loginFragment"
+        android:name="ru.sicampus.bootcamp2025.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_loginFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="ru.sicampus.bootcamp2025.MainPageFragment"
+        android:label="fragment_main_page"
+        tools:layout="@layout/fragment_main_page">
+        <action
+            android:id="@+id/action_mainPageFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_freeVolunteersListFragment"
+            app:destination="@id/freeVolunteersListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/freeVolunteersListFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.vlist.FreeVolunteersListFragment"
+        android:label="fragment_free_volunteers_list"
+        tools:layout="@layout/fragment_free_volunteers_list">
+        <action
+            android:id="@+id/action_freeVolunteersListFragment_to_activeVolunteersListFragment"
+            app:destination="@id/activeVolunteersListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/activeVolunteersListFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.vlist.ActiveVolunteersListFragment"
+        android:label="fragment_active_volunteers_list"
+        tools:layout="@layout/fragment_active_volunteers_list" />
+    <fragment
+        android:id="@+id/registerFirstFragment"
+        android:name="ru.sicampus.bootcamp2025.RegisterFirstFragment"
+        android:label="fragment_register_first"
+        tools:layout="@layout/fragment_register_first">
+        <action
+            android:id="@+id/action_registerFirstFragment_to_registerSecondFragment"
+            app:destination="@id/registerSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/starterFragment"
+        android:name="ru.sicampus.bootcamp2025.StarterFragment"
+        android:label="fragment_starter"
+        tools:layout="@layout/fragment_starter">
+        <action
+            android:id="@+id/action_starterFragment_to_registerFirstFragment"
+            app:destination="@id/registerFirstFragment" />
+        <action
+            android:id="@+id/action_starterFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

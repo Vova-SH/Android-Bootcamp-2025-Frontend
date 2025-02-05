@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.squareup.picasso.Picasso
 import ru.sicampus.bootcamp2025.R
+import ru.sicampus.bootcamp2025.data.UserDTO
 import ru.sicampus.bootcamp2025.databinding.FragmentProfileBinding
 import ru.sicampus.bootcamp2025.domain.UserEntity
 import ru.sicampus.bootcamp2025.ui.vlist.FreeVolunteersListViewModel
 import ru.sicampus.bootcamp2025.util.collectWithLifecycle
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private var _binding : FragmentProfileBinding? = null
@@ -36,13 +40,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         }
     }
-    private fun showProfile(user: UserEntity) {
+    private fun showProfile(user: UserDTO) {
         binding.loading.visibility = View.GONE
         with(binding) {
             fullNameText.text = "${user.firstName} ${user.lastName}"
             organizationName.text = "${user.organizationName}"
             roleText.text = "${user.role}"
-            birthDateText.text = "${user.birthDate}"
+            birthDateText.text = dateConverter(user.birthDate)
             phoneText.text = "${user.phoneNumber}"
             emailText.text = "${user.email}"
             telegramText.text = "${user.telegramUsername}"
@@ -51,6 +55,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         }
     }
+  private fun dateConverter(date: Date?) : String {
+      if (date != null) {
+          val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+          println(dateFormat.format(date).toString())
+          return dateFormat.format(date).toString()
+
+      }
+      return ""
+  }
+
 
     override fun onDestroyView() {
         _binding = null

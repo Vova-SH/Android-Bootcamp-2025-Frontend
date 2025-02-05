@@ -1,67 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
-    tools:context=".LoginActivity">
-
-    <ImageView
+    tools:context=".RegisterSecondFragment">
+    <ImageButton
         android:id="@+id/back_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/arrow"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.185"
+        app:layout_constraintVertical_bias="0.175"
         app:srcCompat="@drawable/frame" />
 
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="567dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginHorizontal="16dp"
         android:background="@drawable/view_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.875"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.908" />
 
     <ImageView
         android:id="@+id/progress"
-        android:layout_width="86dp"
-        android:layout_height="71dp"
-        android:contentDescription="@string/heart"
-        app:layout_constraintBottom_toTopOf="@+id/view"
+        android:layout_width="132dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/register_title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.502"
-        app:srcCompat="@drawable/heart" />
+        app:layout_constraintVertical_bias="0.868"
+        app:srcCompat="@drawable/progress2"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/register_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/montserrat_extrabold"
-        android:text="@string/login_title"
-
+        android:text="@string/register_title"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress"
-        app:layout_constraintVertical_bias="0.105" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/bg"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:text="@string/next_btn"
+        android:textColor="@color/gray"
+        android:textSize="20sp"
+        app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -77,25 +94,25 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/phone_field2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/montserrat_extrabold"
-            android:text="@string/email_field"
+            android:text="@string/phone_field"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/editTextText"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:autofillHints=""
             android:background="@drawable/input_rounded_corners"
             android:ems="10"
             android:fontFamily="@font/montserrat_medium"
-            android:hint="@string/hint_email"
+            android:hint="@string/hint_phone"
             android:inputType="text"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
@@ -103,41 +120,59 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/montserrat_extrabold"
-            android:text="@string/password_field"
+            android:text="Telegram"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/editTextText7"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginBottom="240dp"
             android:autofillHints=""
             android:background="@drawable/input_rounded_corners"
             android:ems="10"
             android:fontFamily="@font/montserrat_medium"
-            android:hint="@string/hint_password"
+            android:hint="@string/telegram_username"
             android:inputType="text"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:textColorHint="@color/gray"
             android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/button"
+        <TextView
+            android:id="@+id/textView9"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/violet"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
             android:fontFamily="@font/montserrat_extrabold"
-            android:text="@string/login_btn"
-            android:textSize="20sp"
-            app:cornerRadius="15dp" />
+            android:text="@string/about_field"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editTextText8"
+            android:layout_width="match_parent"
+            android:layout_height="124dp"
+            android:autofillHints=""
+            android:background="@drawable/input_rounded_corners"
+            android:ems="10"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="start"
+            android:hint="@string/hint_about"
+            android:inputType="text|textMultiLine"
+            android:paddingStart="15dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="15dp"
+            android:textColorHint="@color/gray"
+            android:textSize="16sp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

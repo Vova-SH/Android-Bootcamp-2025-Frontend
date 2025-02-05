@@ -7,6 +7,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import ru.sicampus.bootcamp2025.data.UserDTO
 import ru.sicampus.bootcamp2025.data.profile.ProfileNetworkDataSource
 import ru.sicampus.bootcamp2025.data.profile.ProfileRepoImpl
 import ru.sicampus.bootcamp2025.data.volunteers.FreeVolunteerNetworkDataSource
@@ -50,7 +51,7 @@ class ProfileViewModel (
     sealed interface State{
         data object Loading : State
         data class Show(
-            val user: UserEntity
+            val user: UserDTO
         ) : State
         data class Error(
             val text: String

@@ -8,10 +8,10 @@ import ru.sicampus.bootcamp2025.domain.profile.ProfileRepo
 class ProfileRepoImpl(
     private val profileNetworkDataSource: ProfileNetworkDataSource
 ) : ProfileRepo{
-    override suspend fun getProfile(): Result<UserEntity> {
+    override suspend fun getProfile(): Result<UserDTO> {
         return  profileNetworkDataSource.getProfile().map{
             dto ->
-            UserEntity(
+            UserDTO(
                 firstName = dto.firstName,
                 lastName = dto.lastName,
                 photoUrl = dto.photoUrl,
