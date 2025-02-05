@@ -15,8 +15,8 @@ public class AuthViewModel extends ViewModel {
     private final MutableLiveData<String> mutableErrorLiveData = new MutableLiveData<>();
     public final LiveData<String> errorLiveData = mutableErrorLiveData;
 
-    private final MutableLiveData<Void> mutableOpenProfileLiveData = new MutableLiveData<>();
-    public final LiveData<Void> openProfileLiveData = mutableOpenProfileLiveData;
+    private final MutableLiveData<Void> mutableOpenCentersListLiveData = new MutableLiveData<>();
+    public final LiveData<Void> openCentersListLiveData = mutableOpenCentersListLiveData;
 
     private final MutableLiveData<Void> mutableOpenSignLiveData = new MutableLiveData<>();
     public final LiveData<Void> openSignLiveData = mutableOpenSignLiveData;
@@ -37,9 +37,6 @@ public class AuthViewModel extends ViewModel {
     @Nullable
     private String password = null;
 
-    private boolean userCheckCompleted = false;
-
-    private boolean isNewAccount = false;
 
     public void changePassword(@NonNull String password) {
         this.password = password;
@@ -49,31 +46,7 @@ public class AuthViewModel extends ViewModel {
         this.email = email;
     }
 
-    private void checkUserExist() {
-        final String currentLogin = email;
-        if (currentLogin == null || currentLogin.isEmpty()) {
-            mutableErrorLiveData.postValue("Email cannot be null");
-            return;
-        }
-        isUserExistUseCase.execute(currentLogin, status -> {
-            if (status.getValue() == null || status.getErrors() != null) {
-                mutableErrorLiveData.postValue("Something wrong. Try later");
-                return;
-            }
-            userCheckCompleted = true;
-            isNewAccount = !status.getValue();
-            if(isNewAccount) {
-                mutableErrorLiveData.postValue("Account already exists. Try to login");
-            } else {
-                login();
-            }
-        });
-    }
-
-
-
-
-    public void login() {
+    public void authenticateUser() {
         final String currentLogin = email;
         final String currentPassword = password;
 
@@ -81,18 +54,32 @@ public class AuthViewModel extends ViewModel {
             mutableErrorLiveData.postValue("Login cannot be null");
             return;
         }
-
         if (currentPassword == null || currentPassword.isEmpty()) {
             mutableErrorLiveData.postValue("Password cannot be null");
             return;
         }
 
-        loginUserUseCase.execute(currentLogin, currentPassword, status -> {
-            if (status.getStatusCode() == 200 && status.getErrors() == null) {
-                mutableOpenProfileLiveData.postValue(null);
+        isUserExistUseCase.execute(currentLogin, status -> {
+            if (status.getValue() == null || status.getErrors() != null) {
+                mutableErrorLiveData.postValue("Something went wrong. Try later.");
+                return;
+            }
+            if (!status.getValue()) {
+                mutableErrorLiveData.postValue("User does not exist. Please register.");
             } else {
-                mutableErrorLiveData.postValue("Login failed. Please try again.");
+                loginUser(currentLogin, currentPassword);
             }
         });
     }
+
+    private void loginUser(@NonNull final String currentLogin, @NonNull final String currentPassword) {
+        loginUserUseCase.execute(currentLogin, currentPassword, status -> {
+            if (status.getStatusCode() == 200 && status.getErrors() == null) {
+                mutableOpenCentersListLiveData.postValue(null);
+            } else {
+                mutableErrorLiveData.postValue("Something wrong");
+            }
+        });
+    }
+
 }

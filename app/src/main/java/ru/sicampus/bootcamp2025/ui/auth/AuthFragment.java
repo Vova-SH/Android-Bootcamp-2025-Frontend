@@ -3,11 +3,13 @@ package ru.sicampus.bootcamp2025.ui.auth;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import ru.sicampus.bootcamp2025.R;
 import ru.sicampus.bootcamp2025.databinding.AuthenticationFragmentBinding;
@@ -42,13 +44,36 @@ public class AuthFragment extends Fragment {
                 viewModel.changePassword(editable.toString());
             }
         });
+        binding.tvHint.setOnClickListener(v -> openRegistration());
         subscribe(viewModel);
     }
 
     private void subscribe(AuthViewModel viewModel) {
-
+        viewModel.errorLiveData.observe(getViewLifecycleOwner(), error ->
+                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show()
+        );
+        viewModel.openSignLiveData.observe(getViewLifecycleOwner(), unused ->
+                openRegistration()
+        );
+        viewModel.openCentersListLiveData.observe(getViewLifecycleOwner(), unused -> {
+            openCentersList();
+        });
     }
 
+    private void openRegistration() {
+        final View view = getView();
+        if (view != null) {
+            Navigation.findNavController(view).navigate(R.id.action_registrationFragment_to_authFragment);
+
+        }
+    }
+
+    private void openCentersList() {
+        final View view = getView();
+        if (view != null) {
+            Navigation.findNavController(view).navigate(R.id.action_authFragment_to_centersList);
+        }
+    }
 
     @Override
     public void onDestroyView() {

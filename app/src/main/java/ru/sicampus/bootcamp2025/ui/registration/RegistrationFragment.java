@@ -3,11 +3,13 @@ package ru.sicampus.bootcamp2025.ui.registration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import ru.sicampus.bootcamp2025.R;
 import ru.sicampus.bootcamp2025.databinding.RegistrationFragmentBinding;
@@ -19,7 +21,7 @@ public class RegistrationFragment extends Fragment {
 
     private RegistrationViewModel viewModel;
 
-    public RegistrationFragment(){
+    public RegistrationFragment() {
         super(R.layout.registration_fragment);
     }
 
@@ -42,14 +44,14 @@ public class RegistrationFragment extends Fragment {
                 viewModel.changePassword(editable.toString());
             }
         });
-        binding.etName.addTextChangedListener(new OnChangeText(){
+        binding.etName.addTextChangedListener(new OnChangeText() {
             @Override
             public void afterTextChanged(Editable editable) {
                 super.afterTextChanged(editable);
                 viewModel.changeName(editable.toString());
             }
         });
-        binding.etNickname.addTextChangedListener(new OnChangeText(){
+        binding.etNickname.addTextChangedListener(new OnChangeText() {
             @Override
             public void afterTextChanged(Editable editable) {
                 super.afterTextChanged(editable);
@@ -57,10 +59,23 @@ public class RegistrationFragment extends Fragment {
             }
         });
         subscribe(viewModel);
+        binding.btnContinue.setOnClickListener(v -> viewModel.authenticateUser());
+        binding.tvHint.setOnClickListener(v -> openAuth());
     }
 
     private void subscribe(RegistrationViewModel viewModel) {
+        viewModel.errorLiveData.observe(getViewLifecycleOwner(), error -> {
+            Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+        });
+        viewModel.openAuthLiveData.observe(getViewLifecycleOwner(), unused ->
+                openAuth()
+        );
+    }
 
+    private void openAuth() {
+        final View view = getView();
+        if (view == null) return;
+        Navigation.findNavController(view).navigate(R.id.action_registrationFragment_to_authFragment);
     }
 
     @Override

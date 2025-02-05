@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import ru.sicampus.bootcamp2025.data.UserRepositoryImpl;
 import ru.sicampus.bootcamp2025.domain.sign.CreateUserUseCase;
 import ru.sicampus.bootcamp2025.domain.sign.IsUserExistUseCase;
+import ru.sicampus.bootcamp2025.domain.sign.LoginUserUseCase;
 
 public class RegistrationViewModel extends ViewModel {
 
@@ -26,6 +27,10 @@ public class RegistrationViewModel extends ViewModel {
     private final IsUserExistUseCase isUserExistUseCase = new IsUserExistUseCase(
             UserRepositoryImpl.getInstance()
     );
+
+    private final LoginUserUseCase loginUserUseCase = new LoginUserUseCase(
+            UserRepositoryImpl.getInstance()
+    );
     /* UseCases */
 
     @Nullable
@@ -39,8 +44,6 @@ public class RegistrationViewModel extends ViewModel {
 
     @Nullable
     private String nickname = null;
-
-    private boolean userCheckCompleted = false;
 
     public void changeLogin(@NonNull String email) {
         this.email = email;
@@ -58,38 +61,54 @@ public class RegistrationViewModel extends ViewModel {
         this.nickname = nickname;
     }
 
-    public void register() {
+    public void authenticateUser() {
+
         final String currentLogin = email;
+
         final String currentPassword = password;
+
         final String currentName = name;
+
         final String currentNickname = nickname;
 
         if (currentLogin == null || currentLogin.isEmpty()) {
-            mutableErrorLiveData.postValue("Login cannot be null");
+            mutableErrorLiveData.postValue("Email cannot be null");
             return;
         }
-
         if (currentPassword == null || currentPassword.isEmpty()) {
             mutableErrorLiveData.postValue("Password cannot be null");
             return;
         }
 
-        if (currentName == null || currentName.isEmpty()) {
-            mutableErrorLiveData.postValue("Name cannot be null");
-            return;
-        }
-
-        if (currentNickname == null || currentNickname.isEmpty()) {
-            mutableErrorLiveData.postValue("Nickname cannot be null");
-            return;
-        }
-
-        createUserUseCase.execute(currentLogin, currentPassword, currentName, currentNickname, status -> {
-            if (status.getStatusCode() == 201 && status.getErrors() == null) {
-
+        isUserExistUseCase.execute(currentLogin, status -> {
+            if (status.getValue() == null || status.getErrors() != null) {
+                mutableErrorLiveData.postValue("Something went wrong. Try later.");
+                return;
+            }
+            if (status.getValue()) {
+                mutableErrorLiveData.postValue("User already exists. Please authenticate.");
             } else {
-                mutableErrorLiveData.postValue("Registration failed. Please try again.");
+                createAccount(currentLogin, currentName, currentNickname, currentPassword);
             }
         });
     }
+
+    private void createAccount(String currentLogin,
+                               String currentName,
+                               String currentNickname,
+                               String currentPassword) {
+        createUserUseCase.execute(
+                currentLogin,
+                currentName,
+                currentNickname,
+                currentPassword,
+                status -> {
+            if (status.getStatusCode() == 201 && status.getErrors() == null) {
+                mutableOpenAuthLiveData.postValue(null);
+            } else {
+                mutableErrorLiveData.postValue("Something wrong");
+            }
+        });
+    }
+
 }

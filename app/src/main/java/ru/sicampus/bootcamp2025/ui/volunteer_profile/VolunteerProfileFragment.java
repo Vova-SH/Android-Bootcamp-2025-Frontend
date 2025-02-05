@@ -51,8 +51,12 @@ public class VolunteerProfileFragment extends Fragment {
         if (id == null) throw new IllegalStateException("ID is null");
         viewModel.load(id);
         binding.arrowBack.setOnClickListener(v -> {
-            viewModel.goBack();
+            goBack();
         });
+    }
+
+    private void goBack() {
+        //TODO: implement it
     }
 
     private void showLoading() {

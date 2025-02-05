@@ -47,9 +47,6 @@ public class VolunteerProfileViewModel extends ViewModel {
         });
     }
 
-    public void goBack(){
-        //TODO: implement method
-    }
 
     public static class State {
         @Nullable

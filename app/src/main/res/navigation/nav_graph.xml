@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/registrationFragment">
+
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.registration.RegistrationFragment"
+        android:label="Registration"
+        tools:layout="@layout/registration_fragment">
+        <action
+            android:id="@+id/action_registrationFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.auth.AuthFragment"
+        android:label="Authentication"
+        tools:layout="@layout/authentication_fragment" >
+        <action
+            android:id="@+id/action_authFragment_to_centersList"
+            app:destination="@id/centersList" />
+    </fragment>
+    <fragment
+        android:id="@+id/centersList"
+        android:name="ru.sicampus.bootcamp2025.ui.centers_list.CentersListFragment"
+        android:label="CentersList"
+        tools:layout="@layout/volunteer_centres_list_fragment"/>
+</navigation>
