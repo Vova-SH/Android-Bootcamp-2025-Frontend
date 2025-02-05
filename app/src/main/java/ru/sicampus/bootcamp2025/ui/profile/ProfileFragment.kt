@@ -43,7 +43,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun showProfile(user: UserDTO) {
         binding.loading.visibility = View.GONE
         with(binding) {
-            fullNameText.text = "${user.firstName} ${user.lastName}"
+            fullNameText.text = "${user.name}"
             organizationName.text = "${user.organizationName}"
             roleText.text = "${user.role}"
             birthDateText.text = dateConverter(user.birthDate)

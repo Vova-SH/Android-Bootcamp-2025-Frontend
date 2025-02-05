@@ -5,7 +5,7 @@
     android:id="@+id/registerFirstFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterFirstFragment">
+    tools:context=".ui.register.RegisterFirstFragment">
 
 
     <ImageButton
@@ -83,6 +83,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -96,7 +97,6 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/fullname_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -107,7 +107,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextText6"
+            android:id="@+id/fullname"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:autofillHints=""
@@ -122,7 +122,6 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -133,7 +132,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextText4"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:autofillHints=""
@@ -148,7 +147,6 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -159,10 +157,9 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextText5"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginBottom="130dp"
             android:autofillHints=""
             android:background="@drawable/input_rounded_corners"
             android:ems="10"
@@ -175,4 +172,18 @@
             android:textSize="16sp" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Error"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/next_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.175"
+        tools:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     app:startDestination="@id/starterFragment">
     <fragment
         android:id="@+id/registerSecondFragment"
-        android:name="ru.sicampus.bootcamp2025.RegisterSecondFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.register.RegisterSecondFragment"
         android:label="fragment_register_second"
         tools:layout="@layout/fragment_register_second">
         <action
@@ -55,7 +55,7 @@
         tools:layout="@layout/fragment_active_volunteers_list" />
     <fragment
         android:id="@+id/registerFirstFragment"
-        android:name="ru.sicampus.bootcamp2025.RegisterFirstFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.register.RegisterFirstFragment"
         android:label="fragment_register_first"
         tools:layout="@layout/fragment_register_first">
         <action

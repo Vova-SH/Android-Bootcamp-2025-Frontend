@@ -2,15 +2,14 @@ package ru.sicampus.bootcamp2025.domain
 import java.util.Date
 
 data class UserEntity (
-    val id: Long,
-    val email: String,
-    val firstName: String,
-    val lastName: String,
-    val role: String,
-    val birthDate: Date?,
-    val phoneNumber: String?,
-    val telegramUsername: String?,
+    val id: Long? = null,
+    var email: String? = null,
+    var name: String? = null,
+    val role: String? = null,
+    val birthDate: Date? = null,
+    val phoneNumber: String? = null,
+    val telegramUsername: String? = null,
     val organizationName: String? = null,
-    val about: String?,
-    val photoUrl: String?
+    val about: String? = null,
+    val photoUrl: String? = null
 )

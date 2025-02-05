@@ -1,7 +1,6 @@
 package ru.sicampus.bootcamp2025.data.profile
 
 import ru.sicampus.bootcamp2025.data.UserDTO
-import ru.sicampus.bootcamp2025.domain.UserEntity
 import ru.sicampus.bootcamp2025.domain.profile.ProfileRepo
 
 
@@ -12,8 +11,7 @@ class ProfileRepoImpl(
         return  profileNetworkDataSource.getProfile().map{
             dto ->
             UserDTO(
-                firstName = dto.firstName,
-                lastName = dto.lastName,
+                name = dto.name,
                 photoUrl = dto.photoUrl,
                 id = dto.id ,
                 email = dto.email,

@@ -31,7 +31,7 @@ class VolunteerAdapter : ListAdapter<UserEntity, VolunteerAdapter.ViewHolder>(Us
     ) : RecyclerView.ViewHolder(binding.root){
         @SuppressLint("SetTextI18n")
         fun bind(item: UserEntity){
-            binding.fullName.text = "${item.firstName} ${item.lastName}"
+            binding.fullName.text = "${item.name}"
             binding.email.text = "${item.email}"
             Picasso.get()
                 .load(item.photoUrl)

@@ -11,8 +11,7 @@ class FreeVolunteerRepoImpl(
             println("Dto list: $listDto")
             listDto.mapNotNull { dto ->
                 UserEntity(
-                    firstName = dto.firstName,
-                    lastName = dto.lastName,
+                    name = dto.name,
                     photoUrl = dto.photoUrl ?: return@mapNotNull null,
                     id = dto.id ,
                     email = dto.email,
