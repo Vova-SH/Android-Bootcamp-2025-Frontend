@@ -1,4 +1,4 @@
-package ru.sicampus.bootcamp2025.data
+package ru.sicampus.bootcamp2025.data.list
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO

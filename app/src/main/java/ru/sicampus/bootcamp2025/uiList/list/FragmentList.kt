@@ -1,11 +1,10 @@
-package ru.sicampus.bootcamp2025.uiList
+package ru.sicampus.bootcamp2025.uiList.list
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
@@ -15,17 +14,18 @@ import ru.sicampus.bootcamp2025.util.collectionWithLifecycle
 
 class FragmentList : Fragment(R.layout.volunteer_list)
 {
-    private var _viewBinding : VolunteerListBinding? = null
-    private val viewBinding : VolunteerListBinding get() = _viewBinding!!
+    private var _viewBinding: VolunteerListBinding? = null
+    private val viewBinding: VolunteerListBinding get() = _viewBinding!!
 
-    private val viewModel by viewModels<ListViewModel>() { ListViewModel.Factory }
+    private val viewModel by viewModels<ListViewModel> { ListViewModel.Factory }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
         _viewBinding = VolunteerListBinding.bind(view)
         viewBinding.refresh.setOnClickListener { viewModel.clickRefresh() }
-
+        viewModel.state
 
         val adapter = UserAdapter()
         viewBinding.content.adapter = adapter
@@ -50,6 +50,7 @@ class FragmentList : Fragment(R.layout.volunteer_list)
                 }
             }
         }
+
 
         val viewModel: ListViewModel
         val state: ListViewModel.State = ListViewModel.State.Loading

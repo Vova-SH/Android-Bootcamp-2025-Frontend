@@ -3,12 +3,12 @@ package ru.sicampus.bootcamp2025.util
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import ru.sicampus.bootcamp2025.uiList.auth.AuthFragment
 
 fun <T> Flow<T>.collectionWithLifecycle(
-    fragment: CoroutineScope,
+    fragment: AuthFragment,
     function: (T) -> Unit
 ){
     fragment.viewLifecycleOwner.lifecycleScope.launch {

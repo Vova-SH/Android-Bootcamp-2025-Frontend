@@ -1,17 +1,15 @@
-package ru.sicampus.bootcamp2025.uiList
+package ru.sicampus.bootcamp2025.uiList.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.data.UserNetworkDataSource
-import ru.sicampus.bootcamp2025.data.UserRepoImpl
+import ru.sicampus.bootcamp2025.data.list.UserNetworkDataSource
+import ru.sicampus.bootcamp2025.data.list.UserRepoImpl
 import ru.sicampus.bootcamp2025.domain.GetSerUseCase
 import ru.sicampus.bootcamp2025.domain.UserEntity
-import ru.sicampus.bootcamp2025.domain.UserRepo
 
 
 @Suppress("UNCHECKED_CAST")
@@ -32,10 +30,12 @@ class ListViewModel(private val getUserUseCase: GetSerUseCase) : ViewModel() {
         viewModelScope.launch {
             _state.emit(State.Loading)
             getUserUseCase.invoke().fold(onSuccess = {
-                data -> State.Show(data)
+                data ->
+                State.Show(data)
             },
                 onFailure = {
-                    error -> State.Error(error.message.toString())
+                    error ->
+                    State.Error(error.message.toString())
                 })
         }
     }

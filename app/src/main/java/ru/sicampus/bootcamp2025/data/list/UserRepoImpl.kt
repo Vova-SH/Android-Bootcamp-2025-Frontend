@@ -1,4 +1,4 @@
-package ru.sicampus.bootcamp2025.data
+package ru.sicampus.bootcamp2025.data.list
 
 import ru.sicampus.bootcamp2025.domain.UserEntity
 import ru.sicampus.bootcamp2025.domain.UserRepo

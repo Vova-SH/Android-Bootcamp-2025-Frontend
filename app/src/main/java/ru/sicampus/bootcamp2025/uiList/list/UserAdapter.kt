@@ -1,7 +1,6 @@
-package ru.sicampus.bootcamp2025.uiList
+package ru.sicampus.bootcamp2025.uiList.list
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
