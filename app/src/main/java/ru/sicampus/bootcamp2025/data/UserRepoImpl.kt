@@ -4,9 +4,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-import ru.sicampus.bootcamp2025.domain.UserRepo
+import ru.sicampus.bootcamp2025.domain.userInfo.UserRepo
 
-class UserRepoImpl:UserRepo {
+class UserRepoImpl: UserRepo {
     override suspend fun fetchUser(): UserDTO {
         return withContext(Dispatchers.IO) {
             val userDeferred = async {
@@ -19,6 +19,10 @@ class UserRepoImpl:UserRepo {
             }
             userDeferred.await()
         }
+    }
+
+    override suspend fun printUser() {
+        TODO("Not yet implemented")
     }
 }
 
