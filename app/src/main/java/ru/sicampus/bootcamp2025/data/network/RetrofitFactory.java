@@ -47,4 +47,8 @@ public class RetrofitFactory {
     public UserApi getUserApi() {
         return retrofit.create(UserApi.class);
     }
+
+    public CenterApi getCenterApi() {
+        return retrofit.create(CenterApi.class);
+    }
 }
