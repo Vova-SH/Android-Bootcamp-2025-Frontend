@@ -53,4 +53,5 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.picasso)
+    implementation(libs.play.services.maps.v1802)
 }
