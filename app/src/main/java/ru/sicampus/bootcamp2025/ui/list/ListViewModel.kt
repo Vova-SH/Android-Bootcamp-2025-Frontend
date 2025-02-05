@@ -1,19 +1,24 @@
 package ru.sicampus.bootcamp2025.ui.list
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.data.ListNetworkDataSource
-import ru.sicampus.bootcamp2025.data.ListRepoImpl
-import ru.sicampus.bootcamp2025.domain.GetListsUseCase
-import ru.sicampus.bootcamp2025.domain.ListEntity
+import ru.sicampus.bootcamp2025.data.login.ListNetworkDataSource
+import ru.sicampus.bootcamp2025.data.login.ListRepoImpl
+import ru.sicampus.bootcamp2025.domain.list.GetListsUseCase
+import ru.sicampus.bootcamp2025.domain.list.ListEntity
+import ru.sicampus.bootcamp2025.utils.toReadableMessage
 
 class ListViewModel(
+    application: Application,
     private val getUserUseCase: GetListsUseCase
-) : ViewModel() {
+) : AndroidViewModel(application = application){
 
     private val state = MutableStateFlow<State>(State.Loading)
     val _state = state.asStateFlow()
@@ -34,7 +39,8 @@ class ListViewModel(
                     state.emit(State.Show(data))
                 },
                 onFailure = { error ->
-                    state.emit(State.Error(error.message ?: "Unknown error"))
+                    val errorMessage = error.toReadableMessage(getApplication())
+                    state.emit(State.Error(errorMessage ?: "Bad Error"))
                 }
             )
         }
@@ -53,9 +59,11 @@ class ListViewModel(
     companion object {
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
                 if (modelClass.isAssignableFrom(ListViewModel::class.java)) {
+                    val application = extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
                     return ListViewModel(
+                        application = application,
                         getUserUseCase = GetListsUseCase(
                             repo = ListRepoImpl(
                                 userNetworkDataSource = ListNetworkDataSource()

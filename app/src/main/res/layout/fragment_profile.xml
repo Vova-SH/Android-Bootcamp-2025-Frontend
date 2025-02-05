@@ -14,7 +14,8 @@
         android:src="@drawable/ic_edit"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="8dp"
-        android:contentDescription="@string/descriptionButtonEdit"
+
+        android:contentDescription="@string/common_edit"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"/>
@@ -34,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="@string/myProfile"
+            android:text="@string/profile_title"
             android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +76,7 @@
                     android:clickable="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="@string/fullNameInput"
+                    android:hint="@string/profile_fullname_hint"
                     android:inputType="textPersonName"
                     android:textColorHint="#757575"
                     tools:ignore="TextContrastCheck" />
@@ -98,7 +99,7 @@
                     android:clickable="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="@string/phoneInput"
+                    android:hint="@string/auth_phone_hint"
                     android:inputType="phone"
                     android:textColorHint="#757575"
                     tools:ignore="TextContrastCheck" />
@@ -121,7 +122,7 @@
                     android:clickable="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="@string/emailInput"
+                    android:hint="@string/auth_email_hint"
                     android:inputType="textEmailAddress"
                     android:textColorHint="#757575"
                     tools:ignore="TextContrastCheck" />
@@ -144,7 +145,7 @@
                     android:clickable="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="@string/centreInput"
+                    android:hint="@string/profile_center_hint"
                     android:inputType="text"
                     android:textColorHint="#757575"
                     tools:ignore="TextContrastCheck" />

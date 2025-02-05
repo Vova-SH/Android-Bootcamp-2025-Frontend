@@ -21,7 +21,7 @@
             android:id="@+id/welcomeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome"
+            android:text="@string/common_welcome"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="16dp"
@@ -39,31 +39,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/searchInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxStrokeColor="#4CAF50"
-            app:boxStrokeWidth="2dp"
-            app:layout_constraintTop_toBottomOf="@id/photoPeople"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchEditText"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fakeSearchButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/find"
-                android:inputType="text"
-                android:drawableStart="@android:drawable/ic_menu_search"
-                android:drawablePadding="8dp"
+                android:layout_marginTop="16dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:icon="@android:drawable/ic_menu_search"
+                app:iconGravity="start"
+                app:iconPadding="8dp"
+                app:iconTint="#4CAF50"
+                app:strokeColor="#383535"
+                app:strokeWidth="2dp"
+                android:text="@string/common_find"
                 android:background="@android:color/white"
-                android:focusable="true"
-                android:focusableInTouchMode="true"/>
+                android:textColor="#757575"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:layout_constraintTop_toBottomOf="@id/photoPeople"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

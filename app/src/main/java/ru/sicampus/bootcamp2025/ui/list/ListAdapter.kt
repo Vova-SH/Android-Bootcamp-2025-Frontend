@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.ItemUserBinding
-import ru.sicampus.bootcamp2025.domain.ListEntity
+import ru.sicampus.bootcamp2025.domain.list.ListEntity
 
 class ListAdapter(
     private val context: Context
@@ -54,9 +54,9 @@ class ListAdapter(
 
                 val distance = location.distanceTo(userLocation)
 
-                binding.textCoordinates.text = context.getString(R.string.distance_format, distance)
+                binding.textCoordinates.text = context.getString(R.string.content_distance_format, distance)
             } else {
-                binding.textCoordinates.text = context.getString(R.string.distance_unknown)
+                binding.textCoordinates.text = context.getString(R.string.content_distance_format)
             }
         }
     }

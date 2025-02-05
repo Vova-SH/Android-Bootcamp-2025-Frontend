@@ -9,24 +9,28 @@
     android:background="@drawable/ic_background"
     android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.mainscreen.MainScreenFragment">
+    tools:context=".ui.start.StartFragment">
 
     <TextView
         android:id="@+id/volunteerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/startedAppeal"
+        android:text="@string/start_title"
         android:gravity="center"
         android:textSize="26sp"
         android:textStyle="bold"
     />
 
-
-    <include
-        layout="@layout/image_save_world"
-        android:layout_gravity="center"
+    <TextView
+        android:id="@+id/volunteerTextSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/start_subtitle"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/grayLight"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,34 +38,29 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
+        <include
+            android:id="@+id/includedImage"
+            layout="@layout/image_save_world"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/registerButton"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/startedRegister"
+            android:text="@string/button_countine"
             android:textSize="16sp"
             app:cornerRadius="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/includedImage"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintWidth_percent="0.7"
             tools:ignore="TextContrastCheck" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/loginButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent="0.7"
-            app:cornerRadius="4dp"
-            android:text="@string/startedLogin"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/greenLight"
-            style="@style/Widget.MaterialComponents.Button"
-            app:layout_constraintTop_toBottomOf="@id/registerButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

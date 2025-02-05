@@ -67,6 +67,4 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.ui.viewbinding)
 
-    // Debug
-    debugImplementation(libs.androidx.ui.tooling)
 }

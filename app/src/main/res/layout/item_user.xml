@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Name"
+        android:text="@string/item_name"
         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
         android:textColor="@color/textColor"/>
 
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Description"
+        android:text="@string/item_description"
         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
         android:textColor="@color/textColorSecondary"/>
 
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end"
-        android:text="Coordinates"
+        android:text="@string/item_coordinates"
         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
         android:textColor="@color/textColorSecondary"/>
 </LinearLayout>

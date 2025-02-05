@@ -1,8 +1,8 @@
-package ru.sicampus.bootcamp2025.data
+package ru.sicampus.bootcamp2025.data.login
 
 import com.google.android.gms.maps.model.LatLng
-import ru.sicampus.bootcamp2025.domain.ListEntity
-import ru.sicampus.bootcamp2025.domain.ListRepo
+import ru.sicampus.bootcamp2025.domain.list.ListEntity
+import ru.sicampus.bootcamp2025.domain.list.ListRepo
 
 class ListRepoImpl (
     private val userNetworkDataSource: ListNetworkDataSource
