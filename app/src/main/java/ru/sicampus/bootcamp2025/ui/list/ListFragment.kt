@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import androidx.viewbinding.ViewBinding
 import androidx.viewbinding.ViewBindings
 import kotlinx.coroutines.flow.collect
@@ -29,23 +30,39 @@ class ListFragment: Fragment(R.layout.fragment_list){
 
         viewBinding.content.adapter = adapter
 
-        viewBinding.refresh.setOnClickListener{ viewModel.clickRefresh() }
+        viewBinding.refresh.setOnClickListener { adapter.refresh() }
 
-        viewModel.state.collectWithLifecycle(this) { state ->
-            viewBinding.error.visibility = if(state is ListViewModel.State.Error) View.VISIBLE else View.GONE
-            viewBinding.loading.visibility = if(state is ListViewModel.State.Error) View.VISIBLE else View.GONE
-            viewBinding.content.visibility = if(state is ListViewModel.State.Error) View.VISIBLE else View.GONE
-            when (state) {
-                is ListViewModel.State.Loading -> Unit
-                is ListViewModel.State.Show -> {
-                    adapter.submitList(state.items)
-                }
-                is ListViewModel.State.Error -> {
-                    viewBinding.text.text = state.text
-                }
+        viewModel.listState.collectWithLifecycle(this) { data ->
+            adapter.submitData(data)
+        }
+
+        adapter.loadStateFlow.collectWithLifecycle(this) { data ->
+            val state = data.refresh
+            viewBinding.error.visibility =
+                if (state is LoadState.Error) View.VISIBLE else View.GONE
+            viewBinding.loading.visibility =
+                if (state is LoadState.Error) View.VISIBLE else View.GONE
+            if (state is LoadState.Error) {
+                viewBinding.errorText.text = state.error.message.toString()
             }
+
         }
-        }
+
+//        viewModel.state.collectWithLifecycle(this) { state ->
+//            viewBinding.error.visibility = if(state is ListViewModel.State.Error) View.VISIBLE else View.GONE
+//            viewBinding.loading.visibility = if(state is ListViewModel.State.Error) View.VISIBLE else View.GONE
+//            viewBinding.content.visibility = if(state is ListViewModel.State.Error) View.VISIBLE else View.GONE
+//            when (state) {
+//                is ListViewModel.State.Loading -> Unit
+//                is ListViewModel.State.Show -> {
+//                    adapter.submitList(state.items)
+//                }
+//                is ListViewModel.State.Error -> {
+//                    viewBinding.text.text = state.text
+//                }
+//            }
+//        }
+    }
 
 
 

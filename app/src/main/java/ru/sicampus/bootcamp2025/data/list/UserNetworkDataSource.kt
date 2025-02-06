@@ -12,10 +12,12 @@ import ru.sicampus.bootcamp2025.data.Network
 
 class UserNetworkDataSource {
     suspend fun getUsers(
+        pageNum: Int,
+        pageSize: Int,
         token: String
-    ): Result<List<UserDto>> = withContext(Dispatchers.IO) {
+    ): Result<UserListPagingDto> = withContext(Dispatchers.IO) {
         runCatching {
-            val result = Network.client.get("$serverIp/api/person") {
+            val result = Network.client.get("$serverIp/api/person/paginated?page=$pageNum&size=$pageSize") {
                 headers {
                     append(HttpHeaders.Authorization, token)
                 }

@@ -91,6 +91,7 @@ class AuthViewModel(
     }
 
     private suspend fun openlist() {
+        isNewUser = false
         viewModelScope.launch {
             _action.send(Action.GotoList)
         }
