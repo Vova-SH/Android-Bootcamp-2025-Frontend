@@ -1,6 +1,7 @@
 package ru.sicampus.bootcamp2025.ui.auth
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -78,6 +79,7 @@ class AuthViewModel(
                     isUserExistUseCase(login).fold(
                         onSuccess = { isExist ->
                             isNewUser = isExist
+                            Log.w("bbb", isNewUser.toString())
                             updateState()
                         },
                         onFailure = { error ->
@@ -90,8 +92,7 @@ class AuthViewModel(
         }
     }
 
-    private suspend fun openlist() {
-        isNewUser = false
+    private fun openlist() {
         viewModelScope.launch {
             _action.send(Action.GotoList)
         }

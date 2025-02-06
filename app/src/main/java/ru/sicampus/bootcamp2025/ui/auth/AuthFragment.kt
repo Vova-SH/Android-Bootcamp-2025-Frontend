@@ -63,12 +63,10 @@ class AuthFragment: Fragment(R.layout.fragment_auth) {
                     if (state.showPassword) View.VISIBLE else View.GONE
             }
         }
-
     }
 
     override fun onDestroyView() {
         _viewBinding = null
         super.onDestroyView()
-
     }
 }
