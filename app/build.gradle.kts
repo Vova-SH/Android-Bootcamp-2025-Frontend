@@ -44,6 +44,8 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.paging.runtime)
+
     implementation (libs.play.services.location)
 
     implementation(libs.ktor.serialization.kotlinx.json)

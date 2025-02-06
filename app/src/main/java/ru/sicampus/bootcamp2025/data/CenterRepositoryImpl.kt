@@ -1,34 +1,30 @@
 package ru.sicampus.bootcamp2025.data
 
-import ru.sicampus.bootcamp2025.data.dtos.CenterDto
-import ru.sicampus.bootcamp2025.data.sources.locale.CenterLocalDataSource
+import ru.sicampus.bootcamp2025.data.dtos.CenterListPagingDto
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.CenterNetworkDataSource
 import ru.sicampus.bootcamp2025.domain.entities.CenterEntity
 import ru.sicampus.bootcamp2025.domain.repositories.CenterRepository
-import java.time.LocalTime
 
 class CenterRepositoryImpl(
     private val networkDataSource: CenterNetworkDataSource,
-    private val localDataSource: CenterLocalDataSource,
     private val credentialsLocalDataSource: CredentialsLocalDataSource
 ) : CenterRepository {
-    override suspend fun getCenters(): Result<List<CenterEntity>> {
-
-        if (localDataSource.getCachedData() != null
-            && LocalTime.now().minute - localDataSource.getLastTimeUpdated().minute > 5
+    override suspend fun getCenters(pageNum: Int, pageSize: Int): Result<List<CenterEntity>> {
+        return map(
+            networkDataSource.getCenters(
+                credentialsLocalDataSource.getToken() ?: "12345",
+                pageNum,
+                pageSize
+            )
         )
-            return map(Result.success(localDataSource.getCachedData()!!))
-        else {
-            localDataSource.cacheData(networkDataSource.getCenters(credentialsLocalDataSource.getToken()!!).getOrNull())
-            return map(networkDataSource.getCenters(credentialsLocalDataSource.getToken()!!))
-        }
     }
 
-    private fun map(listCenterDto: Result<List<CenterDto>>): Result<List<CenterEntity>> {
-        return listCenterDto.map { listDto ->
-            listDto.mapNotNull { dto ->
+    private fun map(listCenterDto: Result<CenterListPagingDto>): Result<List<CenterEntity>> {
+        return listCenterDto.map { listPagingDto ->
+            listPagingDto.centerList?.mapNotNull { dto ->
                 CenterEntity(
+                    id = dto.id ?: return@mapNotNull null,
                     name = dto.name ?: return@mapNotNull null,
                     phone = dto.phone ?: return@mapNotNull null,
                     address = dto.address ?: return@mapNotNull null,
@@ -37,7 +33,7 @@ class CenterRepositoryImpl(
                     latitude = dto.latitude ?: return@mapNotNull null,
                     longitude = dto.longitude ?: return@mapNotNull null
                 )
-            }
+            } ?: return Result.failure(IllegalStateException("Page data cannot be null"))
         }
     }
 }

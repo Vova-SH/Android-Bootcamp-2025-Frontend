@@ -27,6 +27,7 @@ class ProfileFragment : Fragment(R.layout.view_profile_fragment) {
             binding.refresh.isRefreshing = state is ProfileViewModel.State.Loading
 
             when (state) {
+
                 is ProfileViewModel.State.Error -> binding.error.text = state.text
                 ProfileViewModel.State.Loading -> Unit
                 is ProfileViewModel.State.Show -> {
@@ -40,6 +41,8 @@ class ProfileFragment : Fragment(R.layout.view_profile_fragment) {
                 }
             }
         }
+
+        binding.refresh.setOnRefreshListener { viewModel.onRefresh() }
 
         binding.save.setOnClickListener {
             viewModel.onSaveChanges(

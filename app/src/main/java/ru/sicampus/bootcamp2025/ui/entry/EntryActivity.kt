@@ -20,9 +20,12 @@ class EntryActivity : AppCompatActivity(R.layout.enter_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = EnterActivityBinding.inflate(layoutInflater)
+        startActivity(Intent(this, MainActivity::class.java))
+
 
         val navHostFragment = supportFragmentManager.findFragmentById(binding.content.id) as NavHostFragment
         val navController = navHostFragment.navController
+
 
         viewModel.action.collectWithLifecycle(this) { action ->
             when (action) {

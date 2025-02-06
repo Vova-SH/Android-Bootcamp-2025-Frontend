@@ -32,12 +32,18 @@ class ProfileViewModel(
 
     init {
         viewModelScope.launch {
-            updateState(getLocalUserUseCase.invoke()!!.profileId)
+            updateState( getLocalUserUseCase.invoke()?.profileId ?: 1)
         }
     }
 
     fun onSaveChanges(newProfile: ProfileEntity) {
         // TODO: Add profile saving
+    }
+
+    fun onRefresh() {
+        viewModelScope.launch {
+            updateState(getLocalUserUseCase.invoke()?.profileId ?: 1)
+        }
     }
 
     private fun updateState(userId: Int) {
@@ -64,22 +70,24 @@ class ProfileViewModel(
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
                 val application =
                     extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
+                val credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(
+                    application.getSharedPreferences(
+                        Const.TOKEN_KEY,
+                        Context.MODE_PRIVATE
+                    )
+                )
                 return ProfileViewModel(
                     getProfileByIdUseCase = GetProfileByIdUseCase(
                         repository = ProfileRepositoryImpl(
                             networkDataSource = ProfileNetworkDataSource,
-                            localDataSource = ProfileLocalDataSource
+                            localDataSource = ProfileLocalDataSource,
+                            credentialsLocalDataSource = credentialsLocalDataSource
                         ),
                     ),
                     getLocalUserUseCase = GetLocalUserUseCase(
                         userRepository = UserRepositoryImpl(
                             userLocalDataSource = UserLocalDataSource,
-                            credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(
-                                application.getSharedPreferences(
-                                    Const.TOKEN_KEY,
-                                    Context.MODE_PRIVATE
-                                )
-                            ),
+                            credentialsLocalDataSource = credentialsLocalDataSource,
                             userNetworkDataSource = UserNetworkDataSource
                         )
                     ),

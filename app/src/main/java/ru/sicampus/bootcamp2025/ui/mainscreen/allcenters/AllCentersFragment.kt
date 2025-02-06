@@ -7,6 +7,7 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import ru.sicampus.bootcamp2025.R
@@ -25,28 +26,28 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = ViewCentersFragmentBinding.bind(view)
+        activateListSwitcher()
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         val adapter = CenterListAdapter(getCurrentLocation())
         binding.content.adapter = adapter
 
         binding.mapSwitcher.setOnClickListener { activateMapSwitcher() }
-
         binding.listSwitcher.setOnClickListener { activateListSwitcher() }
+        binding.refresh.setOnRefreshListener { adapter.refresh() }
 
-        binding.refresh.setOnRefreshListener { viewModel.clickRefresh() }
+        viewModel.listState.collectWithLifecycle(this) { listState ->
+            adapter.submitData(listState)
+        }
 
-        viewModel.state.collectWithLifecycle(this) { state ->
-            binding.refresh.isRefreshing = state is AllCentersViewModel.State.Loading
-            binding.error.visibility = visibleOrGone(state is AllCentersViewModel.State.Error)
-            binding.content.visibility = visibleOrGone(state is AllCentersViewModel.State.Show)
+        adapter.loadStateFlow.collectWithLifecycle(this) { data ->
+            val state = data.refresh
+            binding.refresh.isRefreshing = state is LoadState.Loading
+            binding.error.visibility = visibleOrGone(state is LoadState.Error)
 
-            when (state) {
-                is AllCentersViewModel.State.Loading -> Unit
-                is AllCentersViewModel.State.Error -> binding.error.text = state.text
-                is AllCentersViewModel.State.Show -> {
-                    adapter.submitList(state.items)
-                }
+            if (state is LoadState.Error) {
+                binding.error.text = state.error.toString()
             }
         }
     }

@@ -5,6 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CenterDto(
+    @SerialName("id")
+    val id: Int?,
     @SerialName("name")
     val name: String?,
     @SerialName("address")

@@ -56,8 +56,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/gray"
                     android:text="@string/list_tab"
-                    android:textFontWeight="800" />
+                    android:textFontWeight="800"
+                    tools:backgroundTint="@color/blue" />
 
                 <Button
                     android:id="@+id/map_switcher"
