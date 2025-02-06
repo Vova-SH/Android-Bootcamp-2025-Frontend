@@ -3,7 +3,7 @@
              xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/authFramgent">
 
     <fragment
         android:id="@+id/profileFragment"
@@ -30,4 +30,8 @@
         android:name="ru.sicampus.bootcamp2025.MainActivity"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/authFramgent"
+        android:name="ru.sicampus.bootcamp2025.ui.auth.AuthFramgent"
+        android:label="AuthFramgent" />
 </navigation>

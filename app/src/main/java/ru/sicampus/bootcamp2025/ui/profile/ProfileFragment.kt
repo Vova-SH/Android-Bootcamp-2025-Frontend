@@ -9,13 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.FragmentProfileBinding
-import ru.sicampus.bootcamp2025.ui.login.LoginViewModel
 
 class ProfileFragment: Fragment(R.layout.fragment_profile) {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: ProfileVIewModel by viewModels()
     private fun getCamera(view: View?) {
         Toast.makeText(activity, "CAMERA", Toast.LENGTH_SHORT).show()
         TODO("Not yet implemented")

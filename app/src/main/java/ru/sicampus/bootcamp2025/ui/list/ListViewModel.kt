@@ -3,14 +3,14 @@ package ru.sicampus.bootcamp2025.ui.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.data.UserNetworkDataSource
-import ru.sicampus.bootcamp2025.data.UserRepoImpl
-import ru.sicampus.bootcamp2025.domain.GetUsersUseCases
-import ru.sicampus.bootcamp2025.domain.UserEntity
+import ru.sicampus.bootcamp2025.data.auth.AuthStorageDataSource
+import ru.sicampus.bootcamp2025.data.list.UserNetworkDataSource
+import ru.sicampus.bootcamp2025.data.list.UserRepoImpl
+import ru.sicampus.bootcamp2025.domain.list.GetUsersUseCases
+import ru.sicampus.bootcamp2025.domain.list.UserEntity
 
 class ListViewModel(
     private val getUsersUseCases: GetUsersUseCases
@@ -60,7 +60,8 @@ class ListViewModel(
                 return ListViewModel(
                     getUsersUseCases = GetUsersUseCases(
                         repo = UserRepoImpl(
-                            userNetworkDataSource = UserNetworkDataSource()
+                            userNetworkDataSource = UserNetworkDataSource(),
+                            authStorageDataSource = AuthStorageDataSource
                         )
                     )
                 ) as T

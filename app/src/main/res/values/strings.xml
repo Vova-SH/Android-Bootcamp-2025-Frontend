@@ -2,8 +2,12 @@
     <string name="app_name">Android-Bootcamp-2025-Frontend</string>
     <string name="page_title">Username</string>
     <string name="fab_content_desc">example description</string>
-    <string name="login">Login</string>
+    <string name="login">Введите логин</string>
     <string name="title">title</string>
     <string name="description">desc</string>
     <string name="refresh">Refresh</string>
+    <string name="password">Введите пароль</string>
+    <string name="signup">Sign Up</string>
+    <string name="signin">Sign in</string>
+    <string name="hello">Hello!</string>
 </resources>

@@ -6,10 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import androidx.viewbinding.ViewBinding
 import ru.sicampus.bootcamp2025.databinding.ItemUserBinding
-import ru.sicampus.bootcamp2025.domain.UserEntity
+import ru.sicampus.bootcamp2025.domain.list.UserEntity
 
 class UserAdapter: ListAdapter<UserEntity, UserAdapter.ViewHolder>(UserDiff) {
 
@@ -24,7 +22,7 @@ class UserAdapter: ListAdapter<UserEntity, UserAdapter.ViewHolder>(UserDiff) {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(getItem(position))
     }
 
 
