@@ -33,7 +33,8 @@ class ProfileRepositoryImpl(
                 lastname = dto.lastname!!,
                 photoUrl =  dto.photoUrl!!,
                 phoneNumber = dto.phoneNumber!!,
-                email = dto.email!!
+                email = dto.email!!,
+                centerId = dto.centerId!!
             )
         }
     }
