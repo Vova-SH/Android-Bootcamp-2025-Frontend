@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import ru.sicampus.bootcamp2025.R
+import ru.sicampus.bootcamp2025.data.save.PrefsManager
 import ru.sicampus.bootcamp2025.databinding.ActivityMainBinding
 import ru.sicampus.bootcamp2025.ui.list.ListFragment
 import ru.sicampus.bootcamp2025.ui.mainscreen.MainScreenFragment
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        PrefsManager.init(this)
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             view.setPadding(
@@ -31,7 +34,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Настройка навигации
         binding.bottomNav.setup(
             items = listOf(
                 BottomNavigationBar.NavItem(

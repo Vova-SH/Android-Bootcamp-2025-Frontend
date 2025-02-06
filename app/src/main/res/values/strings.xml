@@ -60,4 +60,9 @@
     <string name="error_unknown">Unknown error</string>
     <string name="button_countine">Сountine</string>
     <string name="menu_list">Список</string>
+    <string name="photo">Photo</string>
+    <string name="coordinates_format" translatable="false">%.4f, %.4f</string>
+    <string name="error_button">Error</string>
+
+
 </resources>

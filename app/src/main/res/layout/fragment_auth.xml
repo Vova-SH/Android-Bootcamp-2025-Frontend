@@ -15,7 +15,7 @@
         android:id="@+id/errorMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ошибка!"
+        android:text="@string/error_button"
         android:textColor="@android:color/white"
         android:background="@color/errorColor"
         android:padding="16dp"

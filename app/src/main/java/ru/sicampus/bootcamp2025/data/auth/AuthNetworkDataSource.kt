@@ -14,6 +14,7 @@ import kotlinx.coroutines.withContext
 import ru.sicampus.bootcamp2025.data.Network
 import ru.sicampus.bootcamp2025.data.Network.serverAdress
 
+
 object AuthNetworkDataSource {
 
     suspend fun isUserExist(login: String): Result<Boolean> = withContext(Dispatchers.IO) {
@@ -54,6 +55,8 @@ object AuthNetworkDataSource {
                 if (result.status != HttpStatusCode.Created) {
                     error("Status ${result.status}: ${result.body<String>()}")
                 }
+
+
                 Unit
             }
 

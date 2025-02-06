@@ -56,4 +56,7 @@
     <string name="button_countine">Продолжить</string>
     <string name="menu_list">Список</string>
     <string name="menu_main">Главный экран</string>
+    <string name="error_button">Ошибка</string>
+
+    <string name="photo">Фото</string>
 </resources>

@@ -21,6 +21,8 @@ class AuthFragment: Fragment(R.layout.fragment_auth) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _viewBinding = FragmentAuthBinding.bind(view)
 
+        viewModel.checkAutoLogin()
+
         viewBinding.next.setOnClickListener {
             viewModel.clickNext(
                 viewBinding.emailEditText.text.toString(),

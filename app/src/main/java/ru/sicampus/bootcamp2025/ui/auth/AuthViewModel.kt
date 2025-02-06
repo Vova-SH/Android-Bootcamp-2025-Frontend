@@ -19,6 +19,7 @@ import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.data.auth.AuthNetworkDataSource
 import ru.sicampus.bootcamp2025.data.auth.AuthRepoImpl
 import ru.sicampus.bootcamp2025.data.auth.AuthStorageDataSource
+import ru.sicampus.bootcamp2025.domain.auth.AutoLoginUseCase
 import ru.sicampus.bootcamp2025.utils.toReadableMessage
 import kotlin.reflect.KClass
 
@@ -28,6 +29,7 @@ class AuthViewModel(
     private val isUserExistUseCase: IsUserExistUseCase,
     private val loginUseCase: LoginUseCase,
     private val registerUserUseCase: RegisterUserUseCase,
+    private val autoLoginUseCase: AutoLoginUseCase
 ) : AndroidViewModel(application = application) {
     private val _state = MutableStateFlow<State>(getStateShow())
     val state = _state.asStateFlow()
@@ -110,6 +112,21 @@ class AuthViewModel(
         )
     }
 
+    fun checkAutoLogin() {
+        viewModelScope.launch {
+            if (AuthStorageDataSource.isLoggedIn()) {
+                _state.emit(State.Loading)
+                autoLoginUseCase().fold(
+                    onSuccess = { openList() },
+                    onFailure = { error ->
+                        AuthStorageDataSource.clear()
+                        updateState(error)
+                    }
+                )
+            }
+        }
+    }
+
 
     sealed interface State {
         data object Loading : State
@@ -130,15 +147,21 @@ class AuthViewModel(
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: KClass<T>, extras: CreationExtras): T {
                 val application = extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
+
+                val authNetworkDataSource = AuthNetworkDataSource
+                val authStorageDataSource = AuthStorageDataSource
+
                 val authRepoImpl = AuthRepoImpl(
-                    authStorageDataSource = AuthStorageDataSource,
-                    authNetworkDataSource = AuthNetworkDataSource,
+                    authStorageDataSource = authStorageDataSource,
+                    authNetworkDataSource = authNetworkDataSource
                 )
+
                 return AuthViewModel(
                     application = application,
                     isUserExistUseCase = IsUserExistUseCase(authRepoImpl),
                     loginUseCase = LoginUseCase(authRepoImpl),
                     registerUserUseCase = RegisterUserUseCase(authRepoImpl),
+                    autoLoginUseCase = AutoLoginUseCase(authRepoImpl)
                 ) as T
             }
         }
