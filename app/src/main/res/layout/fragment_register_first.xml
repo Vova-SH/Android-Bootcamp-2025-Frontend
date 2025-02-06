@@ -65,13 +65,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/next_btn"
+        android:id="@+id/register_btn"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="@color/bg"
+        android:enabled="false"
         android:fontFamily="@font/montserrat_extrabold"
         android:text="@string/next_btn"
         android:textColor="@color/gray"
@@ -177,13 +178,13 @@
         android:id="@+id/errorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Error"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/next_btn"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/register_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintVertical_bias="0.175"
-        tools:visibility="gone" />
+        tools:text="Error"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

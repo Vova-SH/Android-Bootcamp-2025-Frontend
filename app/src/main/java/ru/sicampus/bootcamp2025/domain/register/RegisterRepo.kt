@@ -1,5 +1,8 @@
 package ru.sicampus.bootcamp2025.domain.register
 
-class RegisterRepo {
-    suspend fun register(fullName : String, email : String, password : String) {}
+import ru.sicampus.bootcamp2025.data.UserDTO
+import ru.sicampus.bootcamp2025.data.register.UserRegisterDTO
+
+interface RegisterRepo {
+    suspend fun register(registerDTO: UserRegisterDTO): Result<UserDTO>
 }

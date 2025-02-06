@@ -9,7 +9,7 @@ import java.util.Date
 data class UserDTO(
     @SerialName("id") val id: Long?,
     @SerialName("email") val email: String,
-    @SerialName("firstName") val name: String,
+    @SerialName("name") val name: String,
     @SerialName("role") val role: String,
     @SerialName("birthDate") @Serializable(with = DateSerializer::class) val birthDate: Date?,
     @SerialName("phoneNumber") val phoneNumber: String?,
