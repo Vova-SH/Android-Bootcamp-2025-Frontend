@@ -40,6 +40,7 @@ android {
 
 dependencies {
     implementation(libs.okhttp)
+    implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)

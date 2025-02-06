@@ -15,12 +15,15 @@ constraintlayout = "2.2.0"
 okhttp = "4.10.0"
 navigationFragmentKtx = "2.8.6"
 navigationUiKtx = "2.8.6"
+pagingRuntimeKtxVersion = "3.3.5"
 picasso = "2.71828"
 picassoVersion = "2.8"
+pagingRuntimeKtx = "3.3.5"
 
 [libraries]
 androidx-coordinatorlayout = { module = "androidx.coordinatorlayout:coordinatorlayout", version.ref = "coordinatorlayout" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtxVersion" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -29,6 +32,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorServerCore" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorServerCore" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorServerCore" }
+android-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx"}
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorServerCore" }
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktorServerCore" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktorServerCore" }
