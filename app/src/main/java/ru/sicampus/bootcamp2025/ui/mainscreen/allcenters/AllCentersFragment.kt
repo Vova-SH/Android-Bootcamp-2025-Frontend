@@ -16,7 +16,6 @@ import ru.sicampus.bootcamp2025.ui.utils.getColor
 import ru.sicampus.bootcamp2025.ui.utils.visibleOrGone
 
 class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
-
     private var _binding: ViewCentersFragmentBinding? = null
     private val binding: ViewCentersFragmentBinding get() = _binding!!
 

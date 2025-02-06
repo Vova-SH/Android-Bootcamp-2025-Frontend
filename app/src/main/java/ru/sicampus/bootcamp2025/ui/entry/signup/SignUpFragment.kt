@@ -13,6 +13,7 @@ import ru.sicampus.bootcamp2025.databinding.SignupFragmentBinding
 import ru.sicampus.bootcamp2025.ui.mainscreen.MainActivity
 import ru.sicampus.bootcamp2025.ui.utils.collectWithLifecycle
 import ru.sicampus.bootcamp2025.ui.utils.getText
+import ru.sicampus.bootcamp2025.ui.utils.visibleOrGone
 
 class SignUpFragment : Fragment(R.layout.signup_fragment) {
 
@@ -33,30 +34,24 @@ class SignUpFragment : Fragment(R.layout.signup_fragment) {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                binding.wrapRepeatPassword.isErrorEnabled = p0 != binding.password
-                binding.wrapRepeatPassword.error =
-                    getText(R.string.password_does_not_matches, requireContext())
+                binding.wrapRepeatPassword.error = getText(R.string.password_does_not_matches, requireContext())
+                binding.wrapRepeatPassword.isErrorEnabled =
+                    binding.repeatPassword.text.toString() != binding.password.text.toString()
             }
         })
 
         viewModel.state.collectWithLifecycle(this) { state ->
-            binding.wrapRepeatPassword.isErrorEnabled = state is SignUpViewModel.State.Error
+            binding.error.visibility = visibleOrGone(state is SignUpViewModel.State.Error)
+            binding.login.isEnabled = state !is SignUpViewModel.State.Loading
+            binding.password.isEnabled = state !is SignUpViewModel.State.Loading
+            binding.repeatPassword.isEnabled = state !is SignUpViewModel.State.Loading
             when (state) {
                 is SignUpViewModel.State.Error -> {
-                    binding.wrapRepeatPassword.error = state.errorMessage
+                    binding.error.text = state.errorMessage
                 }
 
-                is SignUpViewModel.State.Loading -> {
-                    binding.login.isEnabled = false
-                    binding.password.isEnabled = false
-                    binding.repeatPassword.isEnabled = false
-                }
-
-                is SignUpViewModel.State.Waiting -> {
-                    binding.login.isEnabled = true
-                    binding.password.isEnabled = true
-                    binding.repeatPassword.isEnabled = true
-                }
+                is SignUpViewModel.State.Loading -> Unit
+                is SignUpViewModel.State.Waiting -> Unit
             }
         }
 

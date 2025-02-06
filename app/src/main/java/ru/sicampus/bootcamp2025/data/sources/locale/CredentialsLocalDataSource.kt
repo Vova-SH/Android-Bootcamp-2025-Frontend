@@ -2,8 +2,9 @@ package ru.sicampus.bootcamp2025.data.sources.locale
 
 import android.content.SharedPreferences
 import okhttp3.Credentials
+import ru.sicampus.bootcamp2025.Const
 
-class CredentialsLocalDataSource private constructor(private val preferences: SharedPreferences){
+class CredentialsLocalDataSource private constructor(private val preferences: SharedPreferences) {
     companion object {
         @Volatile
         private var instance: CredentialsLocalDataSource? = null
@@ -25,13 +26,17 @@ class CredentialsLocalDataSource private constructor(private val preferences: Sh
 
     private fun cacheData() {
         with(preferences.edit()) {
-            putString("token", token)
+            putString(Const.TOKEN_KEY, token)
             apply()
         }
     }
 
     fun getToken(): String? {
         return token
+    }
+
+    fun clear() {
+        token = null
     }
 
 }

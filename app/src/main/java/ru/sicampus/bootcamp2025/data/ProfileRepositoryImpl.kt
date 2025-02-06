@@ -29,12 +29,12 @@ class ProfileRepositoryImpl(
     private fun map(profileDto: Result<ProfileDto>): Result<ProfileEntity> {
         return profileDto.map { dto ->
             ProfileEntity(
-                name = dto.name!!,
-                lastname = dto.lastname!!,
-                photoUrl =  dto.photoUrl!!,
-                phoneNumber = dto.phoneNumber!!,
-                email = dto.email!!,
-                centerId = dto.centerId!!
+                name = dto.name?: error("Data couldn't be null"),
+                lastname = dto.lastname?: error("Data couldn't be null"),
+                photoUrl =  dto.photoUrl?: error("Data couldn't be null"),
+                phoneNumber = dto.phoneNumber?: error("Data couldn't be null"),
+                email = dto.email?: error("Data couldn't be null"),
+                centerId = dto.centerId?: error("Data couldn't be null")
             )
         }
     }

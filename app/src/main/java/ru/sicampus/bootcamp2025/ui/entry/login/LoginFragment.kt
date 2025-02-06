@@ -11,6 +11,7 @@ import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.LoginFragmentBinding
 import ru.sicampus.bootcamp2025.ui.mainscreen.MainActivity
 import ru.sicampus.bootcamp2025.ui.utils.collectWithLifecycle
+import ru.sicampus.bootcamp2025.ui.utils.visibleOrGone
 
 class LoginFragment : Fragment(R.layout.login_fragment) {
     private var _binding: LoginFragmentBinding? = null
@@ -25,19 +26,16 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
         _navController = NavHostFragment.findNavController(this)
 
         viewModel.state.collectWithLifecycle(this) { state ->
-            binding.passwordWrap.isErrorEnabled = state is LoginViewModel.State.Error
+            binding.error.visibility = visibleOrGone(state is LoginViewModel.State.Error)
+            binding.login.isEnabled = state !is LoginViewModel.State.Loading
+            binding.password.isEnabled = state !is LoginViewModel.State.Loading
             when (state) {
                 is LoginViewModel.State.Error -> {
-                    binding.passwordWrap.error = state.errorMessage
+                    binding.error.text = state.errorMessage
                 }
-                is LoginViewModel.State.Loading -> {
-                    binding.login.isEnabled = false
-                    binding.password.isEnabled = false
-                }
-                is LoginViewModel.State.Waiting -> {
-                    binding.login.isEnabled = true
-                    binding.password.isEnabled = true
-                }
+
+                is LoginViewModel.State.Loading -> Unit
+                is LoginViewModel.State.Waiting -> Unit
             }
         }
 
@@ -59,6 +57,7 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
                 binding.password.text.toString()
             )
         }
+
     }
 
     private fun goToSignUp() {

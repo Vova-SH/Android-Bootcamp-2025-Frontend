@@ -16,7 +16,9 @@ class UserRepositoryImpl(
     }
 
     override suspend fun login(login: String, password: String): Result<Unit> {
-        return authorize(credentialsLocalDataSource.updateToken(login, password))
+        return authorize(credentialsLocalDataSource.updateToken(login, password)).onFailure {
+            credentialsLocalDataSource.clear()
+        }
     }
 
     override suspend fun register(login: String, password: String): Result<Unit> {
@@ -28,15 +30,15 @@ class UserRepositoryImpl(
     }
 
     override suspend fun authorize(token: String): Result<Unit> {
-        val response = userNetworkDataSource.login(token)
         return runCatching {
+            val response = userNetworkDataSource.login(token)
             val userDto = response.getOrNull()
             if (userDto != null)
                 userLocalDataSource.cacheData(
                     UserEntity(
-                        userId = userDto.userId!!,
-                        profileId = userDto.profileId!!,
-                        roleId = userDto.roleId!!
+                        userId = userDto.userId?: error("Data couldn't be null"),
+                        profileId = userDto.profileId?: error("Data couldn't be null"),
+                        roleId = userDto.roleId?: error("Data couldn't be null")
                     )
                 )
             val exception = response.exceptionOrNull()
