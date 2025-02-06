@@ -2,6 +2,9 @@ package ru.sicampus.bootcamp2025.domain
 
 interface UserRepo
 {
-    suspend fun getUsers(): Result<List<UserEntity>>
+    suspend fun getUsers(
+        pageNumb: Int,
+        pageSize: Int,
+    ): Result<List<UserEntity>>
 
 }

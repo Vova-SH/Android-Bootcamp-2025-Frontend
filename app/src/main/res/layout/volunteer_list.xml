@@ -6,9 +6,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <FrameLayout
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/errorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </FrameLayout>
+
     <ImageView
-        android:layout_gravity="right"
         android:id="@+id/refresh"
+        android:layout_gravity="right|top"
+        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/refresh_ic" />
@@ -59,8 +72,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:layout_height="430dp"
+        tools:listitem="@layout/volunteer_card" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -68,15 +84,19 @@
         android:layout_marginTop="50dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <FrameLayout android:id="@+id/org"
+
+            <FrameLayout
+                android:id="@+id/org"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:layout_marginBottom="10dp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -85,7 +105,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:elevation="10sp"
-                    android:layout_margin="20sp"/>
+                    android:layout_margin="20sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -94,7 +114,7 @@
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="50sp"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -111,8 +131,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-                    app:cardElevation="8dp"
-                    app:cardCornerRadius="8dp">
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -135,7 +155,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:elevation="10sp"
-                    android:layout_margin="20sp"/>
+                    android:layout_margin="20sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -144,7 +164,7 @@
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="50sp"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -161,8 +181,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-                    app:cardElevation="8dp"
-                    app:cardCornerRadius="8dp">
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -175,7 +195,8 @@
 
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:layout_marginBottom="10dp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -184,7 +205,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:elevation="10sp"
-                    android:layout_margin="20sp"/>
+                    android:layout_margin="20sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -193,7 +214,7 @@
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="50sp"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -210,8 +231,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-                    app:cardElevation="8dp"
-                    app:cardCornerRadius="8dp">
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -235,7 +256,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:elevation="10sp"
-                    android:layout_margin="20sp"/>
+                    android:layout_margin="20sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -244,7 +265,7 @@
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="50sp"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -261,8 +282,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-                    app:cardElevation="8dp"
-                    app:cardCornerRadius="8dp">
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -275,7 +296,8 @@
 
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:layout_marginBottom="10dp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -284,7 +306,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:elevation="10sp"
-                    android:layout_margin="20sp"/>
+                    android:layout_margin="20sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -293,7 +315,7 @@
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="50sp"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <ImageButton
                     android:id="@+id/forward"
@@ -311,8 +333,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-                    app:cardElevation="8dp"
-                    app:cardCornerRadius="8dp">
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -325,7 +347,8 @@
 
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:layout_marginBottom="10dp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -334,7 +357,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:elevation="10sp"
-                    android:layout_margin="20sp"/>
+                    android:layout_margin="20sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -343,7 +366,7 @@
                     android:elevation="10sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="50sp"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -360,8 +383,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="285dp"
                     android:layout_height="85dp"
-                    app:cardElevation="8dp"
-                    app:cardCornerRadius="8dp">
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
 
                     <ImageView
                         android:layout_width="wrap_content"

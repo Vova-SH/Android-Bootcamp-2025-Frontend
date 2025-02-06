@@ -2,14 +2,14 @@ package ru.sicampus.bootcamp2025.uiList.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.sicampus.bootcamp2025.databinding.VolunteerCardBinding
 import ru.sicampus.bootcamp2025.domain.UserEntity
 
-class UserAdapter : ListAdapter<UserEntity, UserAdapter.ViewHolder>(UserDiff) {
+class UserAdapter : PagingDataAdapter<UserEntity, UserAdapter.ViewHolder>(UserDiff) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,7 +23,14 @@ class UserAdapter : ListAdapter<UserEntity, UserAdapter.ViewHolder>(UserDiff) {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position)
+            ?: UserEntity(
+                id = "-1",
+                name = "e",
+                email = "f",
+                photoUrl = "e",
+            )
+        )
     }
 
     class ViewHolder(
@@ -41,7 +48,7 @@ class UserAdapter : ListAdapter<UserEntity, UserAdapter.ViewHolder>(UserDiff) {
 
     object UserDiff : DiffUtil.ItemCallback<UserEntity>(){
         override fun areItemsTheSame(oldItem: UserEntity, newItem: UserEntity): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: UserEntity, newItem: UserEntity): Boolean {

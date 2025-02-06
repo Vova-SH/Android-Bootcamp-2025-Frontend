@@ -54,4 +54,5 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.picasso)
     implementation(libs.play.services.maps.v1802)
+    implementation(libs.androidx.paging.runtime.ktx)
 }

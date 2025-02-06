@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.ListFragment
 import androidx.fragment.app.viewModels
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.AuthorizationBinding
@@ -31,6 +32,16 @@ class AuthFragment : Fragment(R.layout.authorization)
 
             override fun afterTextChanged(s: Editable?) = Unit
         })
+        viewModel.action.collectionWithLifecycle(this) { action ->
+            when (action){
+                AuthViewModel.Action.GoToList -> {
+                        parentFragmentManager.beginTransaction()
+                            .replace(R.id.authorization_screen, ListFragment())
+                        .commitNowAllowingStateLoss()
+                }
+            }
+        }
+
 
         viewModel.state.collectionWithLifecycle(this){ state ->
             viewBinding.logInBtn.isEnabled = state is AuthViewModel.State.Show
