@@ -1,13 +1,17 @@
 package ru.sicampus.bootcamp2025.data.auth
 
+import android.util.Log
+import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
+import io.ktor.utils.io.InternalAPI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.sicampus.bootcamp2025.data.Constants.serverIp
@@ -17,8 +21,8 @@ import kotlin.math.log
 object AuthNetworkDataSource {
     suspend fun isUserExist(login:String): Result<Boolean> = withContext(Dispatchers.IO) {
         runCatching {
-            val result = Network.client.get("$serverIp/api/person/$login")
-            result.status == HttpStatusCode.OK
+            val result = Network.client.get("$serverIp/api/person/username/$login")
+            result.status != HttpStatusCode.OK
         }
     }
 
@@ -27,10 +31,11 @@ object AuthNetworkDataSource {
             val result = Network.client.get("$serverIp/api/person/login") {
                 headers {
                     append(HttpHeaders.Authorization, token)
+
                 }
             }
             if (result.status != HttpStatusCode.OK) {
-            error("Status ${result.status}")
+                error("Status ${result.status}: ${result.body<String>()}")
             }
             Unit
         }
@@ -41,11 +46,15 @@ object AuthNetworkDataSource {
                 contentType(ContentType.Application.Json)
                 setBody(AuthRegisterDto(
                     username = login,
-                    password = password
+                    password = password,
+                    name = login,
+                    email = "$login@example.com"
                 ))
             }
             if (result.status != HttpStatusCode.Created) {
-                error("Status ${result.status}")
+                val responseBody = result.bodyAsText()
+                Log.w("bbb", "Status: ${result.status}, Body: ${result.body<String>()}")
+                error("Status ${result.status}: ${result.body<String>()}")
             }
             Unit
         }

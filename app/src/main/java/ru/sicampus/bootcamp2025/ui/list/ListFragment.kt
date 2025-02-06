@@ -24,7 +24,6 @@ class ListFragment: Fragment(R.layout.fragment_list){
     private val viewModel by viewModels<ListViewModel> { ListViewModel.Factory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         _viewBinding = FragmentListBinding.bind(view)
         val adapter = UserAdapter()
 
@@ -45,8 +44,9 @@ class ListFragment: Fragment(R.layout.fragment_list){
             if (state is LoadState.Error) {
                 viewBinding.errorText.text = state.error.message.toString()
             }
-
         }
+    }
+
 
 //        viewModel.state.collectWithLifecycle(this) { state ->
 //            viewBinding.error.visibility = if(state is ListViewModel.State.Error) View.VISIBLE else View.GONE
@@ -62,7 +62,6 @@ class ListFragment: Fragment(R.layout.fragment_list){
 //                }
 //            }
 //        }
-    }
 
 
 

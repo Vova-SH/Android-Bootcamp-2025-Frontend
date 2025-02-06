@@ -4,13 +4,14 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AuthRegisterDto (
+data class AuthRegisterDto(
     @SerialName("username")
     val username: String,
     @SerialName("password")
     val password: String,
     @SerialName("name")
-    val name: String = username,
+    val name: String,
     @SerialName("email")
-    val email: String = "$username@example.com"
+    val email: String,
+
 )
