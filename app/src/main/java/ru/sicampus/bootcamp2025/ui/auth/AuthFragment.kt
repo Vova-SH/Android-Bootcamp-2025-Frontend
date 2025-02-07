@@ -10,6 +10,9 @@ import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.FragmentAuthBinding
 import ru.sicampus.bootcamp2025.ui.auth.AuthViewModel.*
 import ru.sicampus.bootcamp2025.ui.list.ListFragment
+import ru.sicampus.bootcamp2025.ui.map.MapFragment
+import ru.sicampus.bootcamp2025.ui.profile.ProfileFragment
+import ru.sicampus.bootcamp2025.ui.profile.ProfileViewModel
 import ru.sicampus.bootcamp2025.util.collectWithLifecycle
 
 class AuthFragment: Fragment(R.layout.fragment_auth) {
@@ -42,7 +45,7 @@ class AuthFragment: Fragment(R.layout.fragment_auth) {
             when(action) {
                 Action.GotoList-> {
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.main, ListFragment())
+                    .replace(R.id.main, MapFragment())
                     .commitAllowingStateLoss()
                 }
             }

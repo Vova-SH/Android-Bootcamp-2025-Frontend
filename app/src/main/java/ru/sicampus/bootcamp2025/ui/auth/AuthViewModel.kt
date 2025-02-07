@@ -1,6 +1,7 @@
 package ru.sicampus.bootcamp2025.ui.auth
 
 import android.app.Application
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
@@ -30,6 +31,9 @@ class AuthViewModel(
 ) : AndroidViewModel(application = application) {
 
     private val _state = MutableStateFlow<State>(getStateShow())
+    private val sharedPreferences: SharedPreferences =
+        application.getSharedPreferences("auth_prefs", Application.MODE_PRIVATE)
+
     val state = _state.asStateFlow()
     private val _action = Channel<Action>(
         capacity = Channel.BUFFERED,
@@ -47,6 +51,12 @@ class AuthViewModel(
             updateState()
         }
     }
+    private fun saveLoginToPreferences(login: String) {
+        sharedPreferences.edit()
+            .putString("user_login", login)
+            .apply()
+    }
+
 
     fun clickNext(
         login: String,
@@ -58,6 +68,7 @@ class AuthViewModel(
                 true -> {
                     registerUserCase(login, password).fold(
                         onSuccess = {
+                            saveLoginToPreferences(login)
                             openlist()
                         },
                         onFailure = { error ->
@@ -68,6 +79,7 @@ class AuthViewModel(
                 false -> {
                     loginUseCase(login, password).fold(
                         onSuccess = {
+                            saveLoginToPreferences(login)
                             openlist()
                         },
                         onFailure = { error ->
@@ -116,7 +128,7 @@ class AuthViewModel(
             buttonText = when (isNewUser){
                 true -> getApplication<Application>().getString(R.string.signup)
                 false -> getApplication<Application>().getString(R.string.signin)
-                null -> getApplication<Application>().getString(R.string.hello)
+                null -> getApplication<Application>().getString(R.string.login)
             },
             errorText = error?.toString().toString(),
         )
