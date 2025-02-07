@@ -6,15 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.data.auth.AuthStorageDataSource
+import ru.sicampus.bootcamp2025.data.auth.storage.AuthStorageDataSource
 import ru.sicampus.bootcamp2025.data.map.MapNetworkDataSource
 import ru.sicampus.bootcamp2025.data.map.MapRepoImpl
 import ru.sicampus.bootcamp2025.domain.map.DepartmentEntity
 import ru.sicampus.bootcamp2025.domain.map.GetPlaceByNameUserCase
 import ru.sicampus.bootcamp2025.domain.map.GetPlacesUserCase
-import ru.sicampus.bootcamp2025.domain.map.PlaceEntity
 
 
 class MapViewModel(

@@ -11,15 +11,13 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
-import io.ktor.utils.io.InternalAPI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.sicampus.bootcamp2025.data.Constants.serverIp
 import ru.sicampus.bootcamp2025.data.Network
-import kotlin.math.log
 
 object AuthNetworkDataSource {
-    suspend fun isUserExist(login:String): Result<Boolean> = withContext(Dispatchers.IO) {
+    suspend fun isUserExist(login: String): Result<Boolean> = withContext(Dispatchers.IO) {
         runCatching {
             val result = Network.client.get("$serverIp/api/person/username/$login")
             result.status != HttpStatusCode.OK
@@ -39,23 +37,27 @@ object AuthNetworkDataSource {
             Unit
         }
     }
-    suspend fun register(login: String, password: String): Result<Unit> = withContext(Dispatchers.IO) {
-        runCatching {
-            val result = Network.client.post("$serverIp/api/person/register") {
-                contentType(ContentType.Application.Json)
-                setBody(AuthRegisterDto(
-                    username = login,
-                    password = password,
-                    name = login,
-                    email = "$login@example.com"
-                ))
+
+    suspend fun register(login: String, password: String): Result<Unit> =
+        withContext(Dispatchers.IO) {
+            runCatching {
+                val result = Network.client.post("$serverIp/api/person/register") {
+                    contentType(ContentType.Application.Json)
+                    setBody(
+                        AuthRegisterDto(
+                            username = login,
+                            password = password,
+                            name = login,
+                            email = "$login@example.com"
+                        )
+                    )
+                }
+                if (result.status != HttpStatusCode.Created) {
+                    val responseBody = result.bodyAsText()
+                    Log.w("bbb", "Status: ${result.status}, Body: ${result.body<String>()}")
+                    error("Status ${result.status}: ${result.body<String>()}")
+                }
+                Unit
             }
-            if (result.status != HttpStatusCode.Created) {
-                val responseBody = result.bodyAsText()
-                Log.w("bbb", "Status: ${result.status}, Body: ${result.body<String>()}")
-                error("Status ${result.status}: ${result.body<String>()}")
-            }
-            Unit
         }
-    }
 }

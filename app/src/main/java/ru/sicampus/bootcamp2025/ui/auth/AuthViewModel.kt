@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.data.auth.AuthNetworkDataSource
 import ru.sicampus.bootcamp2025.data.auth.AuthRepoImpl
-import ru.sicampus.bootcamp2025.data.auth.AuthStorageDataSource
+import ru.sicampus.bootcamp2025.data.auth.storage.AuthStorageDataSource
 import ru.sicampus.bootcamp2025.domain.auth.IsUserExistUseCase
 import ru.sicampus.bootcamp2025.domain.auth.LoginUseCase
 import ru.sicampus.bootcamp2025.domain.auth.RegisterUserCase
@@ -26,7 +26,7 @@ class AuthViewModel(
     application: Application,
     private val isUserExistUseCase: IsUserExistUseCase,
     private val loginUseCase: LoginUseCase,
-    private val registerUserCase: RegisterUserCase,
+    private val registerUserCase: RegisterUserCase
 
 ) : AndroidViewModel(application = application) {
 
@@ -44,13 +44,13 @@ class AuthViewModel(
 
     private var isNewUser: Boolean? = null
 
-
     fun changeLogin() {
         viewModelScope.launch {
             isNewUser = null
             updateState()
         }
     }
+
     private fun saveLoginToPreferences(login: String) {
         sharedPreferences.edit()
             .putString("user_login", login)
@@ -64,29 +64,31 @@ class AuthViewModel(
     ) {
         viewModelScope.launch {
             _state.emit(State.Loading)
-            when (isNewUser){
+            when (isNewUser) {
                 true -> {
                     registerUserCase(login, password).fold(
                         onSuccess = {
                             saveLoginToPreferences(login)
-                            openlist()
+                            openList()
                         },
                         onFailure = { error ->
                             updateState(error)
                         }
                     )
                 }
+
                 false -> {
                     loginUseCase(login, password).fold(
                         onSuccess = {
                             saveLoginToPreferences(login)
-                            openlist()
+                            openList()
                         },
                         onFailure = { error ->
                             updateState(error)
                         }
                     )
                 }
+
                 null -> {
                     isUserExistUseCase(login).fold(
                         onSuccess = { isExist ->
@@ -104,28 +106,28 @@ class AuthViewModel(
         }
     }
 
-    private fun openlist() {
+    private fun openList() {
         viewModelScope.launch {
             _action.send(Action.GotoList)
         }
     }
 
     private suspend fun updateState(error: Throwable? = null) {
-        _state. emit(
+        _state.emit(
             getStateShow(error)
         )
     }
 
-    private fun getStateShow(error: Throwable? = null): State.Show{
+    private fun getStateShow(error: Throwable? = null): State.Show {
 
         return State.Show(
-            titleText = when (isNewUser){
+            titleText = when (isNewUser) {
                 true -> getApplication<Application>().getString(R.string.signup)
                 false -> getApplication<Application>().getString(R.string.signin)
                 null -> getApplication<Application>().getString(R.string.hello)
             },
             showPassword = (isNewUser != null),
-            buttonText = when (isNewUser){
+            buttonText = when (isNewUser) {
                 true -> getApplication<Application>().getString(R.string.signup)
                 false -> getApplication<Application>().getString(R.string.signin)
                 null -> getApplication<Application>().getString(R.string.login)
@@ -137,7 +139,7 @@ class AuthViewModel(
     sealed interface State {
         data object Loading : State
         data class Show(
-            val titleText : String,
+            val titleText: String,
             val showPassword: Boolean,
             val buttonText: String,
             val errorText: String
@@ -162,6 +164,7 @@ class AuthViewModel(
             }
         }
     }
+
     sealed interface Action {
         data object GotoList : Action
     }

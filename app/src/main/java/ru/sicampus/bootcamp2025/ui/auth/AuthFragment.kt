@@ -9,13 +9,10 @@ import androidx.fragment.app.viewModels
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.FragmentAuthBinding
 import ru.sicampus.bootcamp2025.ui.auth.AuthViewModel.*
-import ru.sicampus.bootcamp2025.ui.list.ListFragment
 import ru.sicampus.bootcamp2025.ui.map.MapFragment
-import ru.sicampus.bootcamp2025.ui.profile.ProfileFragment
-import ru.sicampus.bootcamp2025.ui.profile.ProfileViewModel
 import ru.sicampus.bootcamp2025.util.collectWithLifecycle
 
-class AuthFragment: Fragment(R.layout.fragment_auth) {
+class AuthFragment : Fragment(R.layout.fragment_auth) {
     private var _viewBinding: FragmentAuthBinding? = null
     private val viewBinding: FragmentAuthBinding get() = _viewBinding!!
 
@@ -25,10 +22,12 @@ class AuthFragment: Fragment(R.layout.fragment_auth) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _viewBinding = FragmentAuthBinding.bind(view)
 
-        viewBinding.next.setOnClickListener{viewModel.clickNext(
-            viewBinding.login.text.toString(),
-            viewBinding.password.text.toString(),
-            )}
+        viewBinding.next.setOnClickListener {
+            viewModel.clickNext(
+                viewBinding.login.text.toString(),
+                viewBinding.password.text.toString(),
+            )
+        }
 
         viewBinding.login.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
@@ -38,20 +37,19 @@ class AuthFragment: Fragment(R.layout.fragment_auth) {
             override fun afterTextChanged(p0: Editable?) {
                 viewModel.changeLogin()
             }
-
         })
 
-        viewModel.action.collectWithLifecycle(this){ action ->
-            when(action) {
-                Action.GotoList-> {
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.main, MapFragment())
-                    .commitAllowingStateLoss()
+        viewModel.action.collectWithLifecycle(this) { action ->
+            when (action) {
+                Action.GotoList -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.main, MapFragment())
+                        .commitAllowingStateLoss()
                 }
             }
         }
 
-        viewModel.state.collectWithLifecycle(this){ state ->
+        viewModel.state.collectWithLifecycle(this) { state ->
             viewBinding.next.isEnabled = state is State.Show
             viewBinding.login.isEnabled = state is State.Show
             viewBinding.password.isEnabled = state is State.Show
