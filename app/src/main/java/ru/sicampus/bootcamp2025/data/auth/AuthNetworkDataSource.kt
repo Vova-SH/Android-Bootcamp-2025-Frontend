@@ -31,7 +31,6 @@ object AuthNetworkDataSource {
             val result = Network.client.get("$serverIp/api/person/login") {
                 headers {
                     append(HttpHeaders.Authorization, token)
-
                 }
             }
             if (result.status != HttpStatusCode.OK) {

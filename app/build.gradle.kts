@@ -40,6 +40,10 @@ android {
 }
 
 dependencies {
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
+    implementation("com.parse:parse-android:1.17.2") {
+        exclude(group = "com.android.support")
+    }
     implementation(libs.okhttp)
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.ktor.client.core)
