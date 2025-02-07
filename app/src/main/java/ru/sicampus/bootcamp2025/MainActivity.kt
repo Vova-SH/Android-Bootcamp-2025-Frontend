@@ -8,7 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import ru.sicampus.bootcamp2025.data.auth.storage.AuthTokenManagerST
 import ru.sicampus.bootcamp2025.ui.auth.AuthFragment
-import ru.sicampus.bootcamp2025.ui.map.MapFragment
+import ru.sicampus.bootcamp2025.ui.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        if (isUserAuthenticated()) loadFragment(MapFragment()) else loadFragment(AuthFragment())
+        if (isUserAuthenticated()) loadFragment(ProfileFragment()) else loadFragment(AuthFragment())
     }
 
     private fun isUserAuthenticated(): Boolean {
