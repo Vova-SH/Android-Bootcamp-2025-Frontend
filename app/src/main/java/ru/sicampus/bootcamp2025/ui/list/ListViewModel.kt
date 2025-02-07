@@ -6,14 +6,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.data.auth.AuthStorageDataSource
+import ru.sicampus.bootcamp2025.data.auth.storage.AuthStorageDataSource
 import ru.sicampus.bootcamp2025.data.list.UserNetworkDataSource
 import ru.sicampus.bootcamp2025.data.list.UserRepoImpl
 import ru.sicampus.bootcamp2025.domain.list.GetUsersUseCases
-import ru.sicampus.bootcamp2025.domain.list.UserEntity
 
 class ListViewModel(
     private val getUsersUseCases: GetUsersUseCases

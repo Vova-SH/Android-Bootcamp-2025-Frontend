@@ -96,9 +96,9 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
             }
         }
     }
-    private fun getCamera(view: View?) {
+
+    private fun getCamera(view: View?) {  // TODO
         Toast.makeText(activity, "CAMERA", Toast.LENGTH_SHORT).show()
-        TODO("Not yet implemented")
     }
 
     private fun editProfileData() {
@@ -141,8 +141,7 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
         dialog.show()
     }
 
-    private fun logout(){
+    private fun logout(){  // TODO
         Toast.makeText(activity, "LOGOUT", Toast.LENGTH_SHORT).show()
-        TODO("Not yet implemented")
     }
 }

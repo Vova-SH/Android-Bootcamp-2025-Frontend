@@ -1,6 +1,6 @@
 package ru.sicampus.bootcamp2025.data.profile
 
-import ru.sicampus.bootcamp2025.data.auth.AuthStorageDataSource
+import ru.sicampus.bootcamp2025.data.auth.storage.AuthStorageDataSource
 import ru.sicampus.bootcamp2025.domain.profile.DataEntity
 import ru.sicampus.bootcamp2025.domain.profile.ProfileRepo
 

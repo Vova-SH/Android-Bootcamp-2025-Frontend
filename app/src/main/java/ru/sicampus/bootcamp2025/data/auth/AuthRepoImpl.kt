@@ -1,12 +1,13 @@
 package ru.sicampus.bootcamp2025.data.auth
 
 import kotlinx.coroutines.delay
+import ru.sicampus.bootcamp2025.data.auth.storage.AuthStorageDataSource
 import ru.sicampus.bootcamp2025.domain.auth.AuthRepo
 
 class AuthRepoImpl(
     private val authNetworkDataSource: AuthNetworkDataSource,
     private val authStorageDataSource: AuthStorageDataSource,
-): AuthRepo{
+) : AuthRepo {
     override suspend fun isUserExist(login: String): Result<Boolean> {
         delay(2_000)
         return authNetworkDataSource.isUserExist(login)

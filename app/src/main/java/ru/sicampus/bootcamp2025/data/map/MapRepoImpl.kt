@@ -1,7 +1,7 @@
 package ru.sicampus.bootcamp2025.data.map
 
 import com.google.android.gms.maps.model.LatLng
-import ru.sicampus.bootcamp2025.data.auth.AuthStorageDataSource
+import ru.sicampus.bootcamp2025.data.auth.storage.AuthStorageDataSource
 import ru.sicampus.bootcamp2025.domain.map.DepartmentEntity
 import ru.sicampus.bootcamp2025.domain.map.MapRepo
 import ru.sicampus.bootcamp2025.domain.map.PlaceEntity
