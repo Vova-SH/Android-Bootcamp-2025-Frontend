@@ -13,14 +13,14 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewModelScope
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.FragmentProfileBinding
 import ru.sicampus.bootcamp2025.domain.profile.DataEntity
+import ru.sicampus.bootcamp2025.ui.map.MapFragment
 import ru.sicampus.bootcamp2025.util.collectWithLifecycle
 
-class ProfileFragment: Fragment(R.layout.fragment_profile) {
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
@@ -28,9 +28,13 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
     lateinit var currentUser: DataEntity
 
 
-    private val viewModel: ProfileViewModel by viewModels() { ProfileViewModel.Factory}
+    private val viewModel: ProfileViewModel by viewModels() { ProfileViewModel.Factory }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -53,15 +57,16 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
         Log.d("ProfileFragment", "getting profile data...")
 
     }
+
     fun getSavedLogin(): String? {
         return sharedPreferences.getString("user_login", null)
     }
 
     private fun subscribe() {
         Log.d("ProfileFragment", "subscribe")
-        viewModel.state.collectWithLifecycle(this) {state ->
+        viewModel.state.collectWithLifecycle(this) { state ->
             Log.d("ProfileFragment", "state show collected")
-            if(state is ProfileViewModel.State.Show){
+            if (state is ProfileViewModel.State.Show) {
                 currentUser = state.item
                 Log.d("ProfileFragment", "updated currentUser")
                 binding.emailMain.text = state.item.email
@@ -69,10 +74,11 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
                 binding.ctblMain.title = state.item.name
                 binding.infoMain.text = state.item.info
             }
-            if (state is ProfileViewModel.State.Changed){
+            if (state is ProfileViewModel.State.Changed) {
                 getProfileData()
             }
-            binding.error.visibility = if(state is ProfileViewModel.State.Error) View.VISIBLE else View.GONE
+            binding.error.visibility =
+                if (state is ProfileViewModel.State.Error) View.VISIBLE else View.GONE
         }
     }
 
@@ -80,19 +86,26 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
     private fun initButtons() {
         binding.fabMain.setOnClickListener(this::getCamera)
         binding.mtbMain.setNavigationOnClickListener {
-            Toast.makeText(activity, "BACK", Toast.LENGTH_SHORT).show()
+            val transaction = parentFragmentManager.beginTransaction()  // TODO
+            transaction.replace(R.id.main, MapFragment())
+            transaction.commit()
         }
+
         binding.mtbMain.setOnMenuItemClickListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.logout -> {
                     logout()
                     true
                 }
+
                 R.id.edit -> {
                     editProfileData()
                     true
                 }
-                else -> {false}
+
+                else -> {
+                    false
+                }
             }
         }
     }
@@ -120,7 +133,11 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
             val updatedInfo = dialog.findViewById<EditText>(R.id.info)?.text.toString()
 
             if (updatedUsername.isBlank() || updatedEmail.isBlank() || updatedPhone.isBlank()) {
-                Toast.makeText(requireContext(), "Please fill all required fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Please fill all required fields",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
             Log.d("ProfileFragment", "1 sec before error")
@@ -141,7 +158,7 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
         dialog.show()
     }
 
-    private fun logout(){  // TODO
+    private fun logout() {  // TODO
         Toast.makeText(activity, "LOGOUT", Toast.LENGTH_SHORT).show()
     }
 }
