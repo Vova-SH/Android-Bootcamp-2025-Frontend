@@ -13,7 +13,17 @@
         android:translationZ="2dp"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/error_red"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
+        android:id="@+id/close"
         style="?attr/materialIconButtonFilledTonalStyle"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -25,204 +35,228 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="187dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/center_preview" />
-
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-20dp"
         app:cardCornerRadius="24dp"
         app:cardElevation="0dp"
-        app:layout_constraintTop_toBottomOf="@id/image">
+        android:id="@+id/image_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="187dp"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/center_preview" />
+    </androidx.cardview.widget.CardView>
 
-        <LinearLayout
+
+    <ScrollView
+        android:id="@+id/content"
+        android:translationZ="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-40dp"
+        app:layout_constraintTop_toBottomOf="@id/image_wrap">
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/dark_gray"
-                android:textFontWeight="400"
-                android:textSize="16sp"
-                tools:text="Медицинская организация" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textFontWeight="600"
-                android:textSize="24sp"
-                tools:text='Центр "Лотос"' />
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/intermittent_line" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="4"
-                tools:listitem="@layout/tag_item" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:lineHeight="20dp"
-                android:textFontWeight="400"
-                android:textSize="12sp"
-                tools:text="Небольшое описание центра и его особенностей, рассказывающее про него поподробнее. Крч я не знаю что еще написать в этой рыбе, поэтому вот вам анекдот про медведя: “Шел как то медведь по лесу, видит машина горит, сел в нее и сгорел”. Жалко медведя." />
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp">
+                    android:textColor="@color/dark_gray"
+                    android:textFontWeight="400"
+                    android:textSize="16sp"
+                    tools:text="Медицинская организация" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/loc" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/address_header"
-                            android:textFontWeight="600"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/address_header"
-                            android:textColor="@color/dark_gray"
-                            android:textFontWeight="400"
-                            android:textSize="14sp"
-                            tools:text="г. Москва, ул. Красногвардейский  бульвар, 11, стр. 1" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
+                    android:layout_marginTop="4dp"
+                    android:textFontWeight="600"
+                    android:textSize="24sp"
+                    tools:text='Центр "Лотос"' />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/intermittent_line" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tags_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
-                    android:paddingVertical="10dp">
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/tag_item" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/msg" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/contacts_header"
-                            android:textFontWeight="600"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/address_header"
-                            android:textColor="@color/dark_gray"
-                            android:textFontWeight="400"
-                            android:textSize="14sp"
-                            tools:text="lotos@mail.ru" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:lineHeight="20dp"
+                    android:textFontWeight="400"
+                    android:textSize="12sp"
+                    tools:text="Небольшое описание центра и его особенностей, рассказывающее про него поподробнее. Крч я не знаю что еще написать в этой рыбе, поэтому вот вам анекдот про медведя: “Шел как то медведь по лесу, видит машина горит, сел в нее и сгорел”. Жалко медведя." />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/link" />
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:orientation="vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="10dp">
 
-                        <TextView
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/loc" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/link_header"
-                            android:textFontWeight="600"
-                            android:textSize="16sp" />
+                            android:layout_marginStart="14dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/address_header"
-                            android:textColor="@color/dark_gray"
-                            android:textFontWeight="400"
-                            android:textSize="14sp"
-                            tools:text="lotos_centre.ru" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/address_header"
+                                android:textFontWeight="600"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/address"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/address_header"
+                                android:textColor="@color/dark_gray"
+                                android:textFontWeight="400"
+                                android:textSize="14sp"
+                                tools:text="г. Москва, ул. Красногвардейский  бульвар, 11, стр. 1" />
+                        </LinearLayout>
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="10dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/msg" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/contacts_header"
+                                android:textFontWeight="600"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/address_header"
+                                android:textColor="@color/dark_gray"
+                                android:textFontWeight="400"
+                                android:textSize="14sp"
+                                tools:text="lotos@mail.ru" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="10dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/link" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/link_header"
+                                android:textFontWeight="600"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/link"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/address_header"
+                                android:textColor="@color/dark_gray"
+                                android:textFontWeight="400"
+                                android:textSize="14sp"
+                                tools:text="lotos_centre.ru" />
+                        </LinearLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/active_volunteers"
+                    android:textFontWeight="600"
+                    android:textSize="24sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/active_volunteers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/volunteer_in_center_item" />
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/active_volunteers"
-                android:textFontWeight="600"
-                android:textSize="24sp" />
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:itemCount="5"
-                tools:listitem="@layout/volunteer_in_center_item" />
-
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,12 +10,13 @@ import ru.sicampus.bootcamp2025.databinding.CenterItemBinding
 import ru.sicampus.bootcamp2025.domain.entities.CenterEntity
 import kotlin.math.hypot
 
-class CenterListAdapter(private val location: Pair<Double, Double>) :
+class CenterListAdapter(private var location: Pair<Double, Double>, private val onClick: (centerId: Int, centerName: String) -> Unit) :
     PagingDataAdapter<CenterEntity, CenterListAdapter.ViewHolder>(CenterDiff) {
 
     class ViewHolder(
         private val binding: CenterItemBinding,
-        private val location: Pair<Double, Double>
+        private val location: Pair<Double, Double>,
+        private val onClick: (centerId: Int, centerName: String) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CenterEntity) {
             binding.name.text = item.name
@@ -25,6 +26,8 @@ class CenterListAdapter(private val location: Pair<Double, Double>) :
             binding.distanceInfo.text =
                 "${hypot(item.latitude - location.first, item.longitude - location.second)}"
             Picasso.get().load(item.imageUrl).into(binding.centerImage)
+
+            binding.root.setOnClickListener { onClick(item.id, item.name) }
         }
     }
 
@@ -41,7 +44,8 @@ class CenterListAdapter(private val location: Pair<Double, Double>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             CenterItemBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-            location
+            location = location,
+            onClick = onClick
         )
     }
 
@@ -58,5 +62,9 @@ class CenterListAdapter(private val location: Pair<Double, Double>) :
                 imageUrl = "https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg"
             )
         )
+    }
+
+    fun updateLocation(newLocation: Pair<Double, Double>) {
+        location = newLocation
     }
 }
