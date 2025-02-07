@@ -33,6 +33,7 @@ class ProfileRepositoryImpl(
     private fun map(profileDto: Result<ProfileDto>): Result<ProfileEntity> {
         return profileDto.map { dto ->
             ProfileEntity(
+                id = dto.id ?: return Result.failure(IllegalStateException("Null data")),
                 name = dto.name ?: return Result.failure(IllegalStateException("Null data")),
                 lastname = dto.lastname
                     ?: return Result.failure(IllegalStateException("Null data")),

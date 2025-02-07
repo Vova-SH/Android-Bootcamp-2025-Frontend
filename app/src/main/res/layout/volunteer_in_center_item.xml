@@ -14,6 +14,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/profile_picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/profile_pic_preview" />
@@ -22,23 +23,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:textFontWeight="600"
                 android:textSize="16sp"
-                tools:text="Есения Иванович" />
+                tools:text="Есения" />
 
             <TextView
+                android:id="@+id/lastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/address_header"
-                android:textColor="@color/dark_gray"
-                android:textFontWeight="400"
-                android:textSize="14sp"
-                tools:text="Волонтерит 3 года" />
+                android:layout_marginStart="5dp"
+                android:textFontWeight="600"
+                android:textSize="16sp"
+                tools:text="Иванович" />
+
         </LinearLayout>
     </LinearLayout>
 

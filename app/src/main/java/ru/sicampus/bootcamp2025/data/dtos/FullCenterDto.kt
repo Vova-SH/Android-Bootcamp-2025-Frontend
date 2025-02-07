@@ -24,5 +24,7 @@ data class FullCenterDto(
     @SerialName("tags")
     val tags: List<String>?,
     @SerialName("imageUrl")
-    val imageUrl: String?
+    val imageUrl: String?,
+    @SerialName("active")
+    val active: List<Int>?
 )

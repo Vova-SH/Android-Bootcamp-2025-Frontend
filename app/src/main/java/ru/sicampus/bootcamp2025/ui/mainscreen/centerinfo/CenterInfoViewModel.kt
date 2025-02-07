@@ -12,14 +12,20 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.Const
 import ru.sicampus.bootcamp2025.data.CenterRepositoryImpl
+import ru.sicampus.bootcamp2025.data.ProfileRepositoryImpl
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
+import ru.sicampus.bootcamp2025.data.sources.locale.ProfileLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.CenterNetworkDataSource
+import ru.sicampus.bootcamp2025.data.sources.network.ProfileNetworkDataSource
 import ru.sicampus.bootcamp2025.domain.entities.FullCenterEntity
+import ru.sicampus.bootcamp2025.domain.entities.ProfileEntity
 import ru.sicampus.bootcamp2025.domain.usecases.GetCenterByIdUseCase
+import ru.sicampus.bootcamp2025.domain.usecases.GetProfileByIdUseCase
 
 class CenterInfoViewModel(
     private val centerId: Int,
     private val getCenterByIdUseCase: GetCenterByIdUseCase,
+    private val getProfileByIdUseCase: GetProfileByIdUseCase,
     private val application: Application
 ) : AndroidViewModel(application) {
     private val _state = MutableStateFlow<State>(State.Loading)
@@ -34,18 +40,26 @@ class CenterInfoViewModel(
     private fun updateState(centerId: Int) {
         viewModelScope.launch {
             _state.emit(State.Loading)
-            _state.emit(
-                getCenterByIdUseCase.invoke(centerId).fold(
-                    onSuccess = { data -> State.Show(data) },
-                    onFailure = { error -> State.Error(error.message.toString()) }
-                )
+            val activeUsers = ArrayList<ProfileEntity>()
+
+            getCenterByIdUseCase.invoke(centerId).fold(
+                onSuccess = { data ->
+                    data.active.forEach { id ->
+                        getProfileByIdUseCase(id).fold(
+                            onSuccess = { profile -> activeUsers.add(profile) },
+                            onFailure = { error -> _state.emit(State.Error(error.message.toString())) }
+                        )
+                    }
+                    _state.emit(State.Show(Pair(data, activeUsers)))
+                },
+                onFailure = { error -> _state.emit(State.Error(error.message.toString())) }
             )
         }
     }
 
     sealed interface State {
         data object Loading : State
-        data class Show(val centerItem: FullCenterEntity) : State
+        data class Show(val centerItem: Pair<FullCenterEntity, List<ProfileEntity>>) : State
         data class Error(val text: String) : State
     }
 
@@ -66,6 +80,13 @@ class CenterInfoViewModel(
                 val centerId = extras[centerIdKey]
 
                 return CenterInfoViewModel(
+                    getProfileByIdUseCase = GetProfileByIdUseCase(ProfileRepositoryImpl(
+                        localDataSource = ProfileLocalDataSource,
+                        networkDataSource = ProfileNetworkDataSource,
+                        credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(
+                            application.getSharedPreferences(Const.TOKEN_KEY, Context.MODE_PRIVATE)
+                        )
+                    )),
                     getCenterByIdUseCase = GetCenterByIdUseCase(
                         centerRepository = CenterRepositoryImpl(
                             networkDataSource = CenterNetworkDataSource,

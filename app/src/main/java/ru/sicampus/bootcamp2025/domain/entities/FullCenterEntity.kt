@@ -10,5 +10,6 @@ data class FullCenterEntity(
     val email: String,
     val link: String,
     val tags: List<String>,
-    val imageUrl: String
+    val imageUrl: String,
+    val active: List<Int>
 )

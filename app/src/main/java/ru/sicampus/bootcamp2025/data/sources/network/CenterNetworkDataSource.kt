@@ -7,13 +7,15 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import ru.sicampus.bootcamp2025.Const
+import ru.sicampus.bootcamp2025.data.dtos.CenterDto
 import ru.sicampus.bootcamp2025.data.dtos.CenterListPagingDto
 import ru.sicampus.bootcamp2025.data.dtos.FullCenterDto
 
 object CenterNetworkDataSource {
     private val client = Network.client
 
-    suspend fun getCenters(
+    suspend fun getPaginatedCenters(
         token: String,
         pageNum: Int,
         pageSize: Int
@@ -21,7 +23,7 @@ object CenterNetworkDataSource {
         withContext(Dispatchers.IO) {
             runCatching {
                 val result =
-                    client.get("http://10.0.2.2:9000/api/centers/paginated?page=$pageNum&size=$pageSize") {
+                    client.get("${Const.DOMAIN}/api/centers/paginated?page=$pageNum&size=$pageSize") {
                         headers {
                             append(HttpHeaders.Authorization, token)
                         }
@@ -34,7 +36,20 @@ object CenterNetworkDataSource {
     suspend fun getCenterById(token: String, centerId: Int): Result<FullCenterDto> =
         withContext(Dispatchers.IO) {
             runCatching {
-                val result = client.get("http://10.0.2.2:9000/api/centers/${centerId}") {
+                val result = client.get("${Const.DOMAIN}/api/centers/${centerId}") {
+                    headers {
+                        append(HttpHeaders.Authorization, token)
+                    }
+                }
+                if (result.status != HttpStatusCode.OK) error(("Status ${result.status}"))
+                result.body()
+            }
+        }
+
+    suspend fun getCenters(token: String): Result<List<CenterDto>> =
+        withContext(Dispatchers.IO) {
+            runCatching {
+                val result = client.get("${Const.DOMAIN}/api/centers") {
                     headers {
                         append(HttpHeaders.Authorization, token)
                     }

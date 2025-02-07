@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.SupportMapFragment
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.ViewCentersFragmentBinding
 import ru.sicampus.bootcamp2025.ui.mainscreen.centerinfo.CenterInfoFragment
@@ -25,6 +26,9 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
     private var _fusedLocationProviderClient: FusedLocationProviderClient? = null
     private val fusedLocationProviderClient: FusedLocationProviderClient
         get() = _fusedLocationProviderClient!!
+
+    private var _mapFragment: SupportMapFragment? = null
+    private val mapFragment: SupportMapFragment get() = _mapFragment!!
 
     private var currentLocation: Pair<Double, Double> = Pair(100.0, 100.0)
 
@@ -41,15 +45,33 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = ViewCentersFragmentBinding.bind(view)
         activateListSwitcher()
+
         if (permissionsGranted) getCurrentLocation()
         val adapter = CenterListAdapter(currentLocation) { centerId: Int, centerName: String ->
             CenterInfoFragment(centerId).show(requireActivity().supportFragmentManager, centerName)
         }
         binding.content.adapter = adapter
 
+        _mapFragment = binding.map.getFragment<SupportMapFragment>()
+
         binding.mapSwitcher.setOnClickListener { activateMapSwitcher() }
         binding.listSwitcher.setOnClickListener { activateListSwitcher() }
         binding.refresh.setOnRefreshListener { adapter.refresh() }
+
+        viewModel.state.collectWithLifecycle(this) { state ->
+            when (state) {
+                is AllCentersViewModel.State.Error -> binding.error.text = state.error
+                AllCentersViewModel.State.Loading -> Unit
+                is AllCentersViewModel.State.Show ->
+                    mapFragment.getMapAsync(MapService(state.content) { centerId: Int ->
+                        CenterInfoFragment(centerId).show(
+                            requireActivity().supportFragmentManager,
+                            "Center Info"
+                        )
+                    }
+                    )
+            }
+        }
 
         viewModel.listState.collectWithLifecycle(this) { listState ->
             adapter.submitData(listState)
@@ -85,6 +107,7 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
         setUpMapSwitcher(R.color.blue, R.color.gray, View.VISIBLE)
         setUpListSwitcher(R.color.gray, R.color.black, View.GONE)
         binding.refresh.isEnabled = false
+        viewModel.onMapSelected()
     }
 
     private fun activateListSwitcher() {

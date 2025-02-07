@@ -36,6 +36,12 @@ class CenterInfoFragment(
     ): View {
         _binding = ViewCenterInfoFragmentBinding.inflate(inflater)
 
+        val tagsAdapter = TagsAdapter()
+        binding.tagsList.adapter = tagsAdapter
+
+        val usersAdapter = UsersAdapter()
+        binding.activeVolunteers.adapter = usersAdapter
+
         viewModel.state.collectWithLifecycle(this) { state ->
             binding.error.visibility = visibleOrGone(state is CenterInfoViewModel.State.Error)
             binding.content.visibility = visibleOrGone(state is CenterInfoViewModel.State.Show)
@@ -43,13 +49,15 @@ class CenterInfoFragment(
                 is CenterInfoViewModel.State.Error -> binding.error.text = state.text
                 CenterInfoViewModel.State.Loading -> Unit
                 is CenterInfoViewModel.State.Show -> {
-                    val centerInfo = state.centerItem
+                    val centerInfo = state.centerItem.first
                     binding.name.text = centerInfo.name
                     binding.type.text = centerInfo.type
                     binding.description.text = centerInfo.description
                     binding.address.text = centerInfo.address
                     binding.email.text = centerInfo.email
                     binding.link.text = centerInfo.link
+                    tagsAdapter.submitList(centerInfo.tags)
+                    usersAdapter.submitList(state.centerItem.second)
                     Picasso.get().load(centerInfo.imageUrl).into(binding.image)
                 }
             }

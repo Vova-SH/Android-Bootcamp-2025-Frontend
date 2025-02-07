@@ -1,20 +1,25 @@
 package ru.sicampus.bootcamp2025.data
 
+import ru.sicampus.bootcamp2025.data.dtos.CenterDto
 import ru.sicampus.bootcamp2025.data.dtos.CenterListPagingDto
 import ru.sicampus.bootcamp2025.data.dtos.FullCenterDto
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.CenterNetworkDataSource
 import ru.sicampus.bootcamp2025.domain.entities.CenterEntity
+import ru.sicampus.bootcamp2025.domain.entities.CenterMapEntity
 import ru.sicampus.bootcamp2025.domain.entities.FullCenterEntity
 import ru.sicampus.bootcamp2025.domain.repositories.CenterRepository
 
 class CenterRepositoryImpl(
     private val networkDataSource: CenterNetworkDataSource,
-    private val credentialsLocalDataSource: CredentialsLocalDataSource
+    private val credentialsLocalDataSource: CredentialsLocalDataSource,
 ) : CenterRepository {
-    override suspend fun getCenters(pageNum: Int, pageSize: Int): Result<List<CenterEntity>> {
-        return map(
-            networkDataSource.getCenters(
+    override suspend fun getPaginatedCenters(
+        pageNum: Int,
+        pageSize: Int
+    ): Result<List<CenterEntity>> {
+        return mapPaged(
+            networkDataSource.getPaginatedCenters(
                 credentialsLocalDataSource.getToken() ?: "12345",
                 pageNum,
                 pageSize
@@ -30,7 +35,7 @@ class CenterRepositoryImpl(
         )
     }
 
-    private fun map(listCenterDto: Result<CenterListPagingDto>): Result<List<CenterEntity>> {
+    private fun mapPaged(listCenterDto: Result<CenterListPagingDto>): Result<List<CenterEntity>> {
         return listCenterDto.map { listPagingDto ->
             listPagingDto.centerList?.mapNotNull { dto ->
                 CenterEntity(
@@ -41,10 +46,23 @@ class CenterRepositoryImpl(
                     imageUrl = dto.imageUrl ?: return@mapNotNull null,
                     tag = dto.tag ?: return@mapNotNull null,
                     latitude = dto.latitude ?: return@mapNotNull null,
-                    longitude = dto.longitude ?: return@mapNotNull null
+                    longitude = dto.longitude ?: return@mapNotNull null,
                 )
             } ?: return Result.failure(IllegalStateException("Page data cannot be null"))
         }
+    }
+
+    private fun map(listCenterDto: Result<List<CenterDto>>?): Result<List<CenterMapEntity>> {
+        return listCenterDto?.map { listDto ->
+            listDto.mapNotNull { dto ->
+                CenterMapEntity(
+                    id = dto.id ?: return@mapNotNull null,
+                    name = dto.name ?: return@mapNotNull null,
+                    latitude = dto.latitude ?: return@mapNotNull null,
+                    longitude = dto.longitude ?: return@mapNotNull null
+                )
+            }
+        } ?: return Result.failure(IllegalStateException("Page data cannot be null"))
     }
 
     private fun mapFull(fullCenterDto: Result<FullCenterDto>): Result<FullCenterEntity> {
@@ -59,9 +77,15 @@ class CenterRepositoryImpl(
                 imageUrl = dto.imageUrl
                     ?: return Result.failure(IllegalStateException("Null data")),
                 type = dto.type ?: return Result.failure(IllegalStateException("Null data")),
-                description = dto.description ?: return Result.failure(IllegalStateException("Null data")),
-                link = dto.link ?: return Result.failure(IllegalStateException("Null data"))
+                description = dto.description
+                    ?: return Result.failure(IllegalStateException("Null data")),
+                link = dto.link ?: return Result.failure(IllegalStateException("Null data")),
+                active = dto.active ?: return Result.failure(IllegalStateException("Null data")),
             )
         }
+    }
+
+    override suspend fun getCenters(): Result<List<CenterMapEntity>> {
+        return map(networkDataSource.getCenters(credentialsLocalDataSource.getToken() ?: "1234"))
     }
 }
