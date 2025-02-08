@@ -40,6 +40,12 @@
         android:layout_margin="20dp"
         android:text="Информация"
         android:textSize="20sp" />
+    <Button
+        android:id="@+id/attach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Animation.Design.BottomSheetDialog"
+        android:text="Прикрепится"/>
 
 
 
