@@ -122,7 +122,7 @@
                     android:clickable="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="@string/auth_email_hint"
+                    android:hint="@string/auth_login_hint"
                     android:inputType="textEmailAddress"
                     android:textColorHint="#757575"
                     tools:ignore="TextContrastCheck" />

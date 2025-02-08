@@ -23,7 +23,7 @@ class ListFragment : Fragment(R.layout.fragment_location_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _viewBinding = FragmentLocationListBinding.bind(view)
 
-        val adapter = ListAdapter()
+        val adapter = ListAdapter(parentFragmentManager)
         viewBinding.refresh.setOnClickListener { adapter.refresh() }
         viewBinding.content.adapter = adapter
 

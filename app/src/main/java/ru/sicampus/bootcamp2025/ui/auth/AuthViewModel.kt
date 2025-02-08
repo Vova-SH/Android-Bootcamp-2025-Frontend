@@ -29,7 +29,8 @@ class AuthViewModel(
     private val isUserExistUseCase: IsUserExistUseCase,
     private val loginUseCase: LoginUseCase,
     private val registerUserUseCase: RegisterUserUseCase,
-    private val autoLoginUseCase: AutoLoginUseCase
+    private val autoLoginUseCase: AutoLoginUseCase,
+    private val authStorageDataSource: AuthStorageDataSource
 ) : AndroidViewModel(application = application) {
     private val _state = MutableStateFlow<State>(getStateShow())
     val state = _state.asStateFlow()
@@ -52,12 +53,14 @@ class AuthViewModel(
     fun clickNext(
         login: String,
         password: String,
+        name: String,
+        email: String
     ) {
         viewModelScope.launch {
             _state.emit(State.Loading)
             when (isNewUser) {
                 true -> {
-                    registerUserUseCase(login, password).fold(
+                    registerUserUseCase(login, password, name, email).fold(
                         onSuccess = { openList() },
                         onFailure = { error ->
                             updateState(error)
@@ -114,12 +117,12 @@ class AuthViewModel(
 
     fun checkAutoLogin() {
         viewModelScope.launch {
-            if (AuthStorageDataSource.isLoggedIn()) {
+            if (authStorageDataSource.isLoggedIn()) {
                 _state.emit(State.Loading)
                 autoLoginUseCase().fold(
                     onSuccess = { openList() },
                     onFailure = { error ->
-                        AuthStorageDataSource.clear()
+                        authStorageDataSource.clear()
                         updateState(error)
                     }
                 )
@@ -149,11 +152,11 @@ class AuthViewModel(
                 val application = extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
 
                 val authNetworkDataSource = AuthNetworkDataSource
-                val authStorageDataSource = AuthStorageDataSource
+                val authStorageDataSource = AuthStorageDataSource()
 
                 val authRepoImpl = AuthRepoImpl(
-                    authStorageDataSource = authStorageDataSource,
-                    authNetworkDataSource = authNetworkDataSource
+                    authNetworkDataSource = authNetworkDataSource,
+                    authStorageDataSource = authStorageDataSource
                 )
 
                 return AuthViewModel(
@@ -161,7 +164,8 @@ class AuthViewModel(
                     isUserExistUseCase = IsUserExistUseCase(authRepoImpl),
                     loginUseCase = LoginUseCase(authRepoImpl),
                     registerUserUseCase = RegisterUserUseCase(authRepoImpl),
-                    autoLoginUseCase = AutoLoginUseCase(authRepoImpl)
+                    autoLoginUseCase = AutoLoginUseCase(authRepoImpl),
+                    authStorageDataSource = authStorageDataSource
                 ) as T
             }
         }

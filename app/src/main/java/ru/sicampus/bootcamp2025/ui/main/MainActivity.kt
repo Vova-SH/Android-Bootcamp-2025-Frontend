@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.view.View // Добавляем импорт
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.data.save.PrefsManager
 import ru.sicampus.bootcamp2025.databinding.ActivityMainBinding
@@ -15,11 +16,20 @@ import ru.sicampus.bootcamp2025.ui.profile.ProfileFragment
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
+    fun showBottomNavigation() {
+        binding.bottomNav.visibility = View.VISIBLE
+    }
+
+    fun hideBottomNavigation() {
+        binding.bottomNav.visibility = View.GONE
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        hideBottomNavigation()
 
         PrefsManager.init(this)
 
@@ -64,6 +74,5 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.bottomNav.updateSelectedIndex(1)
-
     }
 }

@@ -7,7 +7,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 object Network {
-    const val serverAdress = "http://10.0.2.2:9000"
+    const val SERVER_ADDRESS = "http://192.168.31.142:8080"
 
     val client = HttpClient(CIO) {
         install(ContentNegotiation) {

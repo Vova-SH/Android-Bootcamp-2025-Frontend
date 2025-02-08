@@ -31,7 +31,7 @@
     <string name="menu_profile">Distance</string>
 
     <!-- Авторизация -->
-    <string name="auth_email_hint">Email</string>
+    <string name="auth_login_hint">Login</string>
     <string name="auth_password_hint">Password</string>
     <string name="auth_phone_hint">Phone</string>
     <string name="auth_login_button">Login</string>
@@ -64,5 +64,10 @@
     <string name="coordinates_format" translatable="false">%.4f, %.4f</string>
     <string name="error_button">Error</string>
 
+    <string name="common_map">Google map</string>
+    <string name="button_register_center">Register in center</string>
+    <string name="continue_button">Countine</string>
+    <string name="auth_email_hint">Email</string>
+    <string name="auth_name_hint">Full Name</string>
 
 </resources>

@@ -25,7 +25,7 @@
     <string name="item_description">Опиание</string>
     <string name="item_coordinates">Расстояние</string>
     <string name="menu_profile">Профиль</string>
-    <string name="auth_email_hint">Электронная почта</string>
+    <string name="auth_login_hint">Логин</string>
     <string name="auth_password_hint">Пароль</string>
     <string name="auth_phone_hint">Телефон</string>
     <string name="auth_login_button">Войти</string>
@@ -59,4 +59,9 @@
     <string name="error_button">Ошибка</string>
 
     <string name="photo">Фото</string>
+    <string name="common_map">Google карта</string>
+    <string name="button_register_center">Зарегестрироваться в центр</string>
+    <string name="continue_button">Далее</string>
+    <string name="auth_email_hint">Электронная почта</string>
+    <string name="auth_name_hint">Полное имя</string>
 </resources>

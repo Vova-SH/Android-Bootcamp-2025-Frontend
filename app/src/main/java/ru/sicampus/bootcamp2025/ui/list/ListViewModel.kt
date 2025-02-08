@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import ru.sicampus.bootcamp2025.data.auth.AuthStorageDataSource
 import ru.sicampus.bootcamp2025.data.list.UserNetworkDataSource
 import ru.sicampus.bootcamp2025.data.list.ListRepoImpl
 import ru.sicampus.bootcamp2025.domain.list.ListUseCase
@@ -31,7 +32,9 @@ class ListViewModel(
                 return ListViewModel(
                     getUsersUseCase = ListUseCase(
                         repo = ListRepoImpl(
-                            userNetworkDataSource = UserNetworkDataSource()
+                            userNetworkDataSource = UserNetworkDataSource(
+                                authStorageDataSource = AuthStorageDataSource()
+                            )
                         )
                     )
                 ) as T

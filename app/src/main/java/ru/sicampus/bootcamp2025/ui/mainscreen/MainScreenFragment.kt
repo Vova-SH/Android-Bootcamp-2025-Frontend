@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.FragmentMainScreenBinding
 import ru.sicampus.bootcamp2025.ui.list.ListFragment
+import ru.sicampus.bootcamp2025.ui.main.MainActivity
 
 class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
     private var _viewBinding: FragmentMainScreenBinding? = null
@@ -15,7 +16,7 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _viewBinding = FragmentMainScreenBinding.bind(view)
 
-
+        (activity as? MainActivity)?.showBottomNavigation()
 
         viewBinding.fakeSearchButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
