@@ -44,6 +44,45 @@ class ProfileRepositoryImpl(
         }
     }
 
+    override suspend fun getAllProfiles(pageNum: Int, pageSize: Int): Result<List<ProfileEntity>> {
+        return networkDataSource.getAllProfiles(
+            pageNum,
+            pageSize,
+            credentialsLocalDataSource.getToken()
+        ).map { pageDto ->
+            pageDto.centerList?.mapNotNull { dto ->
+                ProfileEntity(
+                    id = dto.id ?: return@mapNotNull null,
+                    centerId = dto.centerId,
+                    name = dto.name ?: return@mapNotNull null,
+                    lastname = dto.lastname ?: return@mapNotNull null,
+                    photoUrl = dto.photoUrl,
+                    phoneNumber = dto.phoneNumber,
+                    email = dto.email
+                )
+            } ?: error("Null users list exception")
+        }
+    }
+
+
+    override suspend fun getAllFreeProfiles(): Result<List<ProfileEntity>> {
+        return networkDataSource.getAllFreeProfiles(
+            credentialsLocalDataSource.getToken()
+        ).map { listDto ->
+            listDto.mapNotNull { dto ->
+                ProfileEntity(
+                    id = dto.id ?: return@mapNotNull null,
+                    centerId = dto.centerId,
+                    name = dto.name ?: return@mapNotNull null,
+                    lastname = dto.lastname ?: return@mapNotNull null,
+                    photoUrl = dto.photoUrl,
+                    phoneNumber = dto.phoneNumber,
+                    email = dto.email
+                )
+            }
+        }
+    }
+
     override suspend fun updateProfile(newProfile: ProfileEntity): Result<Unit> {
         return networkDataSource.updateProfile(
             ProfileDto(

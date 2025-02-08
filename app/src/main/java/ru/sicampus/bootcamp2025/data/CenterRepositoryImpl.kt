@@ -73,7 +73,7 @@ class CenterRepositoryImpl(
                 address = dto.address ?: return Result.failure(IllegalStateException("Null data")),
                 phone = dto.phone ?: return Result.failure(IllegalStateException("Null data")),
                 email = dto.email ?: return Result.failure(IllegalStateException("Null data")),
-                tags = dto.tags ?: return Result.failure(IllegalStateException("Null data")),
+                tags = dto.tags,
                 imageUrl = dto.imageUrl
                     ?: return Result.failure(IllegalStateException("Null data")),
                 type = dto.type ?: "",

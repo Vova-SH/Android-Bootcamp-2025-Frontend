@@ -36,4 +36,5 @@
     <string name="password_does_not_matches">Пароли не совпадают</string>
     <string name="meters">метров</string>
     <string name="free_volunteer">Еще не волонтёрит</string>
+    <string name="all_volunteers_header">Все волонтеры</string>
 </resources>
