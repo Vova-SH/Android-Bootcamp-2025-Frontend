@@ -41,20 +41,25 @@ android {
 }
 
 dependencies {
+    // Core
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.ui.viewbinding)
+
+    // Network
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.json)
+
+    // UI
     implementation(libs.picasso)
     implementation(libs.play.services.maps)
-
 
     // Compose
     implementation(platform(libs.androidx.compose.bom))
@@ -63,10 +68,14 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.activity.compose)
 
-    // Lifecycle
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.ui.viewbinding)
+    // Paging
+    implementation(libs.androidx.paging.runtime.ktx)
+
+    // Testing
+    testImplementation(libs.junit)  // Добавлено
+    androidTestImplementation(libs.androidx.test.ext.junit)  // Добавлено
+    androidTestImplementation(libs.androidx.test.espresso.core)  // Добавлено
 
     // Debug
-    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.tooling)  // Для Compose
 }

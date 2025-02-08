@@ -19,3 +19,16 @@ fun <T> Flow<T>.collectFlowLifecycle(
         }
     }
 }
+
+
+
+fun <T> Flow<T>.collectWithLifecycle(
+    fragment: Fragment,
+    function: (T) -> Unit
+) {
+    fragment.viewLifecycleOwner.lifecycleScope.launch {
+        fragment.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            collect { function.invoke(it) }
+        }
+    }
+}

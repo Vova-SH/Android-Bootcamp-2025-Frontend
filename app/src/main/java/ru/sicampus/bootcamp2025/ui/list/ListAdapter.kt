@@ -1,69 +1,71 @@
 package ru.sicampus.bootcamp2025.ui.list
 
-import android.content.Context
-import android.location.Location
-import android.location.LocationManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.sicampus.bootcamp2025.R
-import ru.sicampus.bootcamp2025.databinding.ItemUserBinding
-import ru.sicampus.bootcamp2025.domain.ListEntity
+import ru.sicampus.bootcamp2025.databinding.ItemCenterBinding
+import ru.sicampus.bootcamp2025.domain.list.ListEntity
+import ru.sicampus.bootcamp2025.domain.one.OneCenter
+import ru.sicampus.bootcamp2025.ui.one.OneCenterFragment
 
 class ListAdapter(
-    private val context: Context
-) : ListAdapter<ListEntity, ru.sicampus.bootcamp2025.ui.list.ListAdapter.ViewHolder>(UserDiff) {
+    private val fragmentManager: FragmentManager
+) : PagingDataAdapter<ListEntity, ListAdapter.ViewHolder>(UserDiff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemUserBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+        return ViewHolder(
+            ItemCenterBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ),
+            fragmentManager
         )
-        return ViewHolder(binding, context)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     class ViewHolder(
-        private val binding: ItemUserBinding,
-        private val context: Context
+        private val binding: ItemCenterBinding,
+        private val fragmentManager: FragmentManager
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ListEntity) {
-            binding.textName.text = item.name
-            binding.textDescription.text = item.description
+            with(binding) {
+                title.text = item.name
+                description.text = item.description
 
-            val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                coordinates.text = root.context.getString(
+                    R.string.coordinates_format,
+                    item.coordinates.latitude,
+                    item.coordinates.longitude
+                )
 
-            val location: Location? = try {
-                locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-            } catch (e: SecurityException) {
-                null
-            }
+                val oneCenter = OneCenter(
+                    id = item.id,
+                    name = item.name,
+                    description = item.description,
+                    coordinates = item.coordinates
+                )
 
-            if (location != null) {
-                val userLocation = Location("user").apply {
-                    latitude = item.coordinates.latitude
-                    longitude = item.coordinates.longitude
+                binding.actionButton.setOnClickListener {
+                    fragmentManager.beginTransaction()
+                        .replace(R.id.main, OneCenterFragment.newInstance(oneCenter))
+                        .commitAllowingStateLoss()
                 }
-
-                val distance = location.distanceTo(userLocation)
-
-                binding.textCoordinates.text = context.getString(R.string.distance_format, distance)
-            } else {
-                binding.textCoordinates.text = context.getString(R.string.distance_unknown)
             }
         }
     }
 
     object UserDiff : DiffUtil.ItemCallback<ListEntity>() {
         override fun areItemsTheSame(oldItem: ListEntity, newItem: ListEntity): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: ListEntity, newItem: ListEntity): Boolean {

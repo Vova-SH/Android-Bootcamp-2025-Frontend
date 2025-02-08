@@ -1,38 +1,67 @@
 <resources>
-    <string name="app_name">Зарегистрироваться</string>
-    <string name="menuNavHome">Домашний экран</string>
-    <string name="menuNavUser">Профиль</string>
-    <string name="menuNavLocal">Цeнтры</string>
+    <!-- Общие элементы -->
+    <string name="common_unknown">Неизвестно</string>
+    <string name="common_next">Далее</string>
+    <string name="common_edit">Редактировать</string>
+    <string name="common_close">Закрыть</string>
+    <string name="common_refresh">Обновить</string>
+    <string name="common_find">Поиск</string>
+    <string name="common_welcome">Добро пожаловать!</string>
+    <string name="common_hello">Здравствуйте!</string>
 
-    <string name="saveWorldDescription">Знак спасения природы</string>
-    <string name="startedAppeal">Станьте волонтером\nВыберите свой центр</string>
-    <string name="startedRegister">Регистрация</string>
-    <string name="startedLogin">Вход</string>
-    <string name="title_activity_start">Стартовая активность</string>
-    <string name="login">Вход</string>
-    <string name="emailInput">Электронная почта</string>
-    <string name="passwordInput">Пароль</string>
-    <string name="loginButton">Войти</string>
-    <string name="notAccount">Нет аккаунта?</string>
-    <string name="registerOffer">Зарегистрироваться</string>
-    <string name="register">Зарегистрироваться</string>
-    <string name="phoneDescription">Изображение телефона в руке</string>
-    <string name="loginOffer">Войти</string>
-    <string name="alreadyAccount">Уже есть аккаунт?</string>
-    <string name="editButton">Редактировать</string>
-    <string name="editButtonDescription">Редактировать</string>
-    <string name="phoneInput">Телефон</string>
-    <string name="descriptionButtonEdit">Редактировать</string>
-    <string name="centreInput">Центр</string>
-    <string name="closeButtonDescription">Закрыть</string>
-    <string name="myProfile">Мой профиль</string>
-    <string name="сentreInput">Центр</string>
-    <string name="fullNameInput">Имя Фамилия</string>
-    <string name="peopleDescription">Спасение земли</string>
-    <string name="welcome">Добро пожаловать!</string>
-    <string name="find">Поиск</string>
-    <string name="distance_format">%.2f</string>
-    <string name="distance_unknown">Неизвесно</string>
-    <string name="refresh">Перезагрузить</string>
+    <!-- Навигация -->
+    <string name="bottom_nav_home">Домашний экран</string>
+    <string name="bottom_nav_profile">Профиль</string>
+    <string name="bottom_nav_centers">Центры</string>
 
+    <!-- Экран старта -->
+    <string name="start_title">Станьте волонтером</string>
+    <string name="start_subtitle">Выберите свой центр</string>
+    <string name="button_register">Регистрация</string>
+    <string name="button_login">Вход</string>
+
+    <!-- Авторизация -->
+    <string name="item_name">Название</string>
+    <string name="item_description">Опиание</string>
+    <string name="item_coordinates">Расстояние</string>
+    <string name="menu_profile">Профиль</string>
+    <string name="auth_login_hint">Логин</string>
+    <string name="auth_password_hint">Пароль</string>
+    <string name="auth_phone_hint">Телефон</string>
+    <string name="auth_login_button">Войти</string>
+
+    <!-- Профиль -->
+    <string name="auth_next_button">Далее</string>
+    <string name="profile_title">Мой профиль</string>
+    <string name="profile_fullname_hint">Имя Фамилия</string>
+    <string name="profile_center_hint">Центр</string>
+
+    <!-- Контент -->
+    <string name="content_main_mission">Спасение Земли</string>
+    <string name="content_distance_format">%.2f</string>
+    <string name="content_image_save_world_desc">Знак спасения природы</string>
+
+
+    <!-- Ошибки -->
+    <string name="error_unauthorized">Неавторизованный доступ</string>
+    <string name="error_forbidden">Доступ запрещен</string>
+    <string name="error_not_found">Ресурс не найден</string>
+    <string name="error_client">Ошибка в запросе</string>
+    <string name="error_server">Ошибка сервера</string>
+    <string name="error_timeout">Таймаут соединения</string>
+    <string name="error_no_internet">Нет интернет соединения</string>
+    <string name="error_network_general">Сетевая ошибка</string>
+    <string name="error_network">Ошибка сети</string>
+    <string name="error_unknown">Неизвестная ошибка</string>
+    <string name="button_countine">Продолжить</string>
+    <string name="menu_list">Список</string>
+    <string name="menu_main">Главный экран</string>
+    <string name="error_button">Ошибка</string>
+
+    <string name="photo">Фото</string>
+    <string name="common_map">Google карта</string>
+    <string name="button_register_center">Зарегестрироваться в центр</string>
+    <string name="continue_button">Далее</string>
+    <string name="auth_email_hint">Электронная почта</string>
+    <string name="auth_name_hint">Полное имя</string>
 </resources>

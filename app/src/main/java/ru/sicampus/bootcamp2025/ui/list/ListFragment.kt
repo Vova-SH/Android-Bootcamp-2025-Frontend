@@ -4,38 +4,45 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
+import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.FragmentLocationListBinding
-import ru.sicampus.bootcamp2025.utils.collectFlowLifecycle
-import ru.sicampus.bootcamp2025.utils.setVisibleOrGone
+import ru.sicampus.bootcamp2025.utils.collectWithLifecycle
 
 class ListFragment : Fragment(R.layout.fragment_location_list) {
     private var _viewBinding: FragmentLocationListBinding? = null
     private val viewBinding: FragmentLocationListBinding get() = _viewBinding!!
 
-    private val viewModel: ListViewModel by viewModels { ListViewModel.Factory }
+    private val viewModel by viewModels<ListViewModel> { ListViewModel.Factory }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _viewBinding = FragmentLocationListBinding.bind(view)
 
-        viewBinding.refresh.setOnClickListener { viewModel.clickRefresh() }
-
-        val adapter = ListAdapter(requireContext())
+        val adapter = ListAdapter(parentFragmentManager)
+        viewBinding.refresh.setOnClickListener { adapter.refresh() }
         viewBinding.content.adapter = adapter
 
-        viewModel._state.collectFlowLifecycle(this) { state ->
-            viewBinding.error.setVisibleOrGone(state is ListViewModel.State.Error)
-            viewBinding.loading.setVisibleOrGone(state is ListViewModel.State.Loading)
-            viewBinding.content.setVisibleOrGone(state is ListViewModel.State.Show)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.listState.collect { data ->
+                    adapter.submitData(data)
+                }
+            }
+        }
 
-            when (state) {
-                is ListViewModel.State.Loading -> Unit
-                is ListViewModel.State.Show -> {
-                    adapter.submitList(state.items)
-                }
-                is ListViewModel.State.Error -> {
-                    viewBinding.errorText.text = state.text
-                }
+        adapter.loadStateFlow.collectWithLifecycle(this) { data ->
+            val state = data.refresh
+            viewBinding.error.visibility =
+                if (state is LoadState.Error) View.VISIBLE else View.GONE
+            viewBinding.loading.visibility =
+                if (state is LoadState.Loading) View.VISIBLE else View.GONE
+            if (state is LoadState.Error) {
+                viewBinding.errorText.text = state.error.message.toString()
             }
         }
     }

@@ -1,8 +1,0 @@
-<resources>
-    <declare-styleable name="TableComposeView">
-        <attr name="headerColor" format="color" />
-        <attr name="headerTextColor" format="color" />
-        <attr name="rowColor" format="color" />
-        <attr name="rowTextColor" format="color" />
-    </declare-styleable>
-</resources>

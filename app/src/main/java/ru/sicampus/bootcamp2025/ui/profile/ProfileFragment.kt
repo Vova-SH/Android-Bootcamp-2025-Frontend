@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ru.sicampus.bootcamp2025.R
-import ru.sicampus.bootcamp2025.databinding.FragmentLoginBinding
+import ru.sicampus.bootcamp2025.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
-    private var _viewBinding: FragmentLoginBinding? = null
+    private var _viewBinding: FragmentProfileBinding? = null
     private val viewBinding get() = _viewBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _viewBinding = FragmentLoginBinding.inflate(inflater, container, false)
+        _viewBinding = FragmentProfileBinding.inflate(inflater, container, false)
         return viewBinding.root
     }
 
