@@ -25,8 +25,7 @@ public class AuthTokenManagerST {
     private String _token;
 
     public static synchronized void createInstance(Context context) {
-        if (_instance != null)
-            throw new RuntimeException("AuthTokenManagerST has already been initialized");
+        if (_instance != null) return;
         _instance = new AuthTokenManagerST(context);
     }
 

@@ -1,5 +1,6 @@
 package ru.sicampus.bootcamp2025.ui.map
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -22,10 +26,11 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.R
+import ru.sicampus.bootcamp2025.domain.map.DepartmentEntity
 import ru.sicampus.bootcamp2025.domain.map.PlaceEntity
 
 
-class MapFragment : Fragment(R.layout.fragment_map),
+class MapFragment() : Fragment(R.layout.fragment_map),
     OnMapReadyCallback,
     GoogleMap.OnMapClickListener,
     GoogleMap.OnMapLongClickListener,
@@ -33,7 +38,6 @@ class MapFragment : Fragment(R.layout.fragment_map),
 
     private lateinit var googleMap: GoogleMap
     private val viewModel: MapViewModel by viewModels() { MapViewModel.Factory}
-    private val imageService = ImageService()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,7 +58,7 @@ class MapFragment : Fragment(R.layout.fragment_map),
         }
         viewModel.selectedDepartment.observe(viewLifecycleOwner) { department ->
             if (department != null) {
-                showPlaceDetails(department.place)
+                showPlaceDetails(department)
             } else {
                 Toast.makeText(requireContext(), "Place not found", Toast.LENGTH_SHORT).show()
             }
@@ -84,17 +88,26 @@ class MapFragment : Fragment(R.layout.fragment_map),
         return false
     }
 
-    private fun showPlaceDetails(place: PlaceEntity) {
+    private fun showPlaceDetails(department: DepartmentEntity) {
+        val place = department.place
         val dialog = BottomSheetDialog(requireContext())
         dialog.setContentView(R.layout.bottom_sheet_dialog)
         dialog.window?.apply {
             setBackgroundDrawableResource(android.R.color.transparent)
         }
         dialog.show()
-
+        Log.d("MapFragment", "${place.pathToImage}")
         dialog.findViewById<ImageView>(R.id.image)?.let {
-            imageService.setImage(it, place.pathToImage)
+            Glide.with(this)
+                .load(place.pathToImage) // TODO()
+                .placeholder(R.drawable.ic_photo) // Плейсхолдер
+                .error(R.drawable.ic_back) // Изображение при ошибке
+                .into(it)
+
         }
+//        dialog.findViewById<ImageView>(R.id.image)?.let {
+//            imageService.setImage(it, place.pathToImage)
+//        }
         dialog.findViewById<TextView>(R.id.name)?.text = place.name
         dialog.findViewById<TextView>(R.id.address)?.text = place.address
         dialog.findViewById<TextView>(R.id.description)?.text = place.information

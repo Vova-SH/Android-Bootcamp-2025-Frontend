@@ -19,7 +19,7 @@ class ProfileRepoImpl(
                 name = dataDto.name,
                 email = dataDto.email,
                 info = dataDto.info ?: "",
-                phone = dataDto.phone ?: ""
+                phone = dataDto.phone ?: "",
             )
         }
     }
@@ -29,4 +29,8 @@ class ProfileRepoImpl(
             ?: return Result.failure(IllegalStateException("token is null"))
         return profileNetworkDataSource.changeDataByLogin(token, dataDto)
         }
+    override suspend fun logout(){
+        authStorageDataSource.clear()
+    }
+
     }

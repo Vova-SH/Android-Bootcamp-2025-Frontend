@@ -7,8 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.data.auth.storage.AuthStorageDataSource
 import ru.sicampus.bootcamp2025.data.profile.DataDto
@@ -17,15 +20,23 @@ import ru.sicampus.bootcamp2025.data.profile.ProfileRepoImpl
 import ru.sicampus.bootcamp2025.domain.profile.ChangeDataByLoginUserCase
 import ru.sicampus.bootcamp2025.domain.profile.DataEntity
 import ru.sicampus.bootcamp2025.domain.profile.GetDataByLoginUserCase
+import ru.sicampus.bootcamp2025.domain.profile.LogoutUserCase
+import ru.sicampus.bootcamp2025.ui.auth.AuthViewModel.Action
 
 class ProfileViewModel(
     application: Application,
     private val getDataByLoginUserCase: GetDataByLoginUserCase,
     private val changeDataByLoginUserCase: ChangeDataByLoginUserCase,
-) : AndroidViewModel(application) {
-    val _state = MutableStateFlow<State>(State.Loading)
+    private val logoutUserCase: LogoutUserCase,
 
+    ) : AndroidViewModel(application) {
+    val _state = MutableStateFlow<State>(State.Loading)
     val state = _state.asStateFlow()
+    private val _action = Channel<Action>(
+        capacity = Channel.BUFFERED,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST,
+    )
+    val action = _action.receiveAsFlow()
 
     fun getDataByLogin() {
         viewModelScope.launch {
@@ -41,7 +52,16 @@ class ProfileViewModel(
             )
         }
     }
-
+    fun logout(){
+        viewModelScope.launch {
+            logoutUserCase.invoke()
+        }
+    }
+    fun openAuth(){
+        viewModelScope.launch {
+            _action.send(Action.GotoAuth)
+        }
+    }
     fun changeDataByLogin(dataEntity: DataEntity) {
         viewModelScope.launch {
             changeDataByLoginUserCase.invoke(
@@ -79,6 +99,7 @@ class ProfileViewModel(
                     application = application,
                     getDataByLoginUserCase = GetDataByLoginUserCase(profileRepo),
                     changeDataByLoginUserCase = ChangeDataByLoginUserCase(profileRepo),
+                    logoutUserCase = LogoutUserCase(profileRepo),
                 ) as T
             }
         }
@@ -94,5 +115,8 @@ class ProfileViewModel(
         data class Error(
             val text: String
         ) : State
+    }
+    sealed interface Action {
+        data object GotoAuth : Action
     }
 }

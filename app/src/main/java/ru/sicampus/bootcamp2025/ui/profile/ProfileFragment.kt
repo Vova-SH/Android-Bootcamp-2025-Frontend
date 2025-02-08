@@ -17,6 +17,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.FragmentProfileBinding
 import ru.sicampus.bootcamp2025.domain.profile.DataEntity
+import ru.sicampus.bootcamp2025.ui.auth.AuthFragment
+import ru.sicampus.bootcamp2025.ui.auth.AuthViewModel.Action
 import ru.sicampus.bootcamp2025.ui.map.MapFragment
 import ru.sicampus.bootcamp2025.util.collectWithLifecycle
 
@@ -55,7 +57,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun getProfileData() {
         viewModel.getDataByLogin()
         Log.d("ProfileFragment", "getting profile data...")
-
     }
 
     fun getSavedLogin(): String? {
@@ -70,9 +71,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 currentUser = state.item
                 Log.d("ProfileFragment", "updated currentUser")
                 binding.emailMain.text = state.item.email
-                binding.phoneMain.text = state.item.phone
+                if (state.item.phone == "") {
+                    binding.phoneMain.text = "Не указан"
+                } else {
+                    binding.phoneMain.text = state.item.phone
+                }
                 binding.ctblMain.title = state.item.name
-                binding.infoMain.text = state.item.info
+                if (state.item.phone == "") {
+                    binding.infoMain.text = "Не указана"
+                } else {
+                    binding.infoMain.text = state.item.info
+                }
+
             }
             if (state is ProfileViewModel.State.Changed) {
                 getProfileData()
@@ -80,8 +90,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             binding.error.visibility =
                 if (state is ProfileViewModel.State.Error) View.VISIBLE else View.GONE
         }
-    }
 
+    }
+    fun subscribe2Logout(){
+        viewModel.action.collectWithLifecycle(this) { action ->
+            if(action is ProfileViewModel.Action.GotoAuth){
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.main, AuthFragment())
+                    .commitAllowingStateLoss()
+            }
+        }
+    }
 
     private fun initButtons() {
         binding.fabMain.setOnClickListener(this::getCamera)
@@ -159,6 +178,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun logout() {  // TODO
+        viewModel.logout()
+        viewModel.openAuth()
+        subscribe2Logout()
         Toast.makeText(activity, "LOGOUT", Toast.LENGTH_SHORT).show()
     }
 }
