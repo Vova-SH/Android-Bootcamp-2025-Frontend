@@ -1,6 +1,9 @@
 package ru.sicampus.bootcamp2025.ui.map
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +20,7 @@ import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -38,6 +43,7 @@ class MapFragment() : Fragment(R.layout.fragment_map),
 
     private lateinit var googleMap: GoogleMap
     private val viewModel: MapViewModel by viewModels() { MapViewModel.Factory}
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,9 +77,32 @@ class MapFragment() : Fragment(R.layout.fragment_map),
         googleMap.setOnMapLongClickListener(this)
         googleMap.setOnMarkerClickListener(this)
 
+        val startPoint = LatLng(55.7558, 37.6176)
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPoint, 10f))
+        getLastLocation()
         viewModel.getPlaces()
 
     }
+    private fun getLastLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    if (location != null) {
+                        val currentLatLng = LatLng(location.latitude, location.longitude)
+                        Log.d("ttest", "$currentLatLng")
+
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+                } else {
+                    Log.e("MapFragment", "location is null")
+                    }
+            }
+        }
+    }
+
 
     override fun onMapClick(latLng: LatLng) {
         Toast.makeText(requireContext(), "Coords: ${latLng.latitude} ${latLng.longitude}", Toast.LENGTH_SHORT).show()
