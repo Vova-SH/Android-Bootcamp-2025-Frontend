@@ -27,8 +27,8 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
     private val fusedLocationProviderClient: FusedLocationProviderClient
         get() = _fusedLocationProviderClient!!
 
-    private var _mapFragment: SupportMapFragment? = null
-    private val mapFragment: SupportMapFragment get() = _mapFragment!!
+    private var _mapService: MapService? = null
+    private val mapService: MapService get() = _mapService!!
 
     private var currentLocation: Pair<Double, Double> = Pair(100.0, 100.0)
 
@@ -40,36 +40,46 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
         _fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
         requestPermissions()
+        _mapService = MapService(null, requireContext()) { centerId: Int ->
+            CenterInfoFragment(centerId).show(
+                requireActivity().supportFragmentManager,
+                "Center Info"
+            )
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = ViewCentersFragmentBinding.bind(view)
         activateListSwitcher()
 
-        if (permissionsGranted) getCurrentLocation()
+        if (permissionsGranted) {
+            getCurrentLocation()
+        }
         val adapter = CenterListAdapter(currentLocation) { centerId: Int, centerName: String ->
             CenterInfoFragment(centerId).show(requireActivity().supportFragmentManager, centerName)
         }
         binding.content.adapter = adapter
 
-        _mapFragment = binding.map.getFragment<SupportMapFragment>()
+        val mapFragment = binding.map.getFragment<SupportMapFragment>()
+        mapFragment.getMapAsync(mapService)
 
         binding.mapSwitcher.setOnClickListener { activateMapSwitcher() }
         binding.listSwitcher.setOnClickListener { activateListSwitcher() }
         binding.refresh.setOnRefreshListener { adapter.refresh() }
 
         viewModel.state.collectWithLifecycle(this) { state ->
+            if (permissionsGranted) {
+                getCurrentLocation()
+                adapter.updateLocation(currentLocation)
+            }
+
             when (state) {
                 is AllCentersViewModel.State.Error -> binding.error.text = state.error
                 AllCentersViewModel.State.Loading -> Unit
-                is AllCentersViewModel.State.Show ->
-                    mapFragment.getMapAsync(MapService(state.content) { centerId: Int ->
-                        CenterInfoFragment(centerId).show(
-                            requireActivity().supportFragmentManager,
-                            "Center Info"
-                        )
-                    }
-                    )
+                is AllCentersViewModel.State.Show -> {
+                    mapService.submitCenters(state.content)
+                    mapFragment.getMapAsync(mapService)
+                }
             }
         }
 
@@ -78,8 +88,6 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
         }
 
         adapter.loadStateFlow.collectWithLifecycle(this) { data ->
-            if (permissionsGranted) getCurrentLocation()
-            adapter.updateLocation(currentLocation)
             val state = data.refresh
             binding.refresh.isRefreshing = state is LoadState.Loading
             binding.error.visibility = visibleOrGone(state is LoadState.Error)

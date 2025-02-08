@@ -35,18 +35,22 @@ class SignUpViewModel(
     val state = _state.asStateFlow()
     val action = _action.receiveAsFlow()
 
-    fun onProcessClick(login: String, password: String) {
+    fun onProcessClick(login: String, password: String, name: String, lastname: String) {
 
         viewModelScope.launch {
             _state.emit(State.Loading)
             isUserExistUseCase.invoke(login).fold(
-                onSuccess = {
-                    registerUseCase.invoke(login, password).fold(
-                        onSuccess = { openApp() },
-                        onFailure = { error ->
-                            _state.emit(State.Error(error.message.toString()))
-                        }
-                    )
+                onSuccess = { answer ->
+                    if (answer) {
+                        goToLogin()
+                    } else {
+                        registerUseCase.invoke(login, password, name, lastname).fold(
+                            onSuccess = { openApp() },
+                            onFailure = { error ->
+                                _state.emit(State.Error(error.message.toString()))
+                            }
+                        )
+                    }
                 },
                 onFailure = { error -> _state.emit(State.Error(error.message.toString())) }
             )
@@ -59,6 +63,12 @@ class SignUpViewModel(
         }
     }
 
+    private fun goToLogin() {
+        viewModelScope.launch {
+            _action.send(Action.GoToLogin)
+        }
+    }
+
     sealed interface State {
         data object Waiting : State
         data object Loading : State
@@ -67,6 +77,7 @@ class SignUpViewModel(
 
     sealed interface Action {
         data object OpenApp : Action
+        data object GoToLogin: Action
     }
 
     companion object {

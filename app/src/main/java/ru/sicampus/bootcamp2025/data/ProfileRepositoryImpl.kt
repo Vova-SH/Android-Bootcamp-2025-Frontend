@@ -22,7 +22,7 @@ class ProfileRepositoryImpl(
             val networkAnswer =
                 networkDataSource.getProfileById(
                     profileId,
-                    credentialsLocalDataSource.getToken() ?: "1234"
+                    credentialsLocalDataSource.getToken()!!
                 )
             if (networkAnswer.getOrNull() != null)
                 localDataSource.cacheData(networkAnswer.getOrNull())
@@ -34,15 +34,12 @@ class ProfileRepositoryImpl(
         return profileDto.map { dto ->
             ProfileEntity(
                 id = dto.id ?: return Result.failure(IllegalStateException("Null data")),
-                name = dto.name ?: return Result.failure(IllegalStateException("Null data")),
-                lastname = dto.lastname
-                    ?: return Result.failure(IllegalStateException("Null data")),
-                photoUrl = dto.photoUrl
-                    ?: return Result.failure(IllegalStateException("Null data")),
-                phoneNumber = dto.phoneNumber
-                    ?: return Result.failure(IllegalStateException("Null data")),
-                email = dto.email ?: return Result.failure(IllegalStateException("Null data")),
-                centerId = dto.centerId ?: return Result.failure(IllegalStateException("Null data"))
+                name = dto.name ?: "",
+                lastname = dto.lastname?: "",
+                photoUrl = dto.photoUrl,
+                phoneNumber = dto.phoneNumber,
+                email = dto.email,
+                centerId = if (dto.centerId == 0) null else dto.centerId
             )
         }
     }

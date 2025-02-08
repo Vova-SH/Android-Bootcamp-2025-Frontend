@@ -43,6 +43,7 @@
 
         <com.google.android.material.button.MaterialButton
             style="@style/ProcessButton"
+            android:id="@+id/refresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"

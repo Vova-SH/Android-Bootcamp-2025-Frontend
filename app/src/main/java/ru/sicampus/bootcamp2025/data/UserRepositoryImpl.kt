@@ -21,8 +21,8 @@ class UserRepositoryImpl(
         }
     }
 
-    override suspend fun register(login: String, password: String): Result<Unit> {
-        return userNetworkDataSource.register(login, password)
+    override suspend fun register(login: String, password: String, name: String, lastname: String): Result<Unit> {
+        return userNetworkDataSource.register(login, password, name, lastname)
     }
 
     override suspend fun getLocalCredentials(): String? {

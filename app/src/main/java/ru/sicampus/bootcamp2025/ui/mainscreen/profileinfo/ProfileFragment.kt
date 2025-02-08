@@ -8,6 +8,7 @@ import com.squareup.picasso.Picasso
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.ViewProfileFragmentBinding
 import ru.sicampus.bootcamp2025.ui.utils.collectWithLifecycle
+import ru.sicampus.bootcamp2025.ui.utils.getText
 import ru.sicampus.bootcamp2025.ui.utils.visibleOrGone
 
 class ProfileFragment : Fragment(R.layout.view_profile_fragment) {
@@ -31,8 +32,10 @@ class ProfileFragment : Fragment(R.layout.view_profile_fragment) {
                 ProfileViewModel.State.Loading -> Unit
                 is ProfileViewModel.State.Show -> {
                     val profile = state.profile
-                    Picasso.get().load(profile.photoUrl).into(binding.profilePicture)
-                    binding.currentCenter.text = "${profile.centerId}"
+                    if (profile.photoUrl != null)
+                        Picasso.get().load(profile.photoUrl).into(binding.profilePicture)
+                    binding.currentCenter.text =
+                        "${profile.centerId ?: getText(R.string.free_volunteer, requireContext())}"
                     binding.name.setText(profile.name)
                     binding.lastname.setText(profile.lastname)
                     binding.phone.setText(profile.phoneNumber)

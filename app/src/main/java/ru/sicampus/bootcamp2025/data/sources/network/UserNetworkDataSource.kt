@@ -19,8 +19,8 @@ object UserNetworkDataSource {
 
     suspend fun isUserExist(login: String): Result<Boolean> = withContext(Dispatchers.IO) {
         runCatching {
-            val result = Network.client.get("${Const.DOMAIN}/api/users/logins/$login")
-            result.status != HttpStatusCode.OK
+            val result = Network.client.get("${Const.DOMAIN}/api/users/username/$login")
+            result.status == HttpStatusCode.OK
         }
     }
 
@@ -38,18 +38,30 @@ object UserNetworkDataSource {
             }
         }
 
-    suspend fun register(login: String, password: String): Result<Unit> =
+    suspend fun register(
+        login: String,
+        password: String,
+        name: String,
+        lastname: String
+    ): Result<Unit> =
         withContext(Dispatchers.IO) {
             runCatching {
                 val result = Network.client.post("${Const.DOMAIN}/api/users/register") {
                     headers {
                         contentType(ContentType.Application.Json)
-                        setBody(CredentialsDto(login = login, password = password))
+                        setBody(
+                            CredentialsDto(
+                                login = login,
+                                password = password,
+                                name = name,
+                                lastname = lastname
+                            )
+                        )
                     }
                 }
-                if (result.status != HttpStatusCode.Created)
+                if (result.status != HttpStatusCode.OK)
                     error("Status ${result.status}")
-                result.body()
+                Unit
             }
         }
 

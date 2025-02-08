@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    kotlin("plugin.serialization") version "1.4.21"
+//    kotlin("plugin.serialization") version "1.4.21"
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -28,6 +29,7 @@ android {
         }
     }
     compileOptions {
+
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -52,6 +54,7 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.logging)
 
     implementation(libs.squareup.picasso)
 

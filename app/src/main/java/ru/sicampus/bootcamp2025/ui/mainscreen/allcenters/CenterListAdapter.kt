@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.sicampus.bootcamp2025.databinding.CenterItemBinding
 import ru.sicampus.bootcamp2025.domain.entities.CenterEntity
-import kotlin.math.hypot
+import ru.sicampus.bootcamp2025.ui.utils.distanceBetweenTwoPoints
+import kotlin.math.roundToInt
 
 class CenterListAdapter(private var location: Pair<Double, Double>, private val onClick: (centerId: Int, centerName: String) -> Unit) :
     PagingDataAdapter<CenterEntity, CenterListAdapter.ViewHolder>(CenterDiff) {
@@ -24,7 +25,9 @@ class CenterListAdapter(private var location: Pair<Double, Double>, private val 
             binding.tag.text = item.tag
             binding.phone.text = item.phone
             binding.distanceInfo.text =
-                "${hypot(item.latitude - location.first, item.longitude - location.second)}"
+                "${distanceBetweenTwoPoints(
+                    location.first, item.latitude, location.second, item.longitude
+                ).roundToInt()} метров"
             Picasso.get().load(item.imageUrl).into(binding.centerImage)
 
             binding.root.setOnClickListener { onClick(item.id, item.name) }

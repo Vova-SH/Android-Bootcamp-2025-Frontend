@@ -20,7 +20,7 @@ class CenterRepositoryImpl(
     ): Result<List<CenterEntity>> {
         return mapPaged(
             networkDataSource.getPaginatedCenters(
-                credentialsLocalDataSource.getToken() ?: "12345",
+                credentialsLocalDataSource.getToken()!!,
                 pageNum,
                 pageSize
             )
@@ -30,7 +30,7 @@ class CenterRepositoryImpl(
     override suspend fun getCenterById(centerId: Int): Result<FullCenterEntity> {
         return mapFull(
             networkDataSource.getCenterById(
-                token = credentialsLocalDataSource.getToken() ?: "12345", centerId
+                token = credentialsLocalDataSource.getToken()!!, centerId
             )
         )
     }
@@ -86,6 +86,6 @@ class CenterRepositoryImpl(
     }
 
     override suspend fun getCenters(): Result<List<CenterMapEntity>> {
-        return map(networkDataSource.getCenters(credentialsLocalDataSource.getToken() ?: "1234"))
+        return map(networkDataSource.getCenters(credentialsLocalDataSource.getToken()!!))
     }
 }

@@ -8,8 +8,8 @@ import kotlinx.serialization.Serializable
 data class UserDto(
     @SerialName("id")
     val userId: Int?,
-    @SerialName("role_id")
+    @SerialName("authorityId")
     val roleId: Int?,
-    @SerialName("profile_id")
+    @SerialName("profileId")
     val profileId: Int?
 )

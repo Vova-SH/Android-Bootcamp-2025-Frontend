@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.SignupFragmentBinding
@@ -20,11 +21,14 @@ class SignUpFragment : Fragment(R.layout.signup_fragment) {
     private var _binding: SignupFragmentBinding? = null
     private val binding: SignupFragmentBinding get() = _binding!!
 
+    private var _navController: NavController? = null
+    private val navController: NavController get() = _navController!!
+
     private val viewModel: SignUpViewModel by viewModels<SignUpViewModel> { SignUpViewModel.Factory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = SignupFragmentBinding.bind(view)
-        val navController = NavHostFragment.findNavController(this)
+        _navController = NavHostFragment.findNavController(this)
 
         binding.repeatPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -49,7 +53,6 @@ class SignUpFragment : Fragment(R.layout.signup_fragment) {
                 is SignUpViewModel.State.Error -> {
                     binding.error.text = state.errorMessage
                 }
-
                 is SignUpViewModel.State.Loading -> Unit
                 is SignUpViewModel.State.Waiting -> Unit
             }
@@ -60,19 +63,25 @@ class SignUpFragment : Fragment(R.layout.signup_fragment) {
                 SignUpViewModel.Action.OpenApp -> startActivity(
                     Intent(activity, MainActivity::class.java)
                 )
+
+                SignUpViewModel.Action.GoToLogin -> toLogin()
             }
         }
 
-        binding.toLogin.setOnClickListener {
-            navController.navigate(R.id.login_fragment)
-        }
+        binding.toLogin.setOnClickListener { toLogin() }
 
         binding.process.setOnClickListener {
             viewModel.onProcessClick(
                 binding.login.text.toString(),
-                binding.password.text.toString()
+                binding.password.text.toString(),
+                binding.name.text.toString(),
+                binding.lastname.text.toString()
             )
         }
+    }
+
+    private fun toLogin() {
+        navController.navigate(R.id.login_fragment)
     }
 
     override fun onDestroyView() {

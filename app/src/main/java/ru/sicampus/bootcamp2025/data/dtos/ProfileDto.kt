@@ -14,9 +14,9 @@ data class ProfileDto(
     val name: String?,
     @SerialName("lastname")
     val lastname: String?,
-    @SerialName("photoUrl")
+    @SerialName("picture")
     val photoUrl: String?,
-    @SerialName("phone_number")
+    @SerialName("phone")
     val phoneNumber: String?,
     @SerialName("email")
     val email: String?

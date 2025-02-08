@@ -19,6 +19,6 @@ data class CenterDto(
     val longitude: Double?,
     @SerialName("tag")
     val tag: String?,
-    @SerialName("image_url")
+    @SerialName("imageUrl")
     val imageUrl: String?,
 )

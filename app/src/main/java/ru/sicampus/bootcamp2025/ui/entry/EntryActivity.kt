@@ -9,6 +9,8 @@ import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.EnterActivityBinding
 import ru.sicampus.bootcamp2025.ui.mainscreen.MainActivity
 import ru.sicampus.bootcamp2025.ui.utils.collectWithLifecycle
+import ru.sicampus.bootcamp2025.ui.utils.isOnline
+
 
 class EntryActivity : AppCompatActivity(R.layout.enter_activity) {
 
@@ -20,25 +22,25 @@ class EntryActivity : AppCompatActivity(R.layout.enter_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = EnterActivityBinding.inflate(layoutInflater)
-        startActivity(Intent(this, MainActivity::class.java))
 
+         if (!isOnline(this)) {
+             val dialog = NoInternetBottomSheetFragment()
+             dialog.isCancelable = false
+             NoInternetBottomSheetFragment().show(supportFragmentManager, "NO_INTERNET")
+         }
 
         val navHostFragment = supportFragmentManager.findFragmentById(binding.content.id) as NavHostFragment
         val navController = navHostFragment.navController
-
 
         viewModel.action.collectWithLifecycle(this) { action ->
             when (action) {
                 is AuthViewModel.Action.OpenApp ->
                     startActivity(Intent(this, MainActivity::class.java))
 
-                is AuthViewModel.Action.GoToLogin -> {
-                    navController.navigate(R.id.login_fragment)
-                }
+                is AuthViewModel.Action.GoToLogin -> navController.navigate(R.id.login_fragment)
 
-                is AuthViewModel.Action.GotToSignUp -> {
-                    navController.navigate(R.id.signup_fragment)
-                }
+                is AuthViewModel.Action.GotToSignUp -> navController.navigate(R.id.signup_fragment)
+
             }
         }
     }
