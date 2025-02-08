@@ -2,70 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout6"
+    android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.vlist.FreeVolunteersListFragment">
-    <ProgressBar
-        android:id="@+id/loading"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="147dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        tools:visibility="gone" />
-
-    <LinearLayout
-        android:id="@+id/error"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        tools:visibility="gone">
-
-        <TextView
-            android:id="@+id/errorText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:fontFamily="@font/montserrat_extrabold"
-            android:text="@string/error_text"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/refreshBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="@color/gray"
-            android:text="@string/refresh" />
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/content"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:paddingTop="15dp"
-        android:visibility="visible"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        tools:listitem="@layout/item_user"
-        tools:visibility="visible">
-
-    </androidx.recyclerview.widget.RecyclerView>
+    tools:context=".MainPageFragment">
 
     <LinearLayout
         android:id="@+id/header"
@@ -77,19 +17,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/volunteersText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/montserrat_extrabold"
-            android:text="@string/volunteers_text"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:visibility="gone"
-            tools:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/filter"
@@ -110,10 +37,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/btn_free_shape_on"
+                android:background="@drawable/btn_free_shape"
                 android:clickable="false"
                 android:fontFamily="@font/montserrat_extrabold"
-                android:text="@string/free_btn" />
+                android:text="@string/map_btn" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/activeVolunteers"
@@ -121,10 +48,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/btn_active_shape"
+                android:background="@drawable/btn_active_shape_on"
                 android:clickable="true"
                 android:fontFamily="@font/montserrat_extrabold"
-                android:text="@string/active_btn" />
+                android:text="@string/list_btn" />
         </LinearLayout>
 
         <android.widget.SearchView
@@ -156,7 +83,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            app:srcCompat="@drawable/volunteers_active" />
+            app:srcCompat="@drawable/volunteers" />
 
         <ImageButton
             android:id="@+id/menuHome"
@@ -165,7 +92,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            app:srcCompat="@drawable/main" />
+            app:srcCompat="@drawable/main_active" />
 
         <ImageButton
             android:id="@+id/menuProfile"
@@ -177,4 +104,5 @@
             android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/profile" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

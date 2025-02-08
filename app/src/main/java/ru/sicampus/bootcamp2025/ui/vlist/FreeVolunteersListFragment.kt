@@ -27,7 +27,6 @@ class FreeVolunteersListFragment : Fragment(R.layout.fragment_free_volunteers_li
             when(state) {
                 is FreeVolunteersListViewModel.State.Loading -> Unit
                 is FreeVolunteersListViewModel.State.Show -> {
-                    println("Items received: ${state.items.size}")
                     adapter.submitList(state.items.toList())
                 }
                 is FreeVolunteersListViewModel.State.Error -> {
