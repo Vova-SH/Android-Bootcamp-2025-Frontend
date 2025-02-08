@@ -21,4 +21,6 @@
     <string name="name"> Ваше имя </string>
     <string name="volunteer_center_user">Your volunteer center</string>
     <string name="detach_department"> Открепится от своего волонтерского центра </string>
+    <string name="Attached__the_center">Прикрепится к центру</string>
+
 </resources>

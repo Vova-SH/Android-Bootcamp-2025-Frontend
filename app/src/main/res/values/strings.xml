@@ -21,4 +21,5 @@
     <string name="name"> Name </string>
     <string name="volunteer_center_user">Your volunteer center</string>
     <string name="detach_department"> Detach from department </string>
+    <string name="Attached__the_center">Attached to the center</string>
 </resources>
