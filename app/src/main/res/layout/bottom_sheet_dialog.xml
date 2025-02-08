@@ -29,6 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:drawableStart="@drawable/placeholder_icon"
+        android:drawablePadding="8dp"
+
         android:text="Адрес"
         android:textSize="20sp" />
     <TextView
@@ -38,6 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Информация"
+        android:drawableStart="@drawable/free_icon_inofo_13054421"
+        android:drawablePadding="8dp"
         android:textSize="20sp" />
     <Button
 
@@ -45,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Animation.Design.BottomSheetDialog"
-        android:text="Прикрепится"/>
+        android:text="@string/Attached__the_center"/>
 
 
 
