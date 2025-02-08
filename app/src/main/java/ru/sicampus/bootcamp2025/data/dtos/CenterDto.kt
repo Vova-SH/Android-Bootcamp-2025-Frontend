@@ -5,6 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CenterDto(
+    @SerialName("id")
+    val id: Int?,
     @SerialName("name")
     val name: String?,
     @SerialName("address")
@@ -17,6 +19,6 @@ data class CenterDto(
     val longitude: Double?,
     @SerialName("tag")
     val tag: String?,
-    @SerialName("imageUrl")
-    val imageUrl: String?
+    @SerialName("image_url")
+    val imageUrl: String?,
 )
