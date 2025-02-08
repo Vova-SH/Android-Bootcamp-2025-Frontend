@@ -33,13 +33,15 @@
 
             <ImageView
                 android:id="@+id/avatar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="450px"
+                android:layout_height="450px"
+                android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:src="@drawable/icon_profile_login"
                 app:layout_collapseMode="parallax" />
 
             <com.google.android.material.appbar.MaterialToolbar
+                android:layout_margin="3dp"
                 android:id="@+id/mtb_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,10 +105,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:background="#F0FFF0"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+
+
                 android:gravity="center"
                 android:text="@string/phone"
-
                 android:textColor="@color/grey"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="#FFF0F5	"
+
                 android:textSize="14sp"
                 android:text="+*(**)**-**-**"
                 android:textColor="@color/black"
@@ -204,6 +208,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:padding="16dp"
                 android:text="@string/detach_department"
                 android:textColor="@android:color/white"
