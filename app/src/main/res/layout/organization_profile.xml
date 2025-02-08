@@ -127,7 +127,7 @@
         </FrameLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/log_in_btn"
+            android:id="@+id/log_in_btn1"
             android:layout_width="350dp"
             android:layout_height="48dp"
             android:background="@drawable/btn_style"

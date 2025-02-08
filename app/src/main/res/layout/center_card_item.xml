@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card"
+<FrameLayout android:id="@+id/card"
     android:layout_width="288dp"
     android:layout_height="94dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,19 +11,18 @@
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
         android:elevation="10sp"
-        android:text="@string/volunteer_name"
+        android:text="@string/org_name"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-
         android:id="@+id/discription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
         android:layout_marginTop="50sp"
         android:elevation="10sp"
-        android:text="@string/short_bio"
+        android:text="@string/org_adress"
         android:textSize="14sp" />
 
     <ImageButton
@@ -33,10 +31,9 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="35dp"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/cancel"
         android:elevation="9dp"
-        android:src="@drawable/back_ic"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:layout_gravity="end"
+        android:src="@drawable/back_ic" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/PersonInfo"

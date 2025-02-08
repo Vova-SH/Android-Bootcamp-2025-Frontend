@@ -9,22 +9,28 @@
     <FrameLayout
         android:id="@+id/error"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <TextView
             android:id="@+id/errorText"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="27dp"
             android:text="TextView" />
     </FrameLayout>
 
-    <ImageView
+    <Button
         android:id="@+id/refresh"
-        android:layout_gravity="right|top"
-        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/refresh_ic" />
+        android:text="@string/refresh"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_style1"
+        app:backgroundTint="@null"
+        android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="300sp"
@@ -43,17 +49,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sign_up">
+
         <TextView
+            android:id="@+id/toCenterList"
             android:layout_width="wrap_content"
-            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="100dp"
+            android:layout_marginBottom="8sp"
             android:fontFamily="@font/my_font_medium"
+            android:gravity="center"
             android:text="@string/to_first_list"
             android:textColor="@color/green"
-            android:textSize="18sp"
-            android:layout_marginBottom="8sp"/>
+            android:textSize="18sp" />
         <View
             android:layout_gravity="bottom|center"
             android:layout_margin="11sp"
@@ -71,333 +79,12 @@
         android:src="@drawable/ellipse_10"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"
-        android:layout_height="430dp"
-        tools:listitem="@layout/volunteer_card" />
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="430dp"
-        android:layout_marginTop="50dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:layout_gravity="center"
-        android:visibility="gone">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/org"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:elevation="10sp"
-                    android:layout_margin="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/short_bio"
-                    android:elevation="10sp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:textSize="14sp" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/back_ic"
-                    android:layout_marginTop="48dp"
-                    android:layout_marginRight="48dp"
-                    android:layout_gravity="end"
-                    android:elevation="48dp"
-                    android:contentDescription="@string/bio_hint"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="285dp"
-                    android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/menu" />
-
-                </androidx.cardview.widget.CardView>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:elevation="10sp"
-                    android:layout_margin="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/short_bio"
-                    android:elevation="10sp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:textSize="14sp" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/back_ic"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_gravity="end"
-                    android:elevation="9dp"
-                    android:contentDescription="@string/active_volunteer_list_header"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="285dp"
-                    android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/menu" />
-
-                </androidx.cardview.widget.CardView>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:elevation="10sp"
-                    android:layout_margin="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/short_bio"
-                    android:elevation="10sp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:textSize="14sp" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/back_ic"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_gravity="end"
-                    android:elevation="9dp"
-                    android:contentDescription="@string/cancel"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="285dp"
-                    android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/menu" />
-
-                </androidx.cardview.widget.CardView>
-
-            </FrameLayout>
-
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:elevation="10sp"
-                    android:layout_margin="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/short_bio"
-                    android:elevation="10sp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:textSize="14sp" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/back_ic"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_gravity="end"
-                    android:elevation="9dp"
-                    android:contentDescription="@string/bio_hint"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="285dp"
-                    android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/menu" />
-
-                </androidx.cardview.widget.CardView>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:elevation="10sp"
-                    android:layout_margin="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/short_bio"
-                    android:elevation="10sp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:textSize="14sp" />
-
-                <ImageButton
-                    android:id="@+id/forward"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/back_ic"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_gravity="end"
-                    android:elevation="9dp"
-                    android:contentDescription="@string/bio_hint"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="285dp"
-                    android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/menu" />
-
-                </androidx.cardview.widget.CardView>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/volunteer_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:elevation="10sp"
-                    android:layout_margin="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/short_bio"
-                    android:elevation="10sp"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="50sp"
-                    android:textSize="14sp" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/back_ic"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_gravity="end"
-                    android:elevation="9dp"
-                    android:contentDescription="@string/cancel"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="285dp"
-                    android:layout_height="85dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/menu" />
-
-                </androidx.cardview.widget.CardView>
-
-            </FrameLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
+    android:id="@+id/content"
+    android:layout_width="wrap_content"
+    android:layout_marginTop="50dp"
+    android:layout_gravity="center"
+    android:layout_height="430dp"
+    tools:listitem="@layout/user_card_item" />
 
     <FrameLayout
         android:id="@+id/menu"

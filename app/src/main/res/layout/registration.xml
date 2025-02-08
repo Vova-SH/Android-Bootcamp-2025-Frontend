@@ -146,18 +146,19 @@
             android:layout_marginTop="5sp"
             android:layout_marginBottom="30sp"/>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
+            android:id="@+id/log_in_btn"
             android:layout_width="match_parent"
-            android:layout_height="32sp"
-            app:backgroundTint="@color/coral"
-            app:cornerRadius="8dp"
-            android:background="@drawable/btn_style"
+            android:layout_height="32dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_style"
+            android:fontFamily="@font/my_font_regular"
+            android:padding="0dp"
             android:text="@string/sign_up"
             android:textSize="16sp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/my_font_regular"
-            android:padding="0sp"/>
+            android:visibility="visible"
+            app:backgroundTint="@null" />
 
     </LinearLayout>
 

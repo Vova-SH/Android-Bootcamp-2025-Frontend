@@ -48,9 +48,13 @@
     <string name="to_first_list">К списку центров</string>
     <string name="active_volunteer_list_header">Активные волонтеры</string>
     <string name="sign_in">Sign in\n\n</string>
-    <string name="hello">Hello!\n</string>
+    <string name="Привет">Привет!\n</string>
     <string name="list">Список волонтёров\n</string>
     <string name="next">Next\n</string>
     <string name="re">123\n</string>
+    <string name="gier">gier</string>
+    <string name="login">Войти</string>
+    <string name="refresh">Обновить страницу</string>
+    <string name="org_adress">ул. Пушкина, 39к2</string>
 
 </resources>

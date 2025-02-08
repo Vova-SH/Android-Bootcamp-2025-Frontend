@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card"
+<FrameLayout android:id="@+id/card"
     android:layout_width="288dp"
     android:layout_height="94dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,10 +32,9 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="35dp"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/cancel"
         android:elevation="9dp"
-        android:src="@drawable/back_ic"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:layout_gravity="end"
+        android:src="@drawable/back_ic" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/PersonInfo"
