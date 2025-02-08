@@ -12,11 +12,13 @@
     <string name="hello">👇Hello, please login!👇</string>
     <string name="button">Go -></string>
     <string name="start">👇Hello, please login!👇</string>
-    <string name="email">✉ Email ✉</string>
+    <string name="email"> Email </string>
     <string name="infouser">ℹ Your information ℹ</string>
-    <string name="phone">📱 Phone 📱</string>
+    <string name="phone"> Phone </string>
     <string name="SaveChanges">✅ Save Changes ✅</string>
     <string name="EditProfile"> ✍ Edit my profile ✍</string>
     <string name="INFO_user">Additional Information</string>
     <string name="name"> Your name </string>
+    <string name="volunteer_center_user">Your volunteer center</string>
+    <string name="detach_department"> Detach from department </string>
 </resources>
