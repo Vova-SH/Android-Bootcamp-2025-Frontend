@@ -3,10 +3,12 @@ package ru.sicampus.bootcamp2025.data;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 import ru.sicampus.bootcamp2025.data.dto.AccountDto;
+import ru.sicampus.bootcamp2025.data.dto.UserDto;
 import ru.sicampus.bootcamp2025.data.network.RetrofitFactory;
 import ru.sicampus.bootcamp2025.data.source.CredentialsDataSource;
 import ru.sicampus.bootcamp2025.data.source.UserApi;
@@ -37,8 +39,20 @@ public class UserRepositoryImpl implements UserRepository, SignUserRepository {
     }
 
     @Override
-    public void getUnoccupiedUsers(@NonNull Consumer<Status<List<ItemUserEntity>>> callback) {
-
+    public void getInactiveUsers(@NonNull Consumer<Status<List<ItemUserEntity>>> callback) {
+        userApi.getInactive().enqueue(new CallToConsumer<>(
+                callback,
+                users -> {
+                    ArrayList<ItemUserEntity> result = new ArrayList<>(users.size());
+                    for (UserDto user : users) {
+                        ItemUserEntity entity = UserMapper.toItemUserEntity(user);
+                        if (entity != null) {
+                            result.add(entity);
+                        }
+                    }
+                    return result;
+                }
+        ));
     }
 
     @Override
@@ -51,7 +65,19 @@ public class UserRepositoryImpl implements UserRepository, SignUserRepository {
 
     @Override
     public void getActiveUsers(@NonNull Consumer<Status<List<ItemUserEntity>>> callback) {
-
+        userApi.getActive().enqueue(new CallToConsumer<>(
+                callback,
+                users -> {
+                    ArrayList<ItemUserEntity> result = new ArrayList<>(users.size());
+                    for (UserDto user : users) {
+                        ItemUserEntity entity = UserMapper.toItemUserEntity(user);
+                        if (entity != null) {
+                            result.add(entity);
+                        }
+                    }
+                    return result;
+                }
+        ));
     }
 
     @Override
@@ -60,10 +86,15 @@ public class UserRepositoryImpl implements UserRepository, SignUserRepository {
             @NonNull String name,
             @NonNull String nickname,
             @NonNull String email,
-            @Nullable String phone,
             @Nullable String photoUrl,
             @NonNull Consumer<Status<FullUserEntity>> callback) {
-        userApi.update(id, new Container(name, nickname, email, phone, photoUrl)).enqueue(new CallToConsumer<>(
+        userApi.update(id,
+                new Container(
+                name,
+                nickname,
+                email,
+                photoUrl
+        )).enqueue(new CallToConsumer<>(
                 callback,
                 UserMapper::toFullUserEntity
         ));
@@ -78,6 +109,40 @@ public class UserRepositoryImpl implements UserRepository, SignUserRepository {
     }
 
     @Override
+    public void getActiveUsersInCenter(@NonNull String centerId, @NonNull Consumer<Status<List<ItemUserEntity>>> callback) {
+        userApi.getActiveUsersInCenter(centerId).enqueue(new CallToConsumer<>(
+                callback,
+                userList -> {
+                    ArrayList<ItemUserEntity> result = new ArrayList<>(userList.size());
+                    for (UserDto user : userList) {
+                        ItemUserEntity entity = UserMapper.toItemUserEntity(user);
+                        if (entity != null) {
+                            result.add(entity);
+                        }
+                    }
+                    return result;
+                }
+        ));
+    }
+
+    @Override
+    public void getAll(@NonNull Consumer<Status<List<ItemUserEntity>>> callback) {
+        userApi.getAll().enqueue(new CallToConsumer<>(
+                callback,
+                userItems -> {
+                    ArrayList<ItemUserEntity> result = new ArrayList<>(userItems.size());
+                    for (UserDto user : userItems) {
+                        ItemUserEntity entity = UserMapper.toItemUserEntity(user);
+                        if (entity != null) {
+                            result.add(entity);
+                        }
+                    }
+                    return result;
+                }
+        ));
+    }
+
+    @Override
     public void isExistUser(@NonNull String login, Consumer<Status<Void>> callback) {
         userApi.isExist(login).enqueue(new CallToConsumer<>(
                 callback,
@@ -86,7 +151,13 @@ public class UserRepositoryImpl implements UserRepository, SignUserRepository {
     }
 
     @Override
-    public void createAccount(@NonNull String login, @NonNull String name, @NonNull String email, @NonNull String password, Consumer<Status<Void>> callback) {
+    public void createAccount(
+            @NonNull String login,
+            @NonNull String name,
+            @NonNull String email,
+            @NonNull String password,
+            Consumer<Status<Void>> callback
+    ) {
         userApi.register(new AccountDto(
                 name,
                 login,

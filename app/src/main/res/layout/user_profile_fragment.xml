@@ -18,6 +18,31 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/lorem/random" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/edit_image"
         android:layout_width="50dp"
@@ -65,6 +90,7 @@
             android:src="@drawable/ic_edit"
             app:layout_constraintStart_toEndOf="@id/personal_info"
             app:layout_constraintTop_toTopOf="@id/container" />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name"
@@ -115,12 +141,14 @@
             android:id="@+id/email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
             android:enabled="false"
             android:hint="@string/user_email_hint"
             app:boxStrokeColor="@color/gray"
             app:boxStrokeWidth="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/container"
             app:layout_constraintStart_toStartOf="@id/container"
             app:layout_constraintTop_toBottomOf="@id/nickname">
 
@@ -130,29 +158,6 @@
                 android:background="@color/white"
                 android:inputType="textEmailAddress"
                 android:text="@string/user_email"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:enabled="false"
-            android:hint="@string/phone"
-            app:boxStrokeColor="@color/gray"
-            app:boxStrokeWidth="0dp"
-            app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toBottomOf="@id/email">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:inputType="textEmailAddress"
-                android:text="@tools:sample/us_phones"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -170,7 +175,7 @@
             app:layout_constraintBottom_toBottomOf="@id/container"
             app:layout_constraintEnd_toEndOf="@id/container"
             app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toBottomOf="@id/phone" />
+            app:layout_constraintTop_toBottomOf="@id/email" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -178,12 +183,12 @@
         android:id="@+id/log_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="75dp"
         android:clickable="true"
         android:focusable="true"
         android:text="@string/log_out"
         android:textColor="@color/main_color"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/container" />
@@ -197,7 +202,7 @@
         android:focusable="true"
         android:text="@string/delete_account"
         android:textColor="@color/red"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/log_out" />

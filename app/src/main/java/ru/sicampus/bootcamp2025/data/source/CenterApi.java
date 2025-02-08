@@ -14,10 +14,4 @@ public interface CenterApi {
 
     @GET("/api/center/{id}")
     Call<CenterDto> getById(@Path("id") String id);
-
-     /* @PUT("/api/center/user/{centerId}/{userId}")
-    Call<UserDto> addVolunteer(@Path("centerId") String centerId, @Path("userId") String userId);
-
-    @PUT("/api/center/user/delete/{centerId}/{userId}")
-    Call<CenterDto> deleteCenter(@Path("centerId") String centerId, @Path("userId") String userId); */
 }

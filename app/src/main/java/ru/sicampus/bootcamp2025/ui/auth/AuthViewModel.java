@@ -15,8 +15,8 @@ public class AuthViewModel extends ViewModel {
     private final MutableLiveData<String> mutableErrorLiveData = new MutableLiveData<>();
     public final LiveData<String> errorLiveData = mutableErrorLiveData;
 
-    private final MutableLiveData<Void> mutableOpenCentersListLiveData = new MutableLiveData<>();
-    public final LiveData<Void> openCentersListLiveData = mutableOpenCentersListLiveData;
+    private final MutableLiveData<Void> mutableOpenUserProfileLiveData = new MutableLiveData<>();
+    public final LiveData<Void> openUserProfileLiveData = mutableOpenUserProfileLiveData;
 
     private final MutableLiveData<Void> mutableOpenSignLiveData = new MutableLiveData<>();
     public final LiveData<Void> openSignLiveData = mutableOpenSignLiveData;
@@ -32,7 +32,7 @@ public class AuthViewModel extends ViewModel {
     /* UseCases */
 
     @Nullable
-    private String email = null;
+    private String nickname = null;
 
     @Nullable
     private String password = null;
@@ -43,11 +43,11 @@ public class AuthViewModel extends ViewModel {
     }
 
     public void changeLogin(@NonNull String email) {
-        this.email = email;
+        this.nickname = email;
     }
 
     public void authenticateUser() {
-        final String currentLogin = email;
+        final String currentLogin = nickname;
         final String currentPassword = password;
 
         if (currentLogin == null || currentLogin.isEmpty()) {
@@ -75,7 +75,7 @@ public class AuthViewModel extends ViewModel {
     private void loginUser(@NonNull final String currentLogin, @NonNull final String currentPassword) {
         loginUserUseCase.execute(currentLogin, currentPassword, status -> {
             if (status.getStatusCode() == 200 && status.getErrors() == null) {
-                mutableOpenCentersListLiveData.postValue(null);
+                mutableOpenUserProfileLiveData.postValue(null);
             } else {
                 mutableErrorLiveData.postValue("Something wrong");
             }

@@ -21,29 +21,13 @@ public class VolunteerProfileViewModel extends ViewModel {
     );
 
     public void load(@NonNull String id) {
-
         mutableStateLiveData.setValue(new State(null, null, true));
-
         getUserByIdUseCase.execute(id, (status) -> {
-            if (status.getErrors() != null) {
-                mutableStateLiveData.postValue(new State(
-                        status.getErrors().getLocalizedMessage(),
-                        null,
-                        false
-                ));
-            } else if (status.getValue() != null) {
-                mutableStateLiveData.postValue(new State(
-                        null,
-                        status.getValue(),
-                        false
-                ));
-            } else {
-                mutableStateLiveData.postValue(new State(
-                        "User data is not available",
-                        null,
-                        false
-                ));
-            }
+            mutableStateLiveData.postValue(new State(
+                    status.getErrors() != null ? status.getErrors().getLocalizedMessage() : null,
+                    status.getValue(),
+                    false
+            ));
         });
     }
 

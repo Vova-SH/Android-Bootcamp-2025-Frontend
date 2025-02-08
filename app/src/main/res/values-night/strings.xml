@@ -49,4 +49,6 @@
     <string name="hint_create_nickname">Придумайте ник...</string>
     <string name="nickname">nickname</string>
     <string name="nickname_hint">Ник</string>
+    <string name="enter_nickname_hint">Введите ник...</string>
+    <string name="title_nickname">Введите ник:</string>
 </resources>

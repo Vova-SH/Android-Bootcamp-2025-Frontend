@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel;
 import ru.sicampus.bootcamp2025.data.UserRepositoryImpl;
 import ru.sicampus.bootcamp2025.domain.sign.CreateUserUseCase;
 import ru.sicampus.bootcamp2025.domain.sign.IsUserExistUseCase;
-import ru.sicampus.bootcamp2025.domain.sign.LoginUserUseCase;
 
 public class RegistrationViewModel extends ViewModel {
 
@@ -28,9 +27,6 @@ public class RegistrationViewModel extends ViewModel {
             UserRepositoryImpl.getInstance()
     );
 
-    private final LoginUserUseCase loginUserUseCase = new LoginUserUseCase(
-            UserRepositoryImpl.getInstance()
-    );
     /* UseCases */
 
     @Nullable
@@ -45,8 +41,8 @@ public class RegistrationViewModel extends ViewModel {
     @Nullable
     private String nickname = null;
 
-    public void changeLogin(@NonNull String email) {
-        this.email = email;
+    public void changeLogin(@NonNull String nickname) {
+        this.nickname = nickname;
     }
 
     public void changePassword(@NonNull String password) {
@@ -57,22 +53,22 @@ public class RegistrationViewModel extends ViewModel {
         this.name = name;
     }
 
-    public void changeNickname(@NonNull String nickname) {
-        this.nickname = nickname;
+    public void changeEmail(@NonNull String email) {
+        this.email = email;
     }
 
     public void authenticateUser() {
 
-        final String currentLogin = email;
+        final String currentLogin = nickname;
 
         final String currentPassword = password;
 
         final String currentName = name;
 
-        final String currentNickname = nickname;
+        final String currentEmail = email;
 
         if (currentLogin == null || currentLogin.isEmpty()) {
-            mutableErrorLiveData.postValue("Email cannot be null");
+            mutableErrorLiveData.postValue("Nickname cannot be null");
             return;
         }
         if (currentPassword == null || currentPassword.isEmpty()) {
@@ -88,19 +84,19 @@ public class RegistrationViewModel extends ViewModel {
             if (status.getValue()) {
                 mutableErrorLiveData.postValue("User already exists. Please authenticate.");
             } else {
-                createAccount(currentLogin, currentName, currentNickname, currentPassword);
+                createAccount(currentLogin, currentName, currentEmail, currentPassword);
             }
         });
     }
 
     private void createAccount(String currentLogin,
                                String currentName,
-                               String currentNickname,
+                               String currentEmail,
                                String currentPassword) {
         createUserUseCase.execute(
                 currentLogin,
                 currentName,
-                currentNickname,
+                currentEmail,
                 currentPassword,
                 status -> {
             if (status.getStatusCode() == 201 && status.getErrors() == null) {

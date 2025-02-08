@@ -15,18 +15,25 @@ public class UserDto {
     public String name;
 
     @Nullable
-    @SerializedName("nickname")
+    @SerializedName("username")
     public String nickname;
 
     @Nullable
-    @SerializedName("email")
+    @SerializedName("mail")
     public String email;
-
-    @Nullable
-    @SerializedName("phone")
-    public String phone;
 
     @Nullable
     @SerializedName("photo_url")
     public String photoUrl;
+
+    @SerializedName("active")
+    public boolean isActive;
+
+    @Nullable
+    @SerializedName("center_id")
+    public String centerId;
+
+    @Nullable
+    @SerializedName("center_name")
+    public String centerName;
 }

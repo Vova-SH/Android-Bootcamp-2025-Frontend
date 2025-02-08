@@ -35,9 +35,9 @@ public class CenterRepositoryImpl implements CenterRepository {
     public void getAllCenters(@NonNull Consumer<Status<List<ItemCenterEntity>>> callback) {
         centerApi.getAll().enqueue(new CallToConsumer<>(
                 callback,
-                centerDtos -> {
-                    ArrayList<ItemCenterEntity> result = new ArrayList<>(centerDtos.size());
-                    for (CenterDto center : centerDtos) {
+                centers -> {
+                    ArrayList<ItemCenterEntity> result = new ArrayList<>(centers.size());
+                    for (CenterDto center : centers) {
                         ItemCenterEntity entity = CenterMapper.toItemCenterEntity(center);
                         if (entity != null) {
                             result.add(entity);

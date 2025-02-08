@@ -21,9 +21,8 @@ public class UpdateUserProfileUseCase {
             @NonNull String name,
             @NonNull String nickname,
             @NonNull String email,
-            @Nullable String phone,
             @Nullable String photoUrl,
             @NonNull Consumer<Status<FullUserEntity>> callback) {
-        repo.updateUser(id, name, nickname, email, phone, photoUrl, callback);
+        repo.updateUser(id, name, nickname, email, photoUrl, callback);
     }
 }

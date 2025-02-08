@@ -15,7 +15,7 @@ public class CenterDto {
     public String id;
 
     @Nullable
-    @SerializedName("centre_name")
+    @SerializedName("title")
     public String centreName;
 
     @Nullable
@@ -23,10 +23,6 @@ public class CenterDto {
     public String address;
 
     @Nullable
-    @SerializedName("phone")
+    @SerializedName("contacts")
     public String phone;
-
-    @Nullable
-    @SerializedName("active_volunteers")
-    public List<ItemUserEntity> activeVolunteers;
 }

@@ -30,7 +30,7 @@ public class AuthFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         binding = AuthenticationFragmentBinding.bind(view);
         viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
-        binding.etEmail.addTextChangedListener(new OnChangeText() {
+        binding.etNickname.addTextChangedListener(new OnChangeText() {
             @Override
             public void afterTextChanged(Editable editable) {
                 super.afterTextChanged(editable);
@@ -44,6 +44,7 @@ public class AuthFragment extends Fragment {
                 viewModel.changePassword(editable.toString());
             }
         });
+        binding.btnLogin.setOnClickListener(v -> viewModel.authenticateUser());
         binding.tvHint.setOnClickListener(v -> openRegistration());
         subscribe(viewModel);
     }
@@ -55,23 +56,24 @@ public class AuthFragment extends Fragment {
         viewModel.openSignLiveData.observe(getViewLifecycleOwner(), unused ->
                 openRegistration()
         );
-        viewModel.openCentersListLiveData.observe(getViewLifecycleOwner(), unused -> {
-            openCentersList();
-        });
+        viewModel.openUserProfileLiveData.observe(getViewLifecycleOwner(),
+                unused -> openUserProfileList());
     }
 
     private void openRegistration() {
         final View view = getView();
         if (view != null) {
-            Navigation.findNavController(view).navigate(R.id.action_registrationFragment_to_authFragment);
+            Navigation.findNavController(view).navigate(
+                    R.id.action_registrationFragment_to_authFragment);
 
         }
     }
 
-    private void openCentersList() {
+    private void openUserProfileList() {
         final View view = getView();
         if (view != null) {
-            Navigation.findNavController(view).navigate(R.id.action_authFragment_to_centersList);
+            Navigation.findNavController(view).navigate(
+                    R.id.action_authFragment_to_userProfileFragment);
         }
     }
 

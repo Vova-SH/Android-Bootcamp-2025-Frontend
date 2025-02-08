@@ -30,7 +30,7 @@ public class RegistrationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         binding = RegistrationFragmentBinding.bind(view);
         viewModel = new ViewModelProvider(this).get(RegistrationViewModel.class);
-        binding.etEmail.addTextChangedListener(new OnChangeText() {
+        binding.etNickname.addTextChangedListener(new OnChangeText() {
             @Override
             public void afterTextChanged(Editable editable) {
                 super.afterTextChanged(editable);
@@ -51,11 +51,11 @@ public class RegistrationFragment extends Fragment {
                 viewModel.changeName(editable.toString());
             }
         });
-        binding.etNickname.addTextChangedListener(new OnChangeText() {
+        binding.etEmail.addTextChangedListener(new OnChangeText() {
             @Override
             public void afterTextChanged(Editable editable) {
                 super.afterTextChanged(editable);
-                viewModel.changeNickname(editable.toString());
+                viewModel.changeEmail(editable.toString());
             }
         });
         subscribe(viewModel);
@@ -64,9 +64,8 @@ public class RegistrationFragment extends Fragment {
     }
 
     private void subscribe(RegistrationViewModel viewModel) {
-        viewModel.errorLiveData.observe(getViewLifecycleOwner(), error -> {
-            Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-        });
+        viewModel.errorLiveData.observe(getViewLifecycleOwner(), error ->
+                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show());
         viewModel.openAuthLiveData.observe(getViewLifecycleOwner(), unused ->
                 openAuth()
         );

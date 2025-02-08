@@ -8,13 +8,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import ru.sicampus.bootcamp2025.databinding.ItemVolunteerCenterBinding;
 import ru.sicampus.bootcamp2025.domain.entities.ItemCenterEntity;
+import ru.sicampus.bootcamp2025.domain.entities.ItemUserEntity;
 
 public class CentersListAdapter extends RecyclerView.Adapter<CentersListAdapter.ViewHolder> {
 
     private final List<ItemCenterEntity> data = new ArrayList<>();
+
+    @NonNull
+    private final Consumer<String> onItemClick;
+
+    public CentersListAdapter(@NonNull Consumer<String> onItemClick) {
+        this.onItemClick = onItemClick;
+    }
 
     @NonNull
     @Override
@@ -56,6 +65,9 @@ public class CentersListAdapter extends RecyclerView.Adapter<CentersListAdapter.
         public void bind(ItemCenterEntity item) {
             binding.centerName.setText(item.getCentre_name());
             binding.address.setText(item.getAddress());
+            binding.getRoot().setOnClickListener(v -> {
+                onItemClick.accept(item.getId());
+            });
         }
     }
 }

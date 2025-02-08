@@ -1,4 +1,4 @@
-package ru.sicampus.bootcamp2025.ui.unoccupied_volunteers_list;
+package ru.sicampus.bootcamp2025.ui.center;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -10,18 +10,26 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import ru.sicampus.bootcamp2025.databinding.ItemVolunteerBinding;
 import ru.sicampus.bootcamp2025.domain.entities.ItemUserEntity;
 
-public class UnoccupiedVolunteersListAdapter extends RecyclerView.Adapter<UnoccupiedVolunteersListAdapter.ViewHolder> {
+public class CenterAdapter extends RecyclerView.Adapter<CenterAdapter.ViewHolder> {
 
     private final List<ItemUserEntity> data = new ArrayList<>();
 
     @NonNull
+    private final Consumer<String> onItemClick;
+
+    public CenterAdapter(@NonNull Consumer<String> onItemClick) {
+        this.onItemClick = onItemClick;
+    }
+
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new UnoccupiedVolunteersListAdapter.ViewHolder(
+        return new CenterAdapter.ViewHolder(
                 ItemVolunteerBinding.inflate(
                         LayoutInflater.from(parent.getContext()),
                         parent,
@@ -61,6 +69,10 @@ public class UnoccupiedVolunteersListAdapter extends RecyclerView.Adapter<Unoccu
             if (item.getPhotoUrl() != null) {
                 Picasso.get().load(item.getPhotoUrl()).into(binding.photo);
             }
+            binding.getRoot().setOnClickListener(v -> {
+                onItemClick.accept(item.getId());
+            });
         }
+
     }
 }

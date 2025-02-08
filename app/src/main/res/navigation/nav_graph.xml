@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/registrationFragment">
+    app:startDestination="@id/authFragment">
 
     <fragment
         android:id="@+id/registrationFragment"
@@ -14,18 +14,75 @@
             android:id="@+id/action_registrationFragment_to_authFragment"
             app:destination="@id/authFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/authFragment"
         android:name="ru.sicampus.bootcamp2025.ui.auth.AuthFragment"
         android:label="Authentication"
-        tools:layout="@layout/authentication_fragment" >
+        tools:layout="@layout/authentication_fragment">
         <action
-            android:id="@+id/action_authFragment_to_centersList"
-            app:destination="@id/centersList" />
+            android:id="@+id/action_authFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/centersList"
         android:name="ru.sicampus.bootcamp2025.ui.centers_list.CentersListFragment"
         android:label="CentersList"
-        tools:layout="@layout/volunteer_centres_list_fragment"/>
+        tools:layout="@layout/volunteer_centres_list_fragment">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_centersList_to_centerFragment"
+            app:destination="@id/centerFragment" />
+        <action
+            android:id="@+id/action_centersList_to_inactiveVolunteersList"
+            app:destination="@id/inactiveVolunteersList" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/inactiveVolunteersList"
+        android:name="ru.sicampus.bootcamp2025.ui.inactive_volunteers_list.InactiveVolunteersListFragment"
+        android:label="InactiveVolunteersList"
+        tools:layout="@layout/inactive_volunteers_list_fragment">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_inactiveVolunteersList_to_volunteerProfile"
+            app:destination="@id/volunteerProfile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/volunteerProfile"
+        android:name="ru.sicampus.bootcamp2025.ui.volunteer_profile.VolunteerProfileFragment"
+        android:label="VolunteerProfile"
+        tools:layout="@layout/volunteer_profile_fragment">
+
+        <action
+            android:id="@+id/action_volunteerProfile_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.user_profile.UserProfileFragment"
+        android:label="UserProfileFragment"
+        tools:layout="@layout/user_profile_fragment" />
+    <fragment
+        android:id="@+id/centerFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.center.CenterFragment"
+        android:label="CenterFragment"
+        tools:layout="@layout/volunteer_center_fragment">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_centerFragment_to_volunteerProfile"
+            app:destination="@id/volunteerProfile" />
+    </fragment>
 </navigation>

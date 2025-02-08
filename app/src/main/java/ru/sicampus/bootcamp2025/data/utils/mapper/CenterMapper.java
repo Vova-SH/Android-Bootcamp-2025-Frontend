@@ -34,8 +34,7 @@ public class CenterMapper {
                     id,
                     centerName,
                     address,
-                    phone,
-                    centerDto.activeVolunteers
+                    phone
             );
         }
         return null;

@@ -22,7 +22,12 @@ public class AccountDto {
     @SerializedName("password")
     public  String password;
 
-    public AccountDto(@Nullable String name, @Nullable String nickname, @Nullable String email, @Nullable String password) {
+    public AccountDto(
+            @Nullable String name,
+            @Nullable String nickname,
+            @Nullable String email,
+            @Nullable String password
+    ) {
         this.name = name;
         this.nickname = nickname;
         this.email = email;

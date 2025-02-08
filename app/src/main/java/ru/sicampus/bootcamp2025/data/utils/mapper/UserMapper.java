@@ -20,8 +20,10 @@ public class UserMapper {
                     id,
                     name,
                     email,
-                    userDto.photoUrl
-                    );
+                    userDto.photoUrl,
+                    userDto.isActive,
+                    userDto.centerId
+            );
         }
         return null;
     }
@@ -40,10 +42,13 @@ public class UserMapper {
                     name,
                     nickname,
                     email,
-                    userDto.phone,
-                    userDto.photoUrl
+                    userDto.photoUrl,
+                    userDto.isActive,
+                    userDto.centerId,
+                    userDto.centerName
             );
         }
         return null;
     }
+
 }

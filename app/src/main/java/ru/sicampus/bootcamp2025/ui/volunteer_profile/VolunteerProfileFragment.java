@@ -32,80 +32,42 @@ public class VolunteerProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         binding = VolunteerProfileFragmentBinding.bind(view);
         viewModel = new ViewModelProvider(this).get(VolunteerProfileViewModel.class);
-
-        viewModel.stateLiveData.observe(getViewLifecycleOwner(), state -> {
-            if (state.isLoading()) {
-                showLoading();
-            } else if (state.getErrorMessage() != null) {
-                showError(state.getErrorMessage());
-            } else {
-                final FullUserEntity entity = state.getUser();
-                if (entity == null) {
-                    showError("User data is not available");
-                } else {
-                    showUserData(entity);
-                }
-            }
-        });
+        subscribe(viewModel);
         String id = getArguments() != null ? getArguments().getString(KEY_ID) : null;
         if (id == null) throw new IllegalStateException("ID is null");
         viewModel.load(id);
-        binding.arrowBack.setOnClickListener(v -> {
-            goBack();
+    }
+
+    private void subscribe(final VolunteerProfileViewModel viewModel) {
+        viewModel.stateLiveData.observe(getViewLifecycleOwner(), state -> {
+            final FullUserEntity entity = state.getUser();
+            boolean isSuccess = !state.isLoading()
+                    && state.getErrorMessage() == null
+                    && state.getUser() != null;
+            binding.error.setVisibility(Utils.visibleOrGone(state.getErrorMessage() != null));
+            binding.error.setText(state.getErrorMessage());
+            binding.loading.setVisibility(Utils.visibleOrGone(state.isLoading()));
+
+            binding.container.setVisibility(Utils.visibleOrGone(isSuccess));
+            binding.image.setVisibility(Utils.visibleOrGone(isSuccess));
+            binding.name.setVisibility(Utils.visibleOrGone(isSuccess));
+            binding.nickname.setVisibility(Utils.visibleOrGone(isSuccess));
+            binding.email.setVisibility(Utils.visibleOrGone(isSuccess));
+            binding.name.setVisibility(Utils.visibleOrGone(isSuccess));
+            binding.volunteerTitle.setVisibility(Utils.visibleOrGone(isSuccess));
+
+            if (isSuccess) {
+                binding.name.setText(entity.getName());
+                binding.nickname.setText(entity.getNickname());
+                binding.email.setText(entity.getEmail());
+                if (entity.getPhotoUrl() != null) {
+                    Picasso.get().load(entity.getPhotoUrl()).into(binding.image);
+                }
+                binding.image.setVisibility(Utils.visibleOrGone(entity.getPhotoUrl() != null));
+            }
+
         });
-    }
 
-    private void goBack() {
-        //TODO: implement it
-    }
-
-    private void showLoading() {
-        binding.loading.setVisibility(View.VISIBLE);
-        binding.error.setVisibility(View.GONE);
-        binding.container.setVisibility(View.GONE);
-        binding.image.setVisibility(View.GONE);
-        binding.name.setVisibility(View.GONE);
-        binding.nickname.setVisibility(View.GONE);
-        binding.email.setVisibility(View.GONE);
-        binding.name.setVisibility(View.GONE);
-        binding.volunteerTitle.setVisibility(View.GONE);
-        binding.phone.setVisibility(View.GONE);
-        binding.arrowBack.setVisibility(View.VISIBLE);
-    }
-
-    private void showError(String errorMessage) {
-        binding.loading.setVisibility(View.GONE);
-        binding.error.setVisibility(View.VISIBLE);
-        binding.container.setVisibility(View.GONE);
-        binding.image.setVisibility(View.GONE);
-        binding.name.setVisibility(View.GONE);
-        binding.nickname.setVisibility(View.GONE);
-        binding.email.setVisibility(View.GONE);
-        binding.phone.setVisibility(View.GONE);
-        binding.name.setVisibility(View.GONE);
-        binding.volunteerTitle.setVisibility(View.GONE);
-        binding.error.setText(errorMessage);
-        binding.arrowBack.setVisibility(View.VISIBLE);
-    }
-
-    private void showUserData(FullUserEntity entity) {
-        binding.loading.setVisibility(View.GONE);
-        binding.error.setVisibility(View.GONE);
-        binding.container.setVisibility(View.VISIBLE);
-
-
-        binding.image.setVisibility(Utils.visibleOrGone(entity.getPhotoUrl() != null));
-        binding.phone.setVisibility(Utils.visibleOrGone(entity.getPhone() != null));
-
-
-        binding.name.setText(entity.getName());
-        binding.nickname.setText(entity.getNickname());
-        binding.email.setText(entity.getEmail());
-        binding.phone.setText(entity.getPhone());
-
-        if (entity.getPhotoUrl() != null) {
-            Picasso.get().load(entity.getPhotoUrl()).into(binding.image);
-        }
     }
 
     @Override

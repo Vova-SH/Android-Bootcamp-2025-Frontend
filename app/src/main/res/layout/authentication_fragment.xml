@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="@string/email_title"
+            android:text="@string/title_nickname"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -51,13 +51,13 @@
             app:layout_constraintTop_toTopOf="@id/container" />
 
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/et_nickname"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_margin="15dp"
             android:background="@drawable/edit_text_rounded_corners_background"
-            android:hint="@string/email_hint"
-            android:inputType="textEmailAddress"
+            android:hint="@string/enter_nickname_hint"
+            android:inputType="text|textPersonName"
             app:layout_constraintStart_toStartOf="@id/container"
             app:layout_constraintTop_toBottomOf="@id/tv_email_title" />
 
@@ -72,7 +72,7 @@
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toBottomOf="@id/et_email" />
+            app:layout_constraintTop_toBottomOf="@id/et_nickname" />
 
         <EditText
             android:id="@+id/et_password"

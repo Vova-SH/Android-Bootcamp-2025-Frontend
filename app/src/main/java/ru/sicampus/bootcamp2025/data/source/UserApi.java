@@ -1,5 +1,7 @@
 package ru.sicampus.bootcamp2025.data.source;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -16,18 +18,36 @@ public interface UserApi {
     @GET("/api/user/{id}")
     Call<UserDto> getById(@Path("id") String id);
 
-    @PUT("/api/user/update/{id}")
+    @PUT("/api/person/{id}")
     Call<UserDto> update(@Path("id") String id, @Body Container container);
 
-    @DELETE("/api/user/{id}")
+    @DELETE("/api/person/{id}")
     Call<Void> delete(@Path("id") String id);
 
-    @GET("/api/user/username/{username}")
+    @GET("/api/person/username/{username}")
     Call<Void> isExist(@Path("username") String login);
 
-    @POST("/api/user/register")
+    @POST("/api/person/register")
     Call<Void> register(@Body AccountDto dto);
 
-    @GET("/api/user/login")
+    @GET("/api/person/login")
     Call<Void> login();
+
+    @GET("/api/person/inactive")
+    Call<List<UserDto>> getInactive();
+
+    @GET("/api/person/active")
+    Call<List<UserDto>> getActive();
+
+    @GET("/api/person/{centerId}/volunteers")
+    Call<List<UserDto>> getActiveUsersInCenter(@Path("centerId") String centerId);
+
+    @GET("/api/person")
+    Call<List<UserDto>> getAll();
+
+    /* @PUT("/api/center/user/{centerId}/{userId}")
+    Call<Void> addUser(@Path("centerId") String centerId, @Path("userId") String userId);
+
+    @PUT("/api/center/user/delete/{centerId}/{userId}")
+    Call<Void> deleteUser(@Path("centerId") String centerId, @Path("userId") String userId); */
 }

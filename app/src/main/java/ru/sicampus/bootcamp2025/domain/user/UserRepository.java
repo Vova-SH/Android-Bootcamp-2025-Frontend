@@ -12,7 +12,7 @@ import ru.sicampus.bootcamp2025.domain.entities.Status;
 
 public interface UserRepository {
 
-    void getUnoccupiedUsers(@NonNull Consumer<Status<List<ItemUserEntity>>> callback);
+    void getInactiveUsers(@NonNull Consumer<Status<List<ItemUserEntity>>> callback);
 
     void getUser(@NonNull String id, @NonNull Consumer<Status<FullUserEntity>> callback);
 
@@ -23,10 +23,13 @@ public interface UserRepository {
             @NonNull String name,
             @NonNull String nickname,
             @NonNull String email,
-            @Nullable String phone,
             @Nullable String photoUrl,
             @NonNull Consumer<Status<FullUserEntity>> callback
     );
 
-    void deleteUser(@NonNull String id, @NonNull Consumer<Status<Void>> callback);
+    void deleteUser(@NonNull String id, Consumer<Status<Void>> callback);
+
+    void getActiveUsersInCenter(@NonNull String centerId, @NonNull Consumer<Status<List<ItemUserEntity>>> callback);
+
+    void getAll(@NonNull Consumer<Status<List<ItemUserEntity>>> callback);
 }

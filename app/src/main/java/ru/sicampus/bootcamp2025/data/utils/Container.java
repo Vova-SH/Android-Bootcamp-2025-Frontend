@@ -8,16 +8,13 @@ public class Container {
 
     private final String email;
 
-    private final String phone;
-
     private final String photoUrl;
 
 
-    public Container(String name, String nickname, String email, String phone, String photoUrl) {
+    public Container(String name, String nickname, String email, String photoUrl) {
         this.name = name;
         this.nickname = nickname;
         this.email = email;
-        this.phone = phone;
         this.photoUrl = photoUrl;
     }
 
@@ -31,10 +28,6 @@ public class Container {
 
     public String getEmail() {
         return email;
-    }
-
-    public String getPhone() {
-        return phone;
     }
 
     public String getPhotoUrl() {
