@@ -76,7 +76,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 } else {
                     binding.phoneMain.text = state.item.phone
                 }
-                binding.ctblMain.title = state.item.name
+                binding.ctblMain.text = state.item.name
                 if (state.item.phone == "") {
                     binding.infoMain.text = "Не указана"
                 } else {

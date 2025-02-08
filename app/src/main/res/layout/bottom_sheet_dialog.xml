@@ -44,14 +44,17 @@
         android:drawableStart="@drawable/free_icon_inofo_13054421"
         android:drawablePadding="8dp"
         android:textSize="20sp" />
-    <Button
 
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/attach"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Animation.Design.BottomSheetDialog"
-        android:text="@string/Attached__the_center"/>
-
+        style="@style/Widget.Material3.Button.OutlinedButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/Attached__the_center"
+    android:textColor="@color/black"
+    android:textSize="16sp"
+    android:padding="12dp"
+    android:layout_margin="8dp"     android:gravity="center" />
 
 
 </LinearLayout>
