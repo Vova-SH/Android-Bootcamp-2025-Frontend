@@ -8,11 +8,15 @@
     <string name="refresh">Refresh</string>
     <string name="password">Enter password</string>
     <string name="signup">Sign Up</string>
-    <string name="signin">Sign in</string>
-    <string name="hello">Hello!</string>
+    <string name="signin">Sign In</string>
+    <string name="hello">👇Hello, please login!👇</string>
     <string name="button">Go -></string>
     <string name="start">👇Hello, please login!👇</string>
     <string name="email">✉ Email ✉</string>
     <string name="infouser">ℹ Your information ℹ</string>
     <string name="phone">📱 Phone 📱</string>
+    <string name="SaveChanges">✅ Save Changes ✅</string>
+    <string name="EditProfile"> ✍ Edit my profile ✍</string>
+    <string name="INFO_user">Additional Information</string>
+    <string name="name"> Name </string>
 </resources>
