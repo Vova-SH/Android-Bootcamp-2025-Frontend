@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -9,14 +11,23 @@ android {
     namespace = "ru.sicampus.bootcamp2025"
     compileSdk = 35
 
+    val properties = Properties()
+    properties.load(project.rootProject.file("local.properties").inputStream())
+
     defaultConfig {
         applicationId = "ru.sicampus.bootcamp2025"
         minSdk = 28
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue("string", "default_google_api", properties.getProperty("mapApiKey", ""))
+        buildConfigField("String" , "BASE_URL" , properties.getProperty("baseUrl", ""))
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
