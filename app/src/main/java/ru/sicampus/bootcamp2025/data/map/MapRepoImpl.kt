@@ -2,6 +2,8 @@ package ru.sicampus.bootcamp2025.data.map
 
 import com.google.android.gms.maps.model.LatLng
 import ru.sicampus.bootcamp2025.data.auth.storage.AuthStorageDataSource
+import ru.sicampus.bootcamp2025.data.profile.PersonDto
+import ru.sicampus.bootcamp2025.data.profile.PersonUpdateDto
 import ru.sicampus.bootcamp2025.domain.map.DepartmentEntity
 import ru.sicampus.bootcamp2025.domain.map.MapRepo
 import ru.sicampus.bootcamp2025.domain.map.PlaceEntity
@@ -31,6 +33,11 @@ class MapRepoImpl(
                 )
             } ?: return Result.failure(IllegalStateException("list parse error"))
         }
+    }
+    override suspend fun changeDepartmentName(personUpdateDto: PersonUpdateDto): Result<Unit> {
+        val token = authStorageDataSource.token
+            ?: return Result.failure(IllegalStateException("token is null"))
+        return mapNetworkDataSource.changeDepartmentName(personUpdateDto, token)
     }
 
     override suspend fun getPlaceByName(name: String): Result<DepartmentEntity> {

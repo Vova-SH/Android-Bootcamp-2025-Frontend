@@ -10,7 +10,11 @@ import kotlinx.coroutines.withContext
 import ru.sicampus.bootcamp2025.data.Constants.serverIp
 import ru.sicampus.bootcamp2025.data.Network
 import io.ktor.client.request.headers
+import io.ktor.client.request.patch
+import io.ktor.client.request.setBody
 import io.ktor.http.encodeURLPath
+import ru.sicampus.bootcamp2025.data.profile.PersonDto
+import ru.sicampus.bootcamp2025.data.profile.PersonUpdateDto
 
 class MapNetworkDataSource() {
     suspend fun getPlaces(token: String): Result<DepartmentListDto> = withContext(Dispatchers.IO) {
@@ -28,6 +32,19 @@ class MapNetworkDataSource() {
             result.body()
         }
     }
+    suspend fun changeDepartmentName(personUpdateDto: PersonUpdateDto, token: String): Result<Unit> = withContext(Dispatchers.IO){
+        runCatching {
+            val result = Network.client.patch("${serverIp}/api/person/me") {
+                headers {
+                    append(HttpHeaders.Authorization, token)
+                    append(HttpHeaders.ContentType, "application/json")
+                }
+                setBody(personUpdateDto)
+            }
+            result.body()
+        }
+    }
+
     suspend fun getPlaceByName(name: String, token: String): Result<DepartmentDto> = withContext(Dispatchers.IO) {
         runCatching {
             Log.d("zzz", "test11")

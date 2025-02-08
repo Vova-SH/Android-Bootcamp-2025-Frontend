@@ -103,7 +103,6 @@ class MapFragment() : Fragment(R.layout.fragment_map),
                 .placeholder(R.drawable.ic_photo) // Плейсхолдер
                 .error(R.drawable.ic_back) // Изображение при ошибке
                 .into(it)
-
         }
 //        dialog.findViewById<ImageView>(R.id.image)?.let {
 //            imageService.setImage(it, place.pathToImage)
@@ -111,6 +110,9 @@ class MapFragment() : Fragment(R.layout.fragment_map),
         dialog.findViewById<TextView>(R.id.name)?.text = place.name
         dialog.findViewById<TextView>(R.id.address)?.text = place.address
         dialog.findViewById<TextView>(R.id.description)?.text = place.information
+        dialog.findViewById<TextView>(R.id.attach)?.setOnClickListener {
+            viewModel.changeDepartmentAttach(department.name)
+        }
     }
 
 }

@@ -4,17 +4,19 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DataDto (
+data class PersonUpdateDto (
     @SerialName("id")
-    val id: Long,
+    val id: Long?,
     @SerialName("name")
-    val name: String,
+    val name: String?,
     @SerialName("username")
-    val login: String,
+    val login: String?,
     @SerialName("email")
-    val email: String,
+    val email: String?,
     @SerialName("info")
     val info: String?,
     @SerialName("phone")
     val phone: String?,
+    @SerialName("departmentName")
+    val departmentName: String?,
 )

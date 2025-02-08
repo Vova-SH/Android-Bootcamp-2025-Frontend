@@ -18,7 +18,6 @@ import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.FragmentProfileBinding
 import ru.sicampus.bootcamp2025.domain.profile.DataEntity
 import ru.sicampus.bootcamp2025.ui.auth.AuthFragment
-import ru.sicampus.bootcamp2025.ui.auth.AuthViewModel.Action
 import ru.sicampus.bootcamp2025.ui.map.MapFragment
 import ru.sicampus.bootcamp2025.util.collectWithLifecycle
 
@@ -167,9 +166,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 login = getSavedLogin().toString(),
                 name = updatedUsername,
                 id = currentUser.id,
+                departmentName = currentUser.departmentName,
             )
             viewModel.changeDataByLogin(
-                dataEntity = dataEntity
+                PersonEntity = dataEntity
             )
 
             dialog.dismiss()

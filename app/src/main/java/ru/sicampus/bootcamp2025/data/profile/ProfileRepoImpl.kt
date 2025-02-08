@@ -20,14 +20,15 @@ class ProfileRepoImpl(
                 email = dataDto.email,
                 info = dataDto.info ?: "",
                 phone = dataDto.phone ?: "",
+                departmentName = dataDto.departmentName ?: "",
             )
         }
     }
 
-    override suspend fun changeDataByLogin(dataDto: DataDto): Result<Unit> {
+    override suspend fun changeDataByLogin(personDto: PersonDto): Result<Unit> {
         val token = authStorageDataSource.token
             ?: return Result.failure(IllegalStateException("token is null"))
-        return profileNetworkDataSource.changeDataByLogin(token, dataDto)
+        return profileNetworkDataSource.changeDataByLogin(token, personDto)
         }
     override suspend fun logout(){
         authStorageDataSource.clear()

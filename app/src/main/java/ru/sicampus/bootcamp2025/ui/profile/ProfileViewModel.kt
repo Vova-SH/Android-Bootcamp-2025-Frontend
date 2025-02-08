@@ -14,14 +14,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.data.auth.storage.AuthStorageDataSource
-import ru.sicampus.bootcamp2025.data.profile.DataDto
+import ru.sicampus.bootcamp2025.data.profile.PersonDto
 import ru.sicampus.bootcamp2025.data.profile.ProfileNetworkDataSource
 import ru.sicampus.bootcamp2025.data.profile.ProfileRepoImpl
 import ru.sicampus.bootcamp2025.domain.profile.ChangeDataByLoginUserCase
 import ru.sicampus.bootcamp2025.domain.profile.DataEntity
 import ru.sicampus.bootcamp2025.domain.profile.GetDataByLoginUserCase
 import ru.sicampus.bootcamp2025.domain.profile.LogoutUserCase
-import ru.sicampus.bootcamp2025.ui.auth.AuthViewModel.Action
 
 class ProfileViewModel(
     application: Application,
@@ -62,16 +61,17 @@ class ProfileViewModel(
             _action.send(Action.GotoAuth)
         }
     }
-    fun changeDataByLogin(dataEntity: DataEntity) {
+    fun changeDataByLogin(PersonEntity: DataEntity) {
         viewModelScope.launch {
             changeDataByLoginUserCase.invoke(
-                DataDto(
-                    id = dataEntity.id,
-                    name = dataEntity.name,
-                    login = dataEntity.login,
-                    email = dataEntity.email,
-                    info = dataEntity.info,
-                    phone = dataEntity.phone
+                PersonDto(
+                    id = PersonEntity.id,
+                    name = PersonEntity.name,
+                    login = PersonEntity.login,
+                    email = PersonEntity.email,
+                    info = PersonEntity.info,
+                    phone = PersonEntity.phone,
+                    departmentName = PersonEntity.departmentName,
                 )
             ).fold(
                 onSuccess = {

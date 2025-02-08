@@ -10,6 +10,10 @@ import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.data.auth.storage.AuthStorageDataSource
 import ru.sicampus.bootcamp2025.data.map.MapNetworkDataSource
 import ru.sicampus.bootcamp2025.data.map.MapRepoImpl
+import ru.sicampus.bootcamp2025.data.profile.PersonUpdateDto
+import ru.sicampus.bootcamp2025.data.profile.ProfileNetworkDataSource
+import ru.sicampus.bootcamp2025.data.profile.ProfileRepoImpl
+import ru.sicampus.bootcamp2025.domain.map.ChangeDepartmentUserCase
 import ru.sicampus.bootcamp2025.domain.map.DepartmentEntity
 import ru.sicampus.bootcamp2025.domain.map.GetPlaceByNameUserCase
 import ru.sicampus.bootcamp2025.domain.map.GetPlacesUserCase
@@ -18,6 +22,7 @@ import ru.sicampus.bootcamp2025.domain.map.GetPlacesUserCase
 class MapViewModel(
     private val getPlacesUserCase: GetPlacesUserCase,
     private val getPlaceByNameUserCase: GetPlaceByNameUserCase,
+    private val changeDepartmentUserCase: ChangeDepartmentUserCase,
 ) : ViewModel() {
 //    private val _state = MutableStateFlow<State>(State.Loading)
 //    public val state = _state.asStateFlow()
@@ -50,6 +55,24 @@ class MapViewModel(
             )
         }
     }
+    fun changeDepartmentAttach(departmentName: String) {
+        viewModelScope.launch {
+            changeDepartmentUserCase.invoke(
+                PersonUpdateDto(
+                    id = null,
+                    name = null,
+                    login = null,
+                    email = null,
+                    info = null,
+                    phone = null,
+                    departmentName = departmentName,
+                )
+            ).fold(
+                onSuccess = { Log.d("MapViewModel", "onSuccess") },
+                onFailure = { Log.d("MapViewModel", "onFailure") },
+            )
+        }
+    }
 
 
     companion object {
@@ -65,7 +88,10 @@ class MapViewModel(
                     ),
                     getPlaceByNameUserCase = GetPlaceByNameUserCase(
                         mapRepo
-                    )
+                    ),
+                    changeDepartmentUserCase = ChangeDepartmentUserCase(
+                        mapRepo
+                    ),
                 ) as T
             }
         }

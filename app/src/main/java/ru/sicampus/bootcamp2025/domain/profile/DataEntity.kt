@@ -7,5 +7,6 @@ data class DataEntity (
     val email: String,
     val info: String,
     val phone: String,
+    val departmentName: String?,
 //    val pathtoImage: String,
 )
