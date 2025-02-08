@@ -1,4 +1,4 @@
-package ru.sicampus.bootcamp2025.data
+package ru.sicampus.bootcamp2025.data.center
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

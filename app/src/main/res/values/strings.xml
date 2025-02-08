@@ -9,7 +9,7 @@
     <string name="sign_up">Зарегистрироваться</string>
     <string name="text_about_sign_in">Уже есть аккаунт?</string>
     <string name="text_about_sign_up">Ещё нет аккаунта?</string>
-    <string name="password_hint">Пароль должен содержать более 8 символов</string>
+    <string name="password_hint">Пароль должен содержать минимум 8 символов</string>
     <string name="editing">Редактировать</string>
     <string name="my_center">Мой центр</string>
     <string name="date">Дата рождения</string>
@@ -19,6 +19,14 @@
     <string name="profile">Профиль</string>
     <string name="centers">Центры</string>
     <string name="volunteers">Волонтёры</string>
+    <string name="saving">Сохранить</string>
+    <string name="error_user_not_exist">Пользователя с таким логином не существует</string>
+    <string name="error_invalid_credentials">Неверный email или пароль</string>
+    <string name="error_unknown">Непредвиденная ошибка</string>
+    <string name="error_user_exist">Пользователь с таким email уже существует</string>
+    <string name="error_name_no_valid">Имя может содержать только буквы и пробелы</string>
+    <string name="error_email_no_valid">Некорректный email</string>
+    <string name="error_password_no_valid">Пароль должен содержать как минимум 8 символов</string>
 
 
 </resources>

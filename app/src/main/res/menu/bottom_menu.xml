@@ -8,7 +8,7 @@
         android:title="@string/centers" />
 
     <item
-        android:id="@+id/profile_view_button"
+        android:id="@+id/fragment_profile"
         android:enabled="true"
         android:icon="@drawable/ic_profile"
         android:title="@string/profile" />

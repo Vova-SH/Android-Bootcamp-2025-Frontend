@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:textSize="11sp"
             android:textColor="@color/grey"
-            tools:text="описание блабалаба"
+            tools:text="описание блавовыоалвыватвовыаоваовщаовыщаоваоваовыщаовщоащывовауцауарушаовшовшаошваошваошаоаовшаоваовшаошваошваошвабалаба"
+            android:maxLines="1"
             android:ellipsize="end"/>
     </LinearLayout>
     <View

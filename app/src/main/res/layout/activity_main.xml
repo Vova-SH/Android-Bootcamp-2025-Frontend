@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_center_list"
+        android:id="@+id/fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -31,6 +31,7 @@
         app:itemIconTint="@color/grey"
         app:labelVisibilityMode="unlabeled"
         app:itemRippleColor="@color/orange"
-        app:itemActiveIndicatorStyle="@color/orange" />
+        app:itemActiveIndicatorStyle="@color/orange"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

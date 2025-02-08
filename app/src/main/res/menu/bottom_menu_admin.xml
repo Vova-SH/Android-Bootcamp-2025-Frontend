@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/center_view_button"
+        android:id="@+id/fragment_center_list"
         android:enabled="true"
         android:icon="@drawable/ic_centers"
         android:title="@string/centers" />
 
     <item
-        android:id="@+id/profile_view_button"
+        android:id="@+id/fragment_profile"
         android:enabled="true"
         android:icon="@drawable/ic_profile"
         android:title="@string/profile" />
     <item
-        android:id="@+id/volunteer_view_button"
+        android:id="@+id/fragment_user_list"
         android:enabled="true"
         android:icon="@drawable/ic_volunteers"
         android:title="@string/volunteers" />

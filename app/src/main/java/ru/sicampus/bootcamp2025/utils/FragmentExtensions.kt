@@ -1,19 +1,19 @@
 package ru.sicampus.bootcamp2025.utils
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 fun <T> Flow<T>.collectWithLifecycle(
-    fragment: Fragment,
+    lifecycleOwner: LifecycleOwner,
     function: (T) -> Unit
 ){
-    fragment.viewLifecycleOwner.lifecycleScope.launch {
-        fragment.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            collect {function.invoke(it)}
+    lifecycleOwner.lifecycleScope.launch {
+        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            collect { function.invoke(it) }
         }
     }
 }

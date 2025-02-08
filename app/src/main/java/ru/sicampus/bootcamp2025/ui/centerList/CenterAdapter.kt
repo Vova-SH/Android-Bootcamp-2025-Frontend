@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import ru.sicampus.bootcamp2025.databinding.OneCenterListViewBinding
-import ru.sicampus.bootcamp2025.domain.CenterEntity
+import ru.sicampus.bootcamp2025.domain.center.CenterEntity
 
 class CenterAdapter : ListAdapter<CenterEntity, CenterAdapter.ViewHolder>(CenterDiff) {
 
