@@ -1,7 +1,6 @@
 package ru.sicampus.bootcamp2025.ui.mainscreen.profileinfo
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +9,6 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.Const
 import ru.sicampus.bootcamp2025.data.ProfileRepositoryImpl
 import ru.sicampus.bootcamp2025.data.UserRepositoryImpl
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
@@ -19,41 +17,51 @@ import ru.sicampus.bootcamp2025.data.sources.locale.UserLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.ProfileNetworkDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.UserNetworkDataSource
 import ru.sicampus.bootcamp2025.domain.entities.ProfileEntity
+import ru.sicampus.bootcamp2025.domain.entities.UserEntity
 import ru.sicampus.bootcamp2025.domain.usecases.GetLocalUserUseCase
 import ru.sicampus.bootcamp2025.domain.usecases.GetProfileByIdUseCase
+import ru.sicampus.bootcamp2025.domain.usecases.UpdateProfileUseCase
 
 class ProfileViewModel(
     private val getLocalUserUseCase: GetLocalUserUseCase,
     private val getProfileByIdUseCase: GetProfileByIdUseCase,
+    private val updateProfileUseCase: UpdateProfileUseCase,
     private val application: Application
 ) : AndroidViewModel(application) {
     private val _state = MutableStateFlow<State>(State.Loading)
     val state = _state.asStateFlow()
 
+    private var _currentUser: UserEntity? = null
+    private val currentUser: UserEntity get() = _currentUser!!
+
     init {
         viewModelScope.launch {
-            updateState( getLocalUserUseCase.invoke()?.profileId ?: 1)
+            _currentUser = getLocalUserUseCase.invoke()
+            updateState(currentUser.profileId)
         }
     }
 
     fun onSaveChanges(newProfile: ProfileEntity) {
-        // TODO: Add profile saving
+        viewModelScope.launch {
+            _state.emit(State.Loading)
+            updateProfileUseCase.invoke(newProfile).fold(
+                onSuccess = { updateState(currentUser.profileId) },
+                onFailure = { error -> _state.emit(State.Error(error.message.toString())) }
+            )
+        }
+
     }
 
     fun onRefresh() {
-        viewModelScope.launch {
-            updateState(getLocalUserUseCase.invoke()?.profileId ?: 1)
-        }
+        updateState(currentUser.profileId)
     }
 
     private fun updateState(userId: Int) {
         viewModelScope.launch {
             _state.emit(State.Loading)
-            _state.emit(
-                getProfileByIdUseCase.invoke(userId).fold(
-                    onSuccess = { data -> State.Show(data) },
-                    onFailure = { error -> State.Error(error.message.toString()) }
-                )
+            getProfileByIdUseCase.invoke(userId).fold(
+                onSuccess = { data -> _state.emit(State.Show(data)) },
+                onFailure = { error -> _state.emit(State.Error(error.message.toString())) }
             )
         }
     }
@@ -70,12 +78,7 @@ class ProfileViewModel(
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
                 val application =
                     extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
-                val credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(
-                    application.getSharedPreferences(
-                        Const.TOKEN_KEY,
-                        Context.MODE_PRIVATE
-                    )
-                )
+                val credentialsLocalDataSource = CredentialsLocalDataSource.getInstance()
                 return ProfileViewModel(
                     getProfileByIdUseCase = GetProfileByIdUseCase(
                         repository = ProfileRepositoryImpl(
@@ -89,6 +92,13 @@ class ProfileViewModel(
                             userLocalDataSource = UserLocalDataSource,
                             credentialsLocalDataSource = credentialsLocalDataSource,
                             userNetworkDataSource = UserNetworkDataSource
+                        )
+                    ),
+                    updateProfileUseCase = UpdateProfileUseCase(
+                        ProfileRepositoryImpl(
+                            localDataSource = ProfileLocalDataSource,
+                            networkDataSource = ProfileNetworkDataSource,
+                            credentialsLocalDataSource = credentialsLocalDataSource
                         )
                     ),
                     application = application

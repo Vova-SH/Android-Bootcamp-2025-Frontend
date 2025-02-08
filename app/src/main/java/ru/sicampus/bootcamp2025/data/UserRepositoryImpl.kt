@@ -25,22 +25,23 @@ class UserRepositoryImpl(
         return userNetworkDataSource.register(login, password, name, lastname)
     }
 
-    override suspend fun getLocalCredentials(): String? {
-        return credentialsLocalDataSource.getToken()
+    override suspend fun getLocalCredentials(): Result<String> {
+        return credentialsLocalDataSource.getTokenForAuth()
     }
 
     override suspend fun authorize(token: String): Result<Unit> {
         return runCatching {
             val response = userNetworkDataSource.login(token)
             val userDto = response.getOrNull()
-            if (userDto != null)
+            if (userDto != null) {
                 userLocalDataSource.cacheData(
                     UserEntity(
-                        userId = userDto.userId?: error("Data couldn't be null"),
-                        profileId = userDto.profileId?: error("Data couldn't be null"),
-                        roleId = userDto.roleId?: error("Data couldn't be null")
+                        userId = userDto.userId ?: error("UserId couldn't be null"),
+                        profileId = userDto.profileId ?: error("ProfileId couldn't be null"),
+                        roleId = userDto.roleId ?: error("RoleId couldn't be null")
                     )
                 )
+            }
             val exception = response.exceptionOrNull()
             if (exception != null)
                 error(exception)

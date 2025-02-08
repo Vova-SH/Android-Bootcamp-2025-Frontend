@@ -22,7 +22,7 @@ class ProfileRepositoryImpl(
             val networkAnswer =
                 networkDataSource.getProfileById(
                     profileId,
-                    credentialsLocalDataSource.getToken()!!
+                    credentialsLocalDataSource.getToken()
                 )
             if (networkAnswer.getOrNull() != null)
                 localDataSource.cacheData(networkAnswer.getOrNull())
@@ -35,12 +35,26 @@ class ProfileRepositoryImpl(
             ProfileEntity(
                 id = dto.id ?: return Result.failure(IllegalStateException("Null data")),
                 name = dto.name ?: "",
-                lastname = dto.lastname?: "",
+                lastname = dto.lastname ?: "",
                 photoUrl = dto.photoUrl,
                 phoneNumber = dto.phoneNumber,
                 email = dto.email,
-                centerId = if (dto.centerId == 0) null else dto.centerId
+                centerId = if (dto.centerId != null && dto.centerId > 0) dto.centerId else null
             )
         }
+    }
+
+    override suspend fun updateProfile(newProfile: ProfileEntity): Result<Unit> {
+        return networkDataSource.updateProfile(
+            ProfileDto(
+                id = newProfile.id,
+                centerId = newProfile.centerId,
+                name = newProfile.name,
+                lastname = newProfile.lastname,
+                photoUrl = newProfile.photoUrl,
+                phoneNumber = newProfile.phoneNumber,
+                email = newProfile.email
+            ), credentialsLocalDataSource.getToken()
+        )
     }
 }

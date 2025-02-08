@@ -11,7 +11,7 @@ class RolesRepositoryImpl(
     override suspend fun isRoleHaveAdminPermissions(roleId: Int): Result<Boolean> {
         return networkSource.isRoleHasAdminPermissions(
             roleId,
-            credentialsLocalDataSource.getToken()!!
+            credentialsLocalDataSource.getToken()
         )
     }
 }

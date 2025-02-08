@@ -12,6 +12,7 @@ import androidx.paging.LoadState
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.SupportMapFragment
+import ru.sicampus.bootcamp2025.Const.BUNDLE_KEY
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.ViewCentersFragmentBinding
 import ru.sicampus.bootcamp2025.ui.mainscreen.centerinfo.CenterInfoFragment
@@ -41,10 +42,11 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
             LocationServices.getFusedLocationProviderClient(requireContext())
         requestPermissions()
         _mapService = MapService(null, requireContext()) { centerId: Int ->
-            CenterInfoFragment(centerId).show(
-                requireActivity().supportFragmentManager,
-                "Center Info"
-            )
+            val fragment = CenterInfoFragment()
+            val args = Bundle()
+            args.putInt(BUNDLE_KEY, centerId)
+            fragment.arguments = args
+            fragment.show(requireActivity().supportFragmentManager, "center")
         }
     }
 
@@ -56,7 +58,11 @@ class AllCentersFragment : Fragment(R.layout.view_centers_fragment) {
             getCurrentLocation()
         }
         val adapter = CenterListAdapter(currentLocation) { centerId: Int, centerName: String ->
-            CenterInfoFragment(centerId).show(requireActivity().supportFragmentManager, centerName)
+            val fragment = CenterInfoFragment()
+            val args = Bundle()
+            args.putInt(BUNDLE_KEY, centerId)
+            fragment.arguments = args
+            fragment.show(requireActivity().supportFragmentManager, centerName)
         }
         binding.content.adapter = adapter
 

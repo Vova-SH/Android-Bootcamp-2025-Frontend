@@ -1,7 +1,6 @@
 package ru.sicampus.bootcamp2025.ui.entry
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,9 +9,9 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.Const.TOKEN_KEY
 import ru.sicampus.bootcamp2025.data.UserRepositoryImpl
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.locale.UserLocalDataSource
@@ -31,6 +30,7 @@ class AuthViewModel(
         capacity = Channel.BUFFERED,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
+    val state = _state.asStateFlow()
     val action = _action.receiveAsFlow()
 
     init {
@@ -41,21 +41,20 @@ class AuthViewModel(
 
     private fun updateState() {
         viewModelScope.launch {
-            _state.emit(State.Loading)
-            val currentUser = getCurrentUserCredentialsUseCase.invoke()
-            if (currentUser == null) goToSignUp()
-            else {
-                authorizeUseCase.invoke(currentUser).fold(
-                    onSuccess = {
-                        _state.emit(State.Process)
-                        openApp()
-                    },
-                    onFailure = { error ->
-                        _state.emit(State.Error(error.message.toString()))
-                        goToLogin()
-                    }
-                )
-            }
+            getCurrentUserCredentialsUseCase.invoke().fold(
+
+                onSuccess = { currentUser ->
+                    _state.emit(State.DataReady)
+                    authorizeUseCase.invoke(currentUser).fold(
+                        onSuccess = { openApp() },
+                        onFailure = { goToLogin() }
+                    )
+                },
+                onFailure = {
+                    _state.emit(State.DataReady)
+                    goToSignUp()
+                }
+            )
         }
     }
 
@@ -79,8 +78,8 @@ class AuthViewModel(
 
     sealed interface State {
         data object Loading : State
-        data object Process : State
-        data class Error(val errorMessage: String) : State
+        data object DataReady : State
+        data object Error : State
     }
 
     sealed interface Action {
@@ -97,12 +96,7 @@ class AuthViewModel(
                     extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
                 val repository = UserRepositoryImpl(
                     userLocalDataSource = UserLocalDataSource,
-                    credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(
-                        application.getSharedPreferences(
-                            TOKEN_KEY,
-                            Context.MODE_PRIVATE
-                        )
-                    ),
+                    credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(),
                     userNetworkDataSource = UserNetworkDataSource
                 )
 
@@ -110,7 +104,7 @@ class AuthViewModel(
                     authorizeUseCase = AuthorizeUseCase(repository),
                     getCurrentUserCredentialsUseCase = GetCurrentUserCredentialsUseCase(repository),
                     application = application
-                    ) as T
+                ) as T
             }
         }
     }

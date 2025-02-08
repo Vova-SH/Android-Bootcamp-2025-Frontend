@@ -1,7 +1,6 @@
 package ru.sicampus.bootcamp2025.ui.mainscreen.allcenters
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +12,6 @@ import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.Const
 import ru.sicampus.bootcamp2025.data.CenterRepositoryImpl
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.CenterNetworkDataSource
@@ -75,9 +73,7 @@ class AllCentersViewModel(
 
                 val centerRepository = CenterRepositoryImpl(
                     networkDataSource = CenterNetworkDataSource,
-                    credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(
-                        application.getSharedPreferences(Const.TOKEN_KEY, Context.MODE_PRIVATE)
-                    )
+                    credentialsLocalDataSource = CredentialsLocalDataSource.getInstance()
                 )
 
                 return AllCentersViewModel(

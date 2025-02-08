@@ -1,7 +1,6 @@
 package ru.sicampus.bootcamp2025.ui.entry.signup
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +12,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.Const.TOKEN_KEY
 import ru.sicampus.bootcamp2025.data.UserRepositoryImpl
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.locale.UserLocalDataSource
@@ -88,12 +86,7 @@ class SignUpViewModel(
                     extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
                 val repository = UserRepositoryImpl(
                     userLocalDataSource = UserLocalDataSource,
-                    credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(
-                        application.getSharedPreferences(
-                            TOKEN_KEY,
-                            Context.MODE_PRIVATE
-                        )
-                    ),
+                    credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(),
                     userNetworkDataSource = UserNetworkDataSource
                 )
 

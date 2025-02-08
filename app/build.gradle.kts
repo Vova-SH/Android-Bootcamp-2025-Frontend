@@ -3,7 +3,6 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-//    kotlin("plugin.serialization") version "1.4.21"
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
@@ -56,6 +55,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.play.services.maps)
     implementation(libs.androidx.paging.runtime)
 

@@ -1,7 +1,6 @@
 package ru.sicampus.bootcamp2025.ui.mainscreen.centerinfo
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +9,6 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.Const
 import ru.sicampus.bootcamp2025.data.CenterRepositoryImpl
 import ru.sicampus.bootcamp2025.data.ProfileRepositoryImpl
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
@@ -23,18 +21,18 @@ import ru.sicampus.bootcamp2025.domain.usecases.GetCenterByIdUseCase
 import ru.sicampus.bootcamp2025.domain.usecases.GetProfileByIdUseCase
 
 class CenterInfoViewModel(
-    private val centerId: Int,
     private val getCenterByIdUseCase: GetCenterByIdUseCase,
     private val getProfileByIdUseCase: GetProfileByIdUseCase,
     private val application: Application
 ) : AndroidViewModel(application) {
     private val _state = MutableStateFlow<State>(State.Loading)
+    private var _centerId: Int? = null
+    private val centerId: Int get() = _centerId!!
     val state = _state.asStateFlow()
 
-    init {
-        viewModelScope.launch {
-            updateState(centerId)
-        }
+    fun setCenterId(centerId: Int) {
+        _centerId = centerId
+        updateState(this.centerId)
     }
 
     private fun updateState(centerId: Int) {
@@ -64,28 +62,18 @@ class CenterInfoViewModel(
     }
 
     companion object {
-        val centerIdKey = object : CreationExtras.Key<Int> {}
-
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
                 val application =
                     extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
-                val credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(
-                    application.getSharedPreferences(
-                        Const.TOKEN_KEY,
-                        Context.MODE_PRIVATE
-                    )
-                )
-                val centerId = extras[centerIdKey]
+                val credentialsLocalDataSource = CredentialsLocalDataSource.getInstance()
 
                 return CenterInfoViewModel(
                     getProfileByIdUseCase = GetProfileByIdUseCase(ProfileRepositoryImpl(
                         localDataSource = ProfileLocalDataSource,
                         networkDataSource = ProfileNetworkDataSource,
-                        credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(
-                            application.getSharedPreferences(Const.TOKEN_KEY, Context.MODE_PRIVATE)
-                        )
+                        credentialsLocalDataSource = credentialsLocalDataSource
                     )),
                     getCenterByIdUseCase = GetCenterByIdUseCase(
                         centerRepository = CenterRepositoryImpl(
@@ -94,7 +82,6 @@ class CenterInfoViewModel(
                         ),
                     ),
                     application = application,
-                    centerId = centerId ?: 0
                 ) as T
             }
         }

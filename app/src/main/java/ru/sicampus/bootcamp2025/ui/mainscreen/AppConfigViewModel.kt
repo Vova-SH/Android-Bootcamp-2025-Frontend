@@ -1,7 +1,6 @@
 package ru.sicampus.bootcamp2025.ui.mainscreen
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +9,6 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.sicampus.bootcamp2025.Const.TOKEN_KEY
 import ru.sicampus.bootcamp2025.data.RolesRepositoryImpl
 import ru.sicampus.bootcamp2025.data.UserRepositoryImpl
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
@@ -60,12 +58,7 @@ class AppConfigViewModel(
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
                 val application =
                     extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
-                val credentialsLocalDataSource = CredentialsLocalDataSource.getInstance(
-                    application.getSharedPreferences(
-                        TOKEN_KEY,
-                        Context.MODE_PRIVATE
-                    )
-                )
+                val credentialsLocalDataSource = CredentialsLocalDataSource.getInstance()
                 val repository = UserRepositoryImpl(
                     userLocalDataSource = UserLocalDataSource,
                     credentialsLocalDataSource = credentialsLocalDataSource,
