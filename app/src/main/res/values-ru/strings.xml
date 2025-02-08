@@ -9,10 +9,14 @@
     <string name="password">Введите пароль</string>
     <string name="signup">Регистрация</string>
     <string name="signin">Вход</string>
-    <string name="hello">Привет!</string>
+    <string name="hello">👇Привет, пожалуйста, войдите!👇</string>
     <string name="button">Перейти -></string>
     <string name="start">👇Привет, пожалуйста, войдите!👇</string>
     <string name="email">✉ Почта ✉</string>
     <string name="infouser">ℹ Информация о вас ℹ</string>
     <string name="phone">📱 Телефон 📱</string>
+    <string name="SaveChanges">✅ Сохранить изменения ✅</string>
+    <string name="EditProfile"> ✍ Изменить данные ✍</string>
+    <string name="INFO_user">Дополнительная информация</string>
+    <string name="name"> Ваше имя </string>
 </resources>

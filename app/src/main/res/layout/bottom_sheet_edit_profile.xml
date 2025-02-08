@@ -11,7 +11,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Profile"
+        android:text="@string/EditProfile"
         android:textSize="18sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -21,28 +21,28 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:hint="@string/name"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Phone"
+        android:hint="@string/phone"
         android:inputType="phone" />
 
     <EditText
         android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Additional Information"
+        android:hint="@string/INFO_user"
         android:inputType="textMultiLine"
         android:minLines="3" />
 
@@ -50,7 +50,7 @@
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Changes"
+        android:text="@string/SaveChanges"
         android:layout_marginTop="16dp" />
 
 </LinearLayout>

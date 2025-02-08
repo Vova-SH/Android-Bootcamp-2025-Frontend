@@ -17,11 +17,10 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/main_abl"
-        android:background=""
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+>
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/ctbl_main"
             android:layout_width="match_parent"
