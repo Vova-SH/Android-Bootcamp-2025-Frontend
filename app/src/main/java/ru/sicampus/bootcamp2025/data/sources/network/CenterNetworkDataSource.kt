@@ -1,32 +1,61 @@
 package ru.sicampus.bootcamp2025.data.sources.network
 
-import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.engine.cio.CIO
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
+import io.ktor.client.request.headers
+import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
-import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
+import ru.sicampus.bootcamp2025.Const
 import ru.sicampus.bootcamp2025.data.dtos.CenterDto
+import ru.sicampus.bootcamp2025.data.dtos.CenterListPagingDto
+import ru.sicampus.bootcamp2025.data.dtos.FullCenterDto
 
-class CenterNetworkDataSource {
-    private val client = HttpClient(CIO) {
-        install(ContentNegotiation) {
-            json(Json {
-                isLenient = true
-                ignoreUnknownKeys = true
-            })
-        }
-    }
+object CenterNetworkDataSource {
+    private val client = Network.client
 
-    suspend fun getCenters(): Result<List<CenterDto>> = withContext(Dispatchers.IO) {
-        runCatching {
-            val result = client.get("http://10.0.2.2:9000/api/centers/nearest")
-            if (result.status != HttpStatusCode.OK) error("Status ${result.status}")
-            result.body()
+    suspend fun getPaginatedCenters(
+        token: String,
+        pageNum: Int,
+        pageSize: Int
+    ): Result<CenterListPagingDto> =
+        withContext(Dispatchers.IO) {
+            runCatching {
+                val result =
+                    client.get("${Const.DOMAIN}/api/centers/paginated?page=$pageNum&size=$pageSize") {
+                        headers {
+                            append(HttpHeaders.Authorization, token)
+                        }
+                    }
+                if (result.status != HttpStatusCode.OK) error("Status ${result.status}")
+                result.body()
+            }
         }
-    }
+
+    suspend fun getCenterById(token: String, centerId: Int): Result<FullCenterDto> =
+        withContext(Dispatchers.IO) {
+            runCatching {
+                val result = client.get("${Const.DOMAIN}/api/centers/${centerId}") {
+                    headers {
+                        append(HttpHeaders.Authorization, token)
+                    }
+                }
+                if (result.status != HttpStatusCode.OK) error(("Status ${result.status}"))
+                result.body()
+            }
+        }
+
+    suspend fun getCenters(token: String): Result<List<CenterDto>> =
+        withContext(Dispatchers.IO) {
+            runCatching {
+                val result = client.get("${Const.DOMAIN}/api/centers") {
+                    headers {
+                        append(HttpHeaders.Authorization, token)
+                    }
+                }
+                if (result.status != HttpStatusCode.OK) error(("Status ${result.status}"))
+                result.body()
+            }
+        }
 }
