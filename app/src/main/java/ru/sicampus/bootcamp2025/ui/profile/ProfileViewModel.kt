@@ -18,7 +18,7 @@ import ru.sicampus.bootcamp2025.data.profile.PersonDto
 import ru.sicampus.bootcamp2025.data.profile.ProfileNetworkDataSource
 import ru.sicampus.bootcamp2025.data.profile.ProfileRepoImpl
 import ru.sicampus.bootcamp2025.domain.profile.ChangeDataByLoginUserCase
-import ru.sicampus.bootcamp2025.domain.profile.DataEntity
+import ru.sicampus.bootcamp2025.domain.profile.PersonEntity
 import ru.sicampus.bootcamp2025.domain.profile.GetDataByLoginUserCase
 import ru.sicampus.bootcamp2025.domain.profile.LogoutUserCase
 
@@ -61,7 +61,7 @@ class ProfileViewModel(
             _action.send(Action.GotoAuth)
         }
     }
-    fun changeDataByLogin(PersonEntity: DataEntity) {
+    fun changeDataByLogin(PersonEntity: PersonEntity) {
         viewModelScope.launch {
             changeDataByLoginUserCase.invoke(
                 PersonDto(
@@ -108,7 +108,7 @@ class ProfileViewModel(
     sealed interface State {
         data object Loading : State
         data class Show(
-            val item: DataEntity
+            val item: PersonEntity
         ) : State
 
         data object Changed : State

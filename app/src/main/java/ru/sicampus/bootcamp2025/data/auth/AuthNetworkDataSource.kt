@@ -11,6 +11,8 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
+import io.ktor.http.encodeOAuth
+import io.ktor.http.encodeURLPath
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.sicampus.bootcamp2025.data.Constants.serverIp
@@ -19,7 +21,8 @@ import ru.sicampus.bootcamp2025.data.Network
 object AuthNetworkDataSource {
     suspend fun isUserExist(login: String): Result<Boolean> = withContext(Dispatchers.IO) {
         runCatching {
-            val result = Network.client.get("$serverIp/api/person/username/$login")
+            val encodedLogin = login.encodeURLPath()
+            val result = Network.client.get("$serverIp/api/person/username/$encodedLogin")
             result.status != HttpStatusCode.OK
         }
     }

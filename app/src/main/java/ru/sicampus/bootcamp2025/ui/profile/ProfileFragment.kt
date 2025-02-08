@@ -3,6 +3,9 @@ package ru.sicampus.bootcamp2025.ui.profile
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,13 +13,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.CropImageContractOptions
+import com.canhub.cropper.CropImageOptions
+import com.canhub.cropper.CropImageView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.FragmentProfileBinding
-import ru.sicampus.bootcamp2025.domain.profile.DataEntity
+import ru.sicampus.bootcamp2025.domain.profile.PersonEntity
 import ru.sicampus.bootcamp2025.ui.auth.AuthFragment
 import ru.sicampus.bootcamp2025.ui.map.MapFragment
 import ru.sicampus.bootcamp2025.util.collectWithLifecycle
@@ -26,8 +36,19 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding get() = _binding!!
 
     private lateinit var sharedPreferences: SharedPreferences
-    lateinit var currentUser: DataEntity
+    lateinit var currentUser: PersonEntity
+    private lateinit var userAvatarUri: Uri
 
+//    private val cropImageActivity: ActivityResultLauncher<CropImageContractOptions> =
+//        registerForActivityResult(CropImageContract()) { result ->
+//            userAvatarUri = result.uriContent!!
+//            setImageToAvatar(userAvatarUri)
+//        }
+    private fun setImageToAvatar(uri: Uri) {
+        Glide.with(requireContext())
+            .load(uri)
+            .into(binding.avatar)
+    }
 
     private val viewModel: ProfileViewModel by viewModels() { ProfileViewModel.Factory }
 
@@ -51,6 +72,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         initButtons()
         subscribe()
         getProfileData()
+
     }
 
     private fun getProfileData() {
@@ -70,6 +92,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 currentUser = state.item
                 Log.d("ProfileFragment", "updated currentUser")
                 binding.emailMain.text = state.item.email
+                binding.departmentName.text = state.item.departmentName
+
                 if (state.item.phone == "") {
                     binding.phoneMain.text = "Не указан"
                 } else {
@@ -100,6 +124,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         }
     }
+    fun subscribe2CropResult(){
+
+    }
 
     private fun initButtons() {
         binding.fabMain.setOnClickListener(this::getCamera)
@@ -108,6 +135,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             transaction.replace(R.id.main, MapFragment())
             transaction.commit()
         }
+        binding.materialButton.setOnClickListener(this::detach)
 
         binding.mtbMain.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -128,10 +156,41 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
+
     private fun getCamera(view: View?) {  // TODO
         Toast.makeText(activity, "CAMERA", Toast.LENGTH_SHORT).show()
+        startCrop()
     }
 
+    private fun startCrop() {
+        val options = CropImageOptions().apply {
+            imageSourceIncludeCamera = false
+            imageSourceIncludeGallery = true
+            aspectRatioX = 1
+            aspectRatioY = 1
+            cropShape = CropImageView.CropShape.RECTANGLE
+            fixAspectRatio = true
+            showCropOverlay = true
+            outputCompressFormat = Bitmap.CompressFormat.PNG
+        }
+
+        val cropOptions = CropImageContractOptions(null, options)
+        cropImageActivity.launch(cropOptions)
+    }
+    private val cropImageActivity: ActivityResultLauncher<CropImageContractOptions> =
+        registerForActivityResult(CropImageContract()) { result ->
+            if (result.isSuccessful) {
+                userAvatarUri = result.uriContent!!
+                setImageToAvatar(userAvatarUri)
+            } else {
+                Toast.makeText(activity, "Обрезка отменена", Toast.LENGTH_SHORT).show()
+            }
+        }
+    private fun detach(view: View?){
+        var personEntity = currentUser.copy()
+        personEntity.departmentName = "Не указан"
+    viewModel.changeDataByLogin(PersonEntity = personEntity)
+    }
     private fun editProfileData() {
         val dialog = BottomSheetDialog(requireContext())
         dialog.setContentView(R.layout.bottom_sheet_edit_profile)
@@ -159,7 +218,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 return@setOnClickListener
             }
             Log.d("ProfileFragment", "1 sec before error")
-            val dataEntity = DataEntity(
+            val personEntity = PersonEntity(
                 email = updatedEmail,
                 info = updatedInfo,
                 phone = updatedPhone,
@@ -169,7 +228,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 departmentName = currentUser.departmentName,
             )
             viewModel.changeDataByLogin(
-                PersonEntity = dataEntity
+                PersonEntity = personEntity
             )
 
             dialog.dismiss()
@@ -177,7 +236,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         dialog.show()
     }
 
-    private fun logout() {  // TODO
+    private fun logout() {
         viewModel.logout()
         viewModel.openAuth()
         subscribe2Logout()

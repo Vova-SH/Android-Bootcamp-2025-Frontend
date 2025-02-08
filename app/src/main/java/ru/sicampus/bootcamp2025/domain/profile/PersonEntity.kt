@@ -1,12 +1,12 @@
 package ru.sicampus.bootcamp2025.domain.profile
 
-data class DataEntity (
+data class PersonEntity (
     val id: Long,
     val login: String,
     val name: String,
     val email: String,
     val info: String,
     val phone: String,
-    val departmentName: String?,
+    var departmentName: String?,
 //    val pathtoImage: String,
 )

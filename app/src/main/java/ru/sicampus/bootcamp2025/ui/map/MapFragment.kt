@@ -100,8 +100,8 @@ class MapFragment() : Fragment(R.layout.fragment_map),
         dialog.findViewById<ImageView>(R.id.image)?.let {
             Glide.with(this)
                 .load(place.pathToImage) // TODO()
-                .placeholder(R.drawable.ic_photo) // Плейсхолдер
-                .error(R.drawable.ic_back) // Изображение при ошибке
+                .placeholder(R.drawable.ic_photo)
+                .error(R.drawable.ic_back)
                 .into(it)
         }
 //        dialog.findViewById<ImageView>(R.id.image)?.let {
