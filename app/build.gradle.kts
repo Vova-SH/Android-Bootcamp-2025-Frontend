@@ -43,7 +43,7 @@ dependencies {
     implementation("com.parse:parse-android:1.17.2") {
         exclude(group = "com.android.support")
     }
-
+    implementation ("com.google.android.material:material:1.9.0")
     implementation(libs.play.services.maps)
     implementation(libs.androidx.security.crypto)
     implementation(libs.okhttp)
