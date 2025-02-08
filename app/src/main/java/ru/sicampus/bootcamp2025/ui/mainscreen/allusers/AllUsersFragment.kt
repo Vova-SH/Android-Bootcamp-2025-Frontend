@@ -35,11 +35,9 @@ class AllUsersFragment : Fragment(R.layout.unemployeed_volunteers_fragment) {
 
         binding.contentAll.adapter = pageAdapter
 
-        binding.refresh.setOnRefreshListener { pageAdapter.refresh() }
 
         viewModel.state.collectWithLifecycle(this) { state ->
             binding.error.visibility = visibleOrGone(state is AllUsersViewModel.State.Error)
-            binding.refresh.isRefreshing = state is AllUsersViewModel.State.Loading
 
             when (state) {
                 is AllUsersViewModel.State.Error -> binding.error.text = state.error
@@ -54,7 +52,6 @@ class AllUsersFragment : Fragment(R.layout.unemployeed_volunteers_fragment) {
 
         pageAdapter.loadStateFlow.collectWithLifecycle(this) { data ->
             val state = data.refresh
-            binding.refresh.isRefreshing = state is LoadState.Loading
             binding.error.visibility = visibleOrGone(state is LoadState.Error)
 
             if (state is LoadState.Error) {

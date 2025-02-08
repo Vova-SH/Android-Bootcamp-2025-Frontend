@@ -7,6 +7,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import ru.sicampus.bootcamp2025.databinding.FreeVolunteerItemBinding
 import ru.sicampus.bootcamp2025.databinding.VolunteerInCenterItemBinding
 import ru.sicampus.bootcamp2025.domain.entities.ProfileEntity
 
@@ -14,14 +15,14 @@ class UserListAdapter(private val onClick: (profileId: Int) -> Unit) :
     PagingDataAdapter<ProfileEntity, UserListAdapter.ViewHolder>(CenterDiff) {
 
     class ViewHolder(
-        private val binding: VolunteerInCenterItemBinding,
+        private val binding: FreeVolunteerItemBinding,
         private val onClick: (profileId: Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProfileEntity) {
             Log.d("info", item.toString())
-            binding.name.text = item.name
-            binding.lastname.text = item.name
-            Picasso.get().load(item.photoUrl).into(binding.profilePicture)
+            binding.name.text = "${item.name} ${item.lastname}"
+            binding.email.text = item.email
+            Picasso.get().load(item.photoUrl).into(binding.image)
             binding.root.setOnClickListener { onClick }
         }
     }
@@ -38,7 +39,7 @@ class UserListAdapter(private val onClick: (profileId: Int) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            VolunteerInCenterItemBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            FreeVolunteerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             onClick = onClick
         )
     }

@@ -35,9 +35,9 @@ class AllUsersViewModel(
 
     val listState = Pager(
         config = PagingConfig(
-            pageSize = 10,
+            pageSize = 20,
             enablePlaceholders = false,
-            maxSize = 50
+            maxSize = 70
         )
     ) {
         UsersPagingSource(useCasePaged::invoke)
