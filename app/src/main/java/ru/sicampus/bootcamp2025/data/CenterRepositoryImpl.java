@@ -10,6 +10,7 @@ import ru.sicampus.bootcamp2025.data.dto.CenterDto;
 import ru.sicampus.bootcamp2025.data.network.RetrofitFactory;
 import ru.sicampus.bootcamp2025.data.source.CenterApi;
 import ru.sicampus.bootcamp2025.data.utils.CallToConsumer;
+import ru.sicampus.bootcamp2025.data.utils.mapper.CenterMapper;
 import ru.sicampus.bootcamp2025.domain.center.CenterRepository;
 import ru.sicampus.bootcamp2025.domain.entities.FullCenterEntity;
 import ru.sicampus.bootcamp2025.domain.entities.ItemCenterEntity;
@@ -34,14 +35,12 @@ public class CenterRepositoryImpl implements CenterRepository {
     public void getAllCenters(@NonNull Consumer<Status<List<ItemCenterEntity>>> callback) {
         centerApi.getAll().enqueue(new CallToConsumer<>(
                 callback,
-                centerDtos -> {
-                    ArrayList<ItemCenterEntity> result = new ArrayList<>(centerDtos.size());
-                    for (CenterDto center : centerDtos) {
-                        final String id = center.id;
-                        final String centerName = center.centreName;
-                        final String address = center.address;
-                        if (id != null && centerName != null && address != null) {
-                            result.add(new ItemCenterEntity(id, centerName, address));
+                centers -> {
+                    ArrayList<ItemCenterEntity> result = new ArrayList<>(centers.size());
+                    for (CenterDto center : centers) {
+                        ItemCenterEntity entity = CenterMapper.toItemCenterEntity(center);
+                        if (entity != null) {
+                            result.add(entity);
                         }
                     }
                     return result;
@@ -53,23 +52,7 @@ public class CenterRepositoryImpl implements CenterRepository {
     public void getCenter(@NonNull String id, @NonNull Consumer<Status<FullCenterEntity>> callback) {
         centerApi.getById(id).enqueue(new CallToConsumer<>(
                 callback,
-                center -> {
-                    final String resultId = center.id;
-                    final String centerName = center.centreName;
-                    final String address = center.address;
-                    final String phone = center.phone;
-                    if (resultId != null && centerName != null && address != null && phone != null) {
-                        return new FullCenterEntity(
-                                resultId,
-                                centerName,
-                                address,
-                                phone,
-                                center.activeVolunteers
-                        );
-                    } else {
-                        return null;
-                    }
-                }
+                CenterMapper::toFullCenterEntity
         ));
     }
 }
