@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Android-Bootcamp-2025-Frontend</string>
+    <string name="page_title">Имя пользователя</string>
+    <string name="fab_content_desc">Пример описания</string>
+    <string name="login">Введите логин</string>
+    <string name="title">Заголовок</string>
+    <string name="description">Описание</string>
+    <string name="refresh">Обновить</string>
+    <string name="password">Введите пароль</string>
+    <string name="signup">Регистрация</string>
+    <string name="signin">Вход</string>
+    <string name="hello">👇Привет, пожалуйста, войдите!👇</string>
+    <string name="button">Перейти -></string>
+    <string name="start">👇Привет, пожалуйста, войдите!👇</string>
+    <string name="email"> Почта </string>
+    <string name="infouser">ℹ Информация о вас ℹ</string>
+    <string name="phone"> Телефон </string>
+    <string name="SaveChanges">✅ Сохранить изменения ✅</string>
+    <string name="EditProfile"> ✍ Изменить данные ✍</string>
+    <string name="INFO_user">Дополнительная информация</string>
+    <string name="name"> Ваше имя </string>
+    <string name="volunteer_center_user">Your volunteer center</string>
+    <string name="detach_department"> Открепится от своего волонтерского центра </string>
+    <string name="Attached__the_center">Прикрепится к центру</string>
+
+</resources>

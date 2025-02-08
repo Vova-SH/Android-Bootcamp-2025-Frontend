@@ -8,7 +8,7 @@
     <string name="refresh">Refresh</string>
     <string name="password">Enter password</string>
     <string name="signup">Sign Up</string>
-    <string name="signin">Sign In</string>
+    <string name="signin">Sign in</string>
     <string name="hello">👇Hello, please login!👇</string>
     <string name="button">Go -></string>
     <string name="start">👇Hello, please login!👇</string>
@@ -18,7 +18,7 @@
     <string name="SaveChanges">✅ Save Changes ✅</string>
     <string name="EditProfile"> ✍ Edit my profile ✍</string>
     <string name="INFO_user">Additional Information</string>
-    <string name="name"> Name </string>
+    <string name="name"> Your name </string>
     <string name="volunteer_center_user">Your volunteer center</string>
     <string name="detach_department"> Detach from department </string>
     <string name="Attached__the_center">Attached to the center</string>
