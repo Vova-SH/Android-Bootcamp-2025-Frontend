@@ -17,40 +17,53 @@
         android:gravity="center"
         android:paddingBottom="8dp"/>
 
+    <!-- Username Field with Icon -->
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/name"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:drawableStart="@drawable/user_747376_2"
+        android:drawablePadding="8dp" />
 
+    <!-- Email Field with Icon -->
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/email_6773064_1"
+        android:drawablePadding="8dp" />
 
+    <!-- Phone Field with Icon -->
     <EditText
         android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/phone"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:drawableStart="@drawable/phone_1509974"
+        android:drawablePadding="8dp" />
 
+    <!-- Info Field -->
     <EditText
         android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/INFO_user"
         android:inputType="textMultiLine"
-        android:minLines="3" />
+        android:minLines="3"
+        android:maxLines="5"
+        android:drawableStart="@drawable/icon_information_2725663"
+        android:drawablePadding="8dp" />
 
+    <!-- Save Button -->
     <Button
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/SaveChanges"
         android:layout_marginTop="16dp" />
-
 </LinearLayout>

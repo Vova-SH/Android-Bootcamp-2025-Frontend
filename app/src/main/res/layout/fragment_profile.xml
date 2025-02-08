@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D3D3D3"
+
     tools:context=".MainActivity">
     <TextView
         android:id="@+id/error"
@@ -26,11 +26,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:title="@string/page_title"
+
             app:expandedTitleTextAppearance="@style/myCTBStyle"
             app:contentScrim="@color/blue"
             app:layout_scrollFlags="exitUntilCollapsed|scroll">
 
             <ImageView
+                android:id="@+id/avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
@@ -65,7 +67,7 @@
             android:id="@+id/cl_main"
             android:background="#FFFFFF"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
 
             >
 
@@ -93,6 +95,8 @@
                 android:layout_margin="100dp"
                 android:gravity="center"
                 android:text="@string/phone"
+                android:textSize="18sp"
+
                 android:background="#F0FFF0"
                 android:textColor="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,6 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="#FFF0F5	"
+                android:textSize="14sp"
                 android:text="+*(**)**-**-**"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +122,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="@string/email"
-                android:background="#FFEBCD"
+                android:textSize="18sp"
                 android:textColor="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/gl_left_main"
@@ -129,6 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
+                android:textSize="14sp"
                 android:text="****@gmail.com"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -136,30 +142,68 @@
                 app:layout_constraintTop_toBottomOf="@+id/email_hint_main" />
 
             <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:text="@string/volunteer_center_user"
+                app:layout_constraintTop_toBottomOf="@+id/email_main" />
+
+            <TextView
+                android:id="@+id/department_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:text="departmentname"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <TextView
                 android:id="@+id/info_hint_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
+                android:textSize="18sp"
                 android:gravity="center"
-                android:background="#E6E6FA"
                 android:text="@string/infouser"
                 android:textColor="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/gl_left_main"
-                app:layout_constraintTop_toBottomOf="@id/email_main" />
+                app:layout_constraintTop_toBottomOf="@+id/department_name" />
 
             <TextView
                 android:id="@+id/info_main"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Info"
+                android:textSize="15sp"
                 android:gravity="center"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/gl_left_main"
                 app:layout_constraintTop_toBottomOf="@id/info_hint_main" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/material_button"
+                style="@style/Widget.Material3.Button.UnelevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/detach_department"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_main"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
