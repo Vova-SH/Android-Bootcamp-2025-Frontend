@@ -1,12 +1,10 @@
 package ru.sicampus.bootcamp2025.ui.mainscreen.centerinfo
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelStoreOwner
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.squareup.picasso.Picasso
 import ru.sicampus.bootcamp2025.Const.BUNDLE_KEY
@@ -39,7 +37,6 @@ class CenterInfoFragment : BottomSheetDialogFragment(R.layout.center_item) {
         viewModel.state.collectWithLifecycle(this) { state ->
             binding.error.visibility = visibleOrGone(state is CenterInfoViewModel.State.Error)
             binding.content.visibility = visibleOrGone(state is CenterInfoViewModel.State.Show)
-            Log.d("info", state.toString())
             when (state) {
                 is CenterInfoViewModel.State.Error -> binding.error.text = state.text
                 CenterInfoViewModel.State.Loading -> Unit

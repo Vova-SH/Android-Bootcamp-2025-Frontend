@@ -1,6 +1,5 @@
 package ru.sicampus.bootcamp2025.ui.mainscreen.allusers
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -18,7 +17,6 @@ class UserListAdapter(private val onClick: (profileId: Int) -> Unit) :
         private val onClick: (profileId: Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProfileEntity) {
-            Log.d("info", item.toString())
             binding.name.text = "${item.name} ${item.lastname}"
             binding.email.text = item.email
             Picasso.get().load(item.photoUrl).into(binding.image)
