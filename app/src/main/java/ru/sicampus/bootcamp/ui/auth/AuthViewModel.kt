@@ -16,14 +16,12 @@ import ru.sicampus.bootcamp.R
 import ru.sicampus.bootcamp.data.auth.AuthNetworkDataSource
 import ru.sicampus.bootcamp.data.auth.AuthRepoImpl
 import ru.sicampus.bootcamp.data.auth.AuthStorageDataSource
-import ru.sicampus.bootcamp.domain.auth.IsUserExistUseCase
 import ru.sicampus.bootcamp.domain.auth.LoginUseCase
 import ru.sicampus.bootcamp.domain.auth.RegisterUserUseCase
 import kotlin.reflect.KClass
 
 class AuthViewModel(
     application: Application,
-    private val isUserExistUseCase: IsUserExistUseCase,
     private val loginUseCase: LoginUseCase,
     private val registerUserUseCase: RegisterUserUseCase,
 ) : AndroidViewModel(application = application) {
@@ -51,35 +49,11 @@ class AuthViewModel(
     ) {
         viewModelScope.launch {
             _state.emit(State.Loading)
-            when (isNewUser) {
-                true -> {
-                    registerUserUseCase(login, password).fold(
-                        onSuccess = { openList() },
-                        onFailure = { error ->
-                            updateState(error)
-                        }
-                    )
-                }
-                false -> {
-                    loginUseCase(login, password).fold(
-                        onSuccess = { openList() },
-                        onFailure = { error ->
-                            updateState(error)
-                        }
-                    )
-                }
-                null -> {
-                    isUserExistUseCase(login).fold(
-                        onSuccess = { isExist ->
-                            isNewUser = isExist
-                            updateState()
-                        },
-                        onFailure = { error ->
-                            updateState(error)
-                        }
-                    )
-                }
-            }
+            loginUseCase(login, password).fold(
+                onSuccess = { openList() },
+                onFailure = { error ->
+                    updateState(error)
+            })
         }
     }
 
@@ -93,11 +67,7 @@ class AuthViewModel(
 
     private fun getStateShow(error: Throwable? = null): State.Show {
         return State.Show(
-            titleText = when (isNewUser) {
-                true -> getApplication<Application>().getString(R.string.sign_up)
-                false -> getApplication<Application>().getString(R.string.sign_in)
-                null -> getApplication<Application>().getString(R.string.Привет)
-            },
+            titleText =getApplication<Application>().getString(R.string.Привет),
             showPassword = isNewUser != null,
             buttonText = getApplication<Application>().getString(R.string.login),
             errorText = error?.toString(),
@@ -130,7 +100,6 @@ class AuthViewModel(
                 )
                 return AuthViewModel(
                     application = application,
-                    isUserExistUseCase = IsUserExistUseCase(authRepoImpl),
                     loginUseCase = LoginUseCase(authRepoImpl),
                     registerUserUseCase = RegisterUserUseCase(authRepoImpl),
                 ) as T

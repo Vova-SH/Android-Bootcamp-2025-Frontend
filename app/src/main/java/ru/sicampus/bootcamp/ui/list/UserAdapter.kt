@@ -1,23 +1,29 @@
 package ru.sicampus.bootcamp.ui.list
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
-import ru.sicampus.bootcamp.databinding.ItemUserBinding
+import ru.sicampus.bootcamp.data.auth.login
+import ru.sicampus.bootcamp.databinding.UserCardItemBinding
 import ru.sicampus.bootcamp.domain.list.UserEntity
 
-class UserAdapter : ListAdapter<UserEntity, UserAdapter.ViewHolder>(UserDiff) {
+interface OpenProfile {
+    fun goToProfile(username: String)
+}
+
+class UserAdapter(private val listener: OpenProfile) : ListAdapter<UserEntity, UserAdapter.ViewHolder>(UserDiff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemUserBinding.inflate(
+            UserCardItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            listener
         )
     }
 
@@ -26,15 +32,17 @@ class UserAdapter : ListAdapter<UserEntity, UserAdapter.ViewHolder>(UserDiff) {
     }
 
     class ViewHolder(
-        private val binding: ItemUserBinding,
+        private val binding: UserCardItemBinding,
+        private val listener: OpenProfile
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: UserEntity) {
-            binding.title.text = item.name
-            binding.description.text = item.email
-            Picasso.get().load(item.photoUrl)
-                .resize(64, 64)
-                .centerCrop()
-                .into(binding.photo)
+            binding.btn.setOnClickListener{
+                listener.goToProfile(item.username)
+                login.login1 = item.username
+                Log.d("ESEESE", "${login.login1}")
+            }
+            binding.title.text = item.username
+            binding.discription.text = item.email
         }
 
     }

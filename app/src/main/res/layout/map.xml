@@ -8,10 +8,11 @@
 
     <!--SVG файл с маркером для карты находится в папке drawable-->
 
-    <com.google.android.gms.maps.MapView
+    <fragment
         android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
     <FrameLayout
         android:id="@+id/menu"

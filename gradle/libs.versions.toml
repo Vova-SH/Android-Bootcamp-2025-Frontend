@@ -9,7 +9,9 @@ material = "1.12.0"
 activity = "1.10.0"
 constraintlayout = "2.2.0"
 ktor = "3.0.3"
+parseAndroid = "1.17.2"
 playServicesMaps = "18.1.0"
+playServicesMapsVersion = "19.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,8 +26,10 @@ ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+parse-android = { module = "com.parse:parse-android", version.ref = "parseAndroid" }
 picasso = { group = "com.squareup.picasso", name = "picasso", version = "2.8" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
+play-services-maps-v1900 = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

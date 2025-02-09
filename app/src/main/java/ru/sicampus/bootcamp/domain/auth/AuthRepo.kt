@@ -1,8 +1,7 @@
 package ru.sicampus.bootcamp.domain.auth
 
 interface AuthRepo {
-    suspend fun isUserExist(login: String): Result<Boolean>
-    suspend fun register(login: String, password: String): Result<Unit>
+    suspend fun register(login: String, password: String, email: String, firstName: String, secondName: String, lastName: String,  phoneNumber: String, info: String,  photoUrl: String,): Result<Unit>
     suspend fun login(login: String, password: String): Result<Unit>
 
 }

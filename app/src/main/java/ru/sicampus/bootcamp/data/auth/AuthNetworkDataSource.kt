@@ -15,16 +15,10 @@ import ru.sicampus.bootcamp.data.Network
 
 object AuthNetworkDataSource {
 
-    suspend fun isUserExist(login: String): Result<Boolean> = withContext(Dispatchers.IO) {
-        runCatching {
-            val result = Network.client.get("http://10.0.2.2:9000/api/1.0/volunteers/username/$login")
-            result.status != HttpStatusCode.OK
-        }
-    }
 
     suspend fun login(token: String): Result<Unit> = withContext(Dispatchers.IO) {
         runCatching {
-            val result = Network.client.get("http://10.0.2.2:9000/api/1.0/volunteers/login") {
+            val result = Network.client.get("http://192.168.1.102:8080/api/1.0/login") {
                 headers {
                     append(HttpHeaders.Authorization, token)
                 }
@@ -36,17 +30,22 @@ object AuthNetworkDataSource {
         }
     }
 
-    suspend fun register(login: String, password: String): Result<Unit> =
+    suspend fun register(login: String, password: String, email: String, name: String, secondName: String, lastName: String, organizationName: String, phoneNumber: String, info: String): Result<Unit> =
         withContext(Dispatchers.IO) {
             runCatching {
-                val result = Network.client.post("http://10.0.2.2:9000/api/person/register") {
+                val result = Network.client.post("http://192.168.1.102:8080/api/1.0/register") {
                     contentType(ContentType.Application.Json)
                     setBody(
                         AuthRegisterDto(
                             username = login,
                             password = password,
-                            name = login,
-                            email = "$login@example.com"
+                            name = name,
+                            secondName = secondName,
+                            lastName = lastName,
+                            email = email,
+                            organizationName = organizationName,
+                            info = info,
+                            phoneNumber = phoneNumber,
                         )
                     )
                 }
@@ -57,4 +56,17 @@ object AuthNetworkDataSource {
             }
 
         }
+    suspend fun findByLogin(token: String, login: String): Result<Unit> = withContext(Dispatchers.IO) {
+        runCatching {
+            val result = Network.client.get("http://192.168.1.102:8080/api/1.0/user/username/${login}") {
+                headers {
+                    append(HttpHeaders.Authorization, token)
+                }
+            }
+            if (result.status != HttpStatusCode.OK) {
+                error("Status ${result.status}: ${result.body<String>()}")
+            }
+            Unit
+        }
+    }
 }

@@ -5,7 +5,7 @@
     android:id="@+id/registration_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -42,6 +42,27 @@
             android:layout_margin="8sp"/>
 
         <TextView
+            android:id="@+id/email_text3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/my_font_medium"
+            android:text="@string/userName"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/enter_email_reg3"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="15sp"
+            android:background="@drawable/et_style"
+            android:fontFamily="@font/my_font_regular"
+            android:hint="@string/enterLogin"
+            android:padding="5sp"
+            android:textColorHint="@color/gray"
+            android:textSize="16sp" />
+
+        <TextView
             android:id="@+id/email_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,15 +73,15 @@
         <EditText
             android:id="@+id/enter_email_reg"
             android:layout_width="match_parent"
-            android:layout_height="32sp"
-            android:background="@drawable/et_style"
-            android:hint="@string/enter_email"
-            android:textSize="16sp"
-            android:fontFamily="@font/my_font_regular"
-            android:textColorHint="@color/gray"
-            android:padding="5sp"
+            android:layout_height="48dp"
             android:layout_marginTop="5sp"
-            android:layout_marginBottom="15sp" />
+            android:layout_marginBottom="15sp"
+            android:background="@drawable/et_style"
+            android:fontFamily="@font/my_font_regular"
+            android:hint="@string/enter_email"
+            android:padding="5sp"
+            android:textColorHint="@color/gray"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/password_text"
@@ -73,15 +94,15 @@
         <EditText
             android:id="@+id/enter_password_reg"
             android:layout_width="match_parent"
-            android:layout_height="32sp"
-            android:background="@drawable/et_style"
-            android:hint="@string/symbol_number_text"
-            android:textSize="16sp"
-            android:fontFamily="@font/my_font_regular"
-            android:textColorHint="@color/gray"
-            android:padding="5sp"
+            android:layout_height="48dp"
             android:layout_marginTop="5sp"
-            android:layout_marginBottom="15sp"/>
+            android:layout_marginBottom="15sp"
+            android:background="@drawable/et_style"
+            android:fontFamily="@font/my_font_regular"
+            android:hint="@string/symbol_number_text"
+            android:padding="5sp"
+            android:textColorHint="@color/gray"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/fi_text"
@@ -94,15 +115,15 @@
         <EditText
             android:id="@+id/enter_name"
             android:layout_width="match_parent"
-            android:layout_height="32sp"
-            android:background="@drawable/et_style"
-            android:hint="@string/ivanov_ivan"
-            android:textSize="16sp"
-            android:fontFamily="@font/my_font_regular"
-            android:textColorHint="@color/gray"
-            android:padding="5sp"
+            android:layout_height="48dp"
             android:layout_marginTop="5sp"
-            android:layout_marginBottom="15sp"/>
+            android:layout_marginBottom="15sp"
+            android:background="@drawable/et_style"
+            android:fontFamily="@font/my_font_regular"
+            android:hint="@string/ivanov_ivan"
+            android:padding="5sp"
+            android:textColorHint="@color/gray"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/phone_text"
@@ -115,15 +136,15 @@
         <EditText
             android:id="@+id/enter_phone"
             android:layout_width="match_parent"
-            android:layout_height="32sp"
-            android:background="@drawable/et_style"
-            android:hint="@string/phone_example"
-            android:textSize="16sp"
-            android:fontFamily="@font/my_font_regular"
-            android:textColorHint="@color/gray"
-            android:padding="5sp"
+            android:layout_height="48dp"
             android:layout_marginTop="5sp"
-            android:layout_marginBottom="15sp"/>
+            android:layout_marginBottom="15sp"
+            android:background="@drawable/et_style"
+            android:fontFamily="@font/my_font_regular"
+            android:hint="@string/phone_example"
+            android:padding="5sp"
+            android:textColorHint="@color/gray"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/bio_text"
@@ -136,26 +157,26 @@
         <EditText
             android:id="@+id/enter_bio"
             android:layout_width="match_parent"
-            android:layout_height="32sp"
-            android:background="@drawable/et_style"
-            android:hint="@string/bio_hint"
-            android:textSize="16sp"
-            android:fontFamily="@font/my_font_regular"
-            android:textColorHint="@color/gray"
-            android:padding="5sp"
+            android:layout_height="48dp"
             android:layout_marginTop="5sp"
-            android:layout_marginBottom="30sp"/>
+            android:layout_marginBottom="30sp"
+            android:background="@drawable/et_style"
+            android:fontFamily="@font/my_font_regular"
+            android:hint="@string/bio_hint"
+            android:padding="5sp"
+            android:textColorHint="@color/gray"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/log_in_btn"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_style"
             android:fontFamily="@font/my_font_regular"
             android:padding="0dp"
-            android:text="@string/sign_up"
+            android:text="@string/registration"
             android:textSize="16sp"
             android:visibility="visible"
             app:backgroundTint="@null" />

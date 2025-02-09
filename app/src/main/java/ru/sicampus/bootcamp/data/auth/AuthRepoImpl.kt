@@ -6,12 +6,19 @@ class AuthRepoImpl(
     private val authNetworkDataSource: AuthNetworkDataSource,
     private val authStorageDataSource: AuthStorageDataSource,
 ) : AuthRepo {
-    override suspend fun isUserExist(login: String): Result<Boolean> {
-        return authNetworkDataSource.isUserExist(login)
-    }
 
-    override suspend fun register(login: String, password: String): Result<Unit> {
-        return authNetworkDataSource.register(login, password)
+    override suspend fun register(
+        login: String,
+        password: String,
+        email: String,
+        name: String,
+        secondName: String,
+        lastName: String,
+        phoneNumber: String,
+        info: String,
+        photoUrl: String,
+    ): Result<Unit> {
+        return authNetworkDataSource.register(login, password, email, name, secondName, lastName, info, phoneNumber, photoUrl)
     }
 
     override suspend fun login(login: String, password: String): Result<Unit> {

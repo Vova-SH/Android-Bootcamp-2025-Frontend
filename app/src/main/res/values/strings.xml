@@ -30,8 +30,8 @@
     <string name="email">Email:</string>
     <string name="password">Пароль:</string>
     <string name="symbol_number_text">От 8 до 20 символов</string>
-    <string name="fi">ФИ:</string>
-    <string name="ivanov_ivan">Иванов Иван</string>
+    <string name="fi">ФИО:</string>
+    <string name="ivanov_ivan">Иванов Иван Иванович</string>
     <string name="phone">Телефон:</string>
     <string name="phone_example">8800ххххххх</string>
     <string name="bio_hint">Расскажите о себе</string>
@@ -56,5 +56,7 @@
     <string name="login">Войти</string>
     <string name="refresh">Обновить страницу</string>
     <string name="org_adress">ул. Пушкина, 39к2</string>
+    <string name="userName">Имя пользователя</string>
+    <string name="enterLogin">Придумайте логин</string>
 
 </resources>
