@@ -41,7 +41,7 @@ class CenterInfoViewModel(
 
             getCenterByIdUseCase.invoke(centerId).fold(
                 onSuccess = { data ->
-                    data.active.forEach { id ->
+                    data.active?.forEach { id ->
                         getProfileByIdUseCase(id).fold(
                             onSuccess = { profile -> activeUsers.add(profile) },
                             onFailure = { error -> _state.emit(State.Error(error.message.toString())) }

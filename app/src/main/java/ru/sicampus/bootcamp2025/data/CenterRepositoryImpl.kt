@@ -80,7 +80,7 @@ class CenterRepositoryImpl(
                 description = dto.description
                     ?: return Result.failure(IllegalStateException("Null data")),
                 link = dto.link ?: return Result.failure(IllegalStateException("Null data")),
-                active = dto.active ?: return Result.failure(IllegalStateException("Null data")),
+                active = dto.active
             )
         }
     }
