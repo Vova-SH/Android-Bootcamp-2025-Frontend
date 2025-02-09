@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.data.ProfileRepositoryImpl
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
-import ru.sicampus.bootcamp2025.data.sources.locale.ProfileLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.ProfileNetworkDataSource
 import ru.sicampus.bootcamp2025.domain.entities.ProfileEntity
 import ru.sicampus.bootcamp2025.domain.usecases.GetAllFreeProfilesUseCase
@@ -72,7 +71,6 @@ class AllUsersViewModel(
                     extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
 
                 val repository = ProfileRepositoryImpl(
-                    localDataSource = ProfileLocalDataSource,
                     networkDataSource = ProfileNetworkDataSource,
                     credentialsLocalDataSource = CredentialsLocalDataSource.getInstance()
                 )

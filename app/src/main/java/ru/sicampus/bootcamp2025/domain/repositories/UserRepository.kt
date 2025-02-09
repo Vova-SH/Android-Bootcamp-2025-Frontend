@@ -10,4 +10,5 @@ interface UserRepository {
     suspend fun getLocalCredentials(): Result<String>
     suspend fun authorize(token: String): Result<Unit>
     suspend fun getLocalUser(): UserEntity?
+    suspend fun logout()
 }

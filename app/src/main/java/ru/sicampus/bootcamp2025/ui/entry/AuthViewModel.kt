@@ -35,14 +35,15 @@ class AuthViewModel(
 
     init {
         viewModelScope.launch {
+            _state.emit(State.Loading)
             updateState()
         }
     }
 
     private fun updateState() {
         viewModelScope.launch {
+            _state.emit(State.Loading)
             getCurrentUserCredentialsUseCase.invoke().fold(
-
                 onSuccess = { currentUser ->
                     _state.emit(State.DataReady)
                     authorizeUseCase.invoke(currentUser).fold(
@@ -60,19 +61,22 @@ class AuthViewModel(
 
     private fun openApp() {
         viewModelScope.launch {
-            _action.send(Action.OpenApp)
+            if (_state.value !is State.Loading)
+                _action.send(Action.OpenApp)
         }
     }
 
     private fun goToLogin() {
         viewModelScope.launch {
-            _action.send(Action.GoToLogin)
+            if (_state.value !is State.Loading)
+                _action.send(Action.GoToLogin)
         }
     }
 
     private fun goToSignUp() {
         viewModelScope.launch {
-            _action.send(Action.GotToSignUp)
+            if (_state.value !is State.Loading)
+                _action.send(Action.GotToSignUp)
         }
     }
 

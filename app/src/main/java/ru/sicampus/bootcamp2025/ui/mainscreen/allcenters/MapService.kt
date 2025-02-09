@@ -27,6 +27,7 @@ class MapService(
 
     override fun onMapReady(map: GoogleMap) {
         map.setOnMarkerClickListener(this)
+
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION

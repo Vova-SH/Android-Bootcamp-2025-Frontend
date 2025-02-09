@@ -13,4 +13,8 @@ object UserLocalDataSource {
     fun getUser(): UserEntity? {
         return currentUser
     }
+
+    fun clear() {
+        currentUser = null
+    }
 }

@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.data.CenterRepositoryImpl
 import ru.sicampus.bootcamp2025.data.ProfileRepositoryImpl
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
-import ru.sicampus.bootcamp2025.data.sources.locale.ProfileLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.CenterNetworkDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.ProfileNetworkDataSource
 import ru.sicampus.bootcamp2025.domain.entities.FullCenterEntity
@@ -71,7 +70,6 @@ class CenterInfoViewModel(
 
                 return CenterInfoViewModel(
                     getProfileByIdUseCase = GetProfileByIdUseCase(ProfileRepositoryImpl(
-                        localDataSource = ProfileLocalDataSource,
                         networkDataSource = ProfileNetworkDataSource,
                         credentialsLocalDataSource = credentialsLocalDataSource
                     )),

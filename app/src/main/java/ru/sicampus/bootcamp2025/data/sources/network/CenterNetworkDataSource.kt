@@ -3,6 +3,7 @@ package ru.sicampus.bootcamp2025.data.sources.network
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
+import io.ktor.client.request.post
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Dispatchers
@@ -58,4 +59,17 @@ object CenterNetworkDataSource {
                 result.body()
             }
         }
+
+    suspend fun pushVolunteer(centerId: Int, profileId: Int, token: String) = withContext(Dispatchers.IO) {
+        runCatching {
+            val result = client.post("${Const.DOMAIN}/api/centers/punish/$centerId/$profileId") {
+                headers {
+                    append(HttpHeaders.Authorization, token)
+                }
+            }
+            if (result.status != HttpStatusCode.OK)
+                error("Status ${result.status}")
+            Unit
+        }
+    }
 }

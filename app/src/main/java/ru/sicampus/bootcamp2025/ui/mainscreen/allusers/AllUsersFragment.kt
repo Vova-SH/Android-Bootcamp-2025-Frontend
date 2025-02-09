@@ -8,8 +8,8 @@ import androidx.paging.LoadState
 import ru.sicampus.bootcamp2025.Const.BUNDLE_KEY
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.UnemployeedVolunteersFragmentBinding
-import ru.sicampus.bootcamp2025.ui.mainscreen.centerinfo.CenterInfoFragment
 import ru.sicampus.bootcamp2025.ui.mainscreen.centerinfo.UsersAdapter
+import ru.sicampus.bootcamp2025.ui.mainscreen.linkVolunteerToCenter.LinkVolunteerBottomSheetFragment
 import ru.sicampus.bootcamp2025.ui.utils.collectWithLifecycle
 import ru.sicampus.bootcamp2025.ui.utils.visibleOrGone
 
@@ -26,7 +26,7 @@ class AllUsersFragment : Fragment(R.layout.unemployeed_volunteers_fragment) {
         binding.contentFree.adapter = freeAdapter
 
         val pageAdapter = UserListAdapter { profileId: Int ->
-            val fragment = CenterInfoFragment()
+            val fragment = LinkVolunteerBottomSheetFragment()
             val args = Bundle()
             args.putInt(BUNDLE_KEY, profileId)
             fragment.arguments = args

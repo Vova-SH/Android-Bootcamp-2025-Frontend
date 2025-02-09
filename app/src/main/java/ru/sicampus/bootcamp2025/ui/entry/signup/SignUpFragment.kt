@@ -8,7 +8,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.SignupFragmentBinding
 import ru.sicampus.bootcamp2025.ui.mainscreen.MainActivity
@@ -24,11 +24,12 @@ class SignUpFragment : Fragment(R.layout.signup_fragment) {
     private var _navController: NavController? = null
     private val navController: NavController get() = _navController!!
 
+
     private val viewModel: SignUpViewModel by viewModels<SignUpViewModel> { SignUpViewModel.Factory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = SignupFragmentBinding.bind(view)
-        _navController = NavHostFragment.findNavController(this)
+        _navController = findNavController()
 
         binding.repeatPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

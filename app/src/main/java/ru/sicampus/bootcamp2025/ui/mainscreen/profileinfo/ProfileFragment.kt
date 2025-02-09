@@ -1,5 +1,6 @@
 package ru.sicampus.bootcamp2025.ui.mainscreen.profileinfo
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import com.squareup.picasso.Picasso
 import ru.sicampus.bootcamp2025.R
 import ru.sicampus.bootcamp2025.databinding.ViewProfileFragmentBinding
 import ru.sicampus.bootcamp2025.domain.entities.ProfileEntity
+import ru.sicampus.bootcamp2025.ui.entry.EntryActivity
 import ru.sicampus.bootcamp2025.ui.utils.collectWithLifecycle
 import ru.sicampus.bootcamp2025.ui.utils.getText
 import ru.sicampus.bootcamp2025.ui.utils.visibleOrGone
@@ -50,7 +52,16 @@ class ProfileFragment : Fragment(R.layout.view_profile_fragment) {
                     binding.phone.setText(currentProfile.phoneNumber)
                     binding.email.setText(currentProfile.email)
                 }
+
+                is ProfileViewModel.State.Logout -> {
+                    startActivity(Intent(this.context, EntryActivity::class.java))
+                    requireActivity().finish()
+                }
             }
+        }
+
+        binding.logout.setOnClickListener {
+            viewModel.onLogout()
         }
 
         binding.save.setOnClickListener {

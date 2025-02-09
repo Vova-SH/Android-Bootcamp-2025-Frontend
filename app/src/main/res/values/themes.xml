@@ -3,6 +3,8 @@
     </style>
 
     <style name="Theme.AndroidBootcamp2025Frontend" parent="Base.Theme.AndroidBootcamp2025Frontend">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
         <item name="fontFamily">@font/manrope_medium</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:statusBarColor">@color/white</item>

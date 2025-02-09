@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android-Bootcamp-2025-Frontend</string>
+    <string name="app_name">Volunteers</string>
     <string name="welcome_title">Добро пожаловать\nв Volunteers</string>
     <string name="login_input_hint">Почта, логин или номер телефона</string>
     <string name="password_input_hint">Пароль</string>
@@ -37,4 +37,5 @@
     <string name="meters">метров</string>
     <string name="free_volunteer">Еще не волонтёрит</string>
     <string name="all_volunteers_header">Все волонтеры</string>
+    <string name="logout_text">Выйти</string>
 </resources>

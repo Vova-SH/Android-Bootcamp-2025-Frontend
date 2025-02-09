@@ -8,4 +8,5 @@ interface CenterRepository {
     suspend fun getPaginatedCenters(pageNum: Int, pageSize: Int): Result<List<CenterEntity>>
     suspend fun getCenterById(centerId: Int): Result<FullCenterEntity>
     suspend fun getCenters(): Result<List<CenterMapEntity>>
+    suspend fun pushVolunteer(centerId: Int, profileId: Int): Result<Unit>
 }

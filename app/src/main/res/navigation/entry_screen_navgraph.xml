@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/entry_sreen_navgraph"
-    app:startDestination="@id/signup_fragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:name="ru.sicampus.bootcamp2025.ui.entry.login.LoginFragment"
@@ -16,5 +16,10 @@
         android:id="@+id/signup_fragment"
         tools:layout="@layout/signup_fragment">
     </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="ru.sicampus.bootcamp2025.ui.entry.SplashFragment"
+        tools:layout="@layout/splash_fragment"
+        android:label="SplashFragment" />
 
 </navigation>

@@ -45,7 +45,7 @@ class CredentialsLocalDataSource private constructor(private val preferences: Sh
     }
 
     fun clear() {
+        preferences.edit().clear().apply()
         savedToken = null
     }
-
 }

@@ -127,6 +127,17 @@
                 android:text="@string/save_button_text"
                 android:textFontWeight="600" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logout"
+                style="@style/ProcessButton"
+                android:backgroundTint="@color/error_red"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="6dp"
+                android:text="@string/logout_text"
+                android:textFontWeight="600" />
+
         </LinearLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

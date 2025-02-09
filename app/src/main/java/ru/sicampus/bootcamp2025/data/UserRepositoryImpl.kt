@@ -51,4 +51,9 @@ class UserRepositoryImpl(
     override suspend fun getLocalUser(): UserEntity? {
         return userLocalDataSource.getUser()
     }
+
+    override suspend fun logout() {
+        userLocalDataSource.clear()
+        credentialsLocalDataSource.clear()
+    }
 }

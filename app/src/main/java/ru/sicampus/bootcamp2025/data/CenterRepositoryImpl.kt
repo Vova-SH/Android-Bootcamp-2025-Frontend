@@ -88,4 +88,8 @@ class CenterRepositoryImpl(
     override suspend fun getCenters(): Result<List<CenterMapEntity>> {
         return map(networkDataSource.getCenters(credentialsLocalDataSource.getToken()))
     }
+
+    override suspend fun pushVolunteer(centerId: Int, profileId: Int): Result<Unit> {
+        return networkDataSource.pushVolunteer(centerId, profileId, credentialsLocalDataSource.getToken())
+    }
 }

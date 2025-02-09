@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 import ru.sicampus.bootcamp2025.data.ProfileRepositoryImpl
 import ru.sicampus.bootcamp2025.data.UserRepositoryImpl
 import ru.sicampus.bootcamp2025.data.sources.locale.CredentialsLocalDataSource
-import ru.sicampus.bootcamp2025.data.sources.locale.ProfileLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.locale.UserLocalDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.ProfileNetworkDataSource
 import ru.sicampus.bootcamp2025.data.sources.network.UserNetworkDataSource
@@ -20,9 +19,11 @@ import ru.sicampus.bootcamp2025.domain.entities.ProfileEntity
 import ru.sicampus.bootcamp2025.domain.entities.UserEntity
 import ru.sicampus.bootcamp2025.domain.usecases.GetLocalUserUseCase
 import ru.sicampus.bootcamp2025.domain.usecases.GetProfileByIdUseCase
+import ru.sicampus.bootcamp2025.domain.usecases.LogoutUseCase
 import ru.sicampus.bootcamp2025.domain.usecases.UpdateProfileUseCase
 
 class ProfileViewModel(
+    private val logoutUseCase: LogoutUseCase,
     private val getLocalUserUseCase: GetLocalUserUseCase,
     private val getProfileByIdUseCase: GetProfileByIdUseCase,
     private val updateProfileUseCase: UpdateProfileUseCase,
@@ -36,8 +37,16 @@ class ProfileViewModel(
 
     init {
         viewModelScope.launch {
+
             _currentUser = getLocalUserUseCase.invoke()
             updateState(currentUser.profileId)
+        }
+    }
+
+    fun onLogout() {
+        viewModelScope.launch {
+            logoutUseCase.invoke()
+            _state.emit(State.Logout)
         }
     }
 
@@ -53,7 +62,10 @@ class ProfileViewModel(
     }
 
     fun onRefresh() {
-        updateState(currentUser.profileId)
+        viewModelScope.launch {
+            _state.emit(State.Loading)
+            updateState(currentUser.profileId)
+        }
     }
 
     private fun updateState(userId: Int) {
@@ -70,6 +82,7 @@ class ProfileViewModel(
         data object Loading : State
         data class Show(val profile: ProfileEntity) : State
         data class Error(val text: String) : State
+        data object Logout : State
     }
 
     companion object {
@@ -79,24 +92,23 @@ class ProfileViewModel(
                 val application =
                     extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
                 val credentialsLocalDataSource = CredentialsLocalDataSource.getInstance()
+                val userRepository = UserRepositoryImpl(
+                    userLocalDataSource = UserLocalDataSource,
+                    credentialsLocalDataSource = credentialsLocalDataSource,
+                    userNetworkDataSource = UserNetworkDataSource
+                )
+
                 return ProfileViewModel(
+                    logoutUseCase = LogoutUseCase(repository = userRepository),
                     getProfileByIdUseCase = GetProfileByIdUseCase(
                         repository = ProfileRepositoryImpl(
                             networkDataSource = ProfileNetworkDataSource,
-                            localDataSource = ProfileLocalDataSource,
                             credentialsLocalDataSource = credentialsLocalDataSource
                         ),
                     ),
-                    getLocalUserUseCase = GetLocalUserUseCase(
-                        userRepository = UserRepositoryImpl(
-                            userLocalDataSource = UserLocalDataSource,
-                            credentialsLocalDataSource = credentialsLocalDataSource,
-                            userNetworkDataSource = UserNetworkDataSource
-                        )
-                    ),
+                    getLocalUserUseCase = GetLocalUserUseCase(userRepository = userRepository),
                     updateProfileUseCase = UpdateProfileUseCase(
                         ProfileRepositoryImpl(
-                            localDataSource = ProfileLocalDataSource,
                             networkDataSource = ProfileNetworkDataSource,
                             credentialsLocalDataSource = credentialsLocalDataSource
                         )
