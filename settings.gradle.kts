@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Android-Bootcamp-2025-Frontend"
+rootProject.name = "Bootcamp2025"
 include(":app")
  

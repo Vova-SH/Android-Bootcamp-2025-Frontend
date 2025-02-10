@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "ru.sicampus.bootcamp2025"
+    namespace = "ru.sicampus.bootcamp"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "ru.sicampus.bootcamp2025"
+        applicationId = "ru.sicampus.bootcamp"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -51,8 +51,7 @@ dependencies {
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.serialization.json)
     implementation(libs.picasso)
-    implementation(libs.play.services.maps.v1802)
-    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.play.services.maps)
 }

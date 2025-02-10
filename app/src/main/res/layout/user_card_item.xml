@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/card"
+    android:layout_width="288dp"
+    android:layout_height="94dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:elevation="10sp"
+        android:text="@string/volunteer_name"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+
+        android:id="@+id/discription"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="50sp"
+        android:elevation="10sp"
+        android:text="@string/short_bio"
+        android:textSize="14sp" />
+
+    <ImageButton
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="25dp"
+        android:background="@android:color/transparent"
+        android:elevation="9dp"
+        android:src="@drawable/back_ic" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/PersonInfo"
+        android:layout_width="285dp"
+        android:layout_height="85dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu" />
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

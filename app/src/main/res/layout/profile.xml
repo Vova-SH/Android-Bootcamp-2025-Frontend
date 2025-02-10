@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="140sp"
-        android:layout_marginStart="20dp"
+        android:layout_gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
@@ -50,10 +50,11 @@
 
             <TextView
                 android:id="@+id/username"
-                android:layout_width="wrap_content"
+                android:layout_width="250sp"
                 android:layout_height="wrap_content"
                 android:text="@string/username"
                 android:layout_gravity="end"
+                android:gravity="end"
                 android:textSize="16sp"
                 android:fontFamily="@font/my_font_regular"/>
 
@@ -73,10 +74,11 @@
 
             <TextView
                 android:id="@+id/userphone"
-                android:layout_width="wrap_content"
+                android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:text="@string/userphone"
                 android:layout_gravity="end"
+                android:gravity="end"
                 android:textSize="16sp"
                 android:fontFamily="@font/my_font_regular"/>
 
@@ -97,10 +99,11 @@
 
             <TextView
                 android:id="@+id/useremail"
-                android:layout_width="wrap_content"
+                android:layout_width="250sp"
                 android:layout_height="wrap_content"
                 android:text="@string/useremail"
                 android:layout_gravity="end"
+                android:gravity="end"
                 android:textSize="16sp"
                 android:fontFamily="@font/my_font_regular"/>
 
@@ -120,8 +123,8 @@
 
             <TextView
                 android:id="@+id/userbio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="230sp"
                 android:text="@string/userbio"
                 android:textSize="16sp"
                 android:layout_marginTop="25dp"
