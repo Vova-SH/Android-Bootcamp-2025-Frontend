@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Android-Bootcamp-2025-Frontend</string>
+    <string name="action_settings">Settings</string>
+    <string name="login_hint">example@mail.ru</string>
+    <string name="password_hint">12345678</string>
+    <string name="title_init">Привет!</string>
+    <string name="title_user_exist">Войдём в аккаунт</string>
+    <string name="title_user_new">Создадим аккаунт</string>
+    <string name="button_init">Далее</string>
+    <string name="button_user_exist">Войти</string>
+    <string name="button_user_new">Зарегистрироваться</string>
 </resources>
